@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
-<title>CRMANAGER — Salary Room v7</title>
+<title>CRMANAGER — Salary Room v11.1 Analytics</title>
 <meta name="theme-color" content="#0f172a"/>
 <style>
 :root{
@@ -115,7 +115,7 @@ button,input,select,textarea{font:inherit}button{cursor:pointer}.app{display:gri
 <body>
 <div class="app">
 <aside class="sidebar">
-  <div class="brand"><div class="logo">₽</div><div><b>CRMANAGER</b><span>v7 · step 1 architecture</span></div></div>
+  <div class="brand"><div class="logo">₽</div><div><b>CRMANAGER</b><span>v11.1 · analytics dashboard</span></div></div>
   <nav class="nav">
     <button class="active" data-view="dashboard">🏠 Дашборд</button>
     <button data-view="focus">🔥 Фокус дня</button>
@@ -125,7 +125,7 @@ button,input,select,textarea{font:inherit}button{cursor:pointer}.app{display:gri
     <button data-view="archive">🗄 Архив</button>
     <button data-view="settings">⚙️ Настройки</button>
   </nav>
-  <div class="side-panel"><h3>Шаг 1</h3><p>Разделяем приложение на страницы. Главная — только аналитика, ввод уходит в отдельные разделы.</p></div>
+  <div class="side-panel"><h3>v11.1 Analytics</h3><p>На главной сразу видны графики оплат, конверсия, KPI базы, просрочки и причины потерь.</p></div>
   <div class="side-panel"><h3>Документы VIP</h3><p>Храним ссылки, статусы и папки. Файлы лучше держать в Google Drive, AMO или папке клиента.</p></div>
   <div class="side-foot">Перед обновлением можно сделать экспорт. Данные хранятся локально в браузере.</div>
 </aside>
@@ -133,7 +133,7 @@ button,input,select,textarea{font:inherit}button{cursor:pointer}.app{display:gri
 <main class="main">
 <div class="page">
 <header class="topbar fade">
-  <div class="title"><h1 id="pageTitle">Дашборд</h1><p id="pageText">Основная страница только для анализа: зарплата, факт, прогноз, график, фокус и риски.</p></div>
+  <div class="title"><h1 id="pageTitle">Дашборд</h1><p id="pageText">v11.1 · Главная теперь показывает графики оплат, конверсию, KPI базы, просрочки и причины потерь.</p></div>
   <div class="actions"><button class="btn primary" data-open>+ Добавить</button><button class="btn secondary" id="demoBtn">Демо</button><button class="btn secondary" id="themeBtn">Тема</button><button class="btn secondary" id="exportBtn">Экспорт</button><button class="btn danger" id="clearBtn">Очистить</button></div>
 </header>
 
@@ -145,20 +145,6 @@ button,input,select,textarea{font:inherit}button{cursor:pointer}.app{display:gri
       <div><div class="eyebrow">⚡ Итог месяца</div><div class="salary-line"><div><div class="salary" id="salaryNow">0 ₽</div><div class="caption">зарплата по фактически оплаченным клиентам</div></div><div class="chip red" id="levelChip">План не выполнен · 0%</div></div><div class="hero-mini"><div class="mini"><span>Факт оплат</span><b id="factSales">0 ₽</b></div><div class="mini"><span>Оплачено клиентов</span><b id="paidClients">0</b></div><div class="mini"><span>Прогноз зарплаты</span><b id="salaryForecast">0 ₽</b></div></div></div>
       <div><div class="dark-card"><span>Прогноз по счетам</span><b id="invoiceForecast">0 ₽</b><p id="salaryFormula">Факт + выставленные счета.</p></div><div class="suggestion"><h3>Фокус дня</h3><p id="mainInsight">Добавь заделы, счета и VIP, чтобы увидеть фокус.</p></div></div>
     </div>
-  </section>
-
-  <section class="kpis fade">
-    <div class="card kpi"><div class="kpi-head"><span>Активные заделы</span><div class="bubble">🧩</div></div><div class="kpi-value" id="activeDealsCount">0</div><div class="kpi-foot" id="activeDealsSum">0 ₽ в работе</div></div>
-    <div class="card kpi"><div class="kpi-head"><span>Счета</span><div class="bubble">🧾</div></div><div class="kpi-value" id="invoiceCount">0</div><div class="kpi-foot" id="invoiceSum">0 ₽ к оплате</div></div>
-    <div class="card kpi"><div class="kpi-head"><span>VIP на контроле</span><div class="bubble">💎</div></div><div class="kpi-value" id="vipControlCount">0</div><div class="kpi-foot" id="vipDocsProblems">0 проблем с документами</div></div>
-    <div class="card kpi"><div class="kpi-head"><span>До уровня</span><div class="bubble">🎯</div></div><div class="kpi-value" id="nextNeed">0 ₽</div><div class="kpi-foot" id="nextLabel">—</div></div>
-    <div class="card kpi"><div class="kpi-head"><span>Архив к возврату</span><div class="bubble">🗄</div></div><div class="kpi-value" id="returnCount">0</div><div class="kpi-foot">клиентов можно вернуть</div></div>
-    <div class="card kpi"><div class="kpi-head"><span>Средний чек</span><div class="bubble">💳</div></div><div class="kpi-value" id="avgCheck">0 ₽</div><div class="kpi-foot">по оплатившим клиентам</div></div>
-  </section>
-
-  <section class="grid fade">
-    <div class="card"><div class="head"><div><h2>График месяца</h2><p>Факт, счета, взвешенный прогноз и план в одном блоке.</p></div></div><div class="chart" id="monthChart"></div></div>
-    <div class="card"><div class="head"><div><h2>Топ фокуса</h2><p>Кого нужно держать на контроле в первую очередь.</p></div></div><div class="list" id="focusList"></div><div class="empty" id="focusEmpty">Пока нет задач для фокуса.</div></div>
   </section>
 
   <section class="analytics-kpis fade">
@@ -189,6 +175,22 @@ button,input,select,textarea{font:inherit}button{cursor:pointer}.app{display:gri
       <div class="data-list" id="archiveReasonsList"></div>
     </div>
   </section>
+
+
+  <section class="kpis fade">
+    <div class="card kpi"><div class="kpi-head"><span>Активные заделы</span><div class="bubble">🧩</div></div><div class="kpi-value" id="activeDealsCount">0</div><div class="kpi-foot" id="activeDealsSum">0 ₽ в работе</div></div>
+    <div class="card kpi"><div class="kpi-head"><span>Счета</span><div class="bubble">🧾</div></div><div class="kpi-value" id="invoiceCount">0</div><div class="kpi-foot" id="invoiceSum">0 ₽ к оплате</div></div>
+    <div class="card kpi"><div class="kpi-head"><span>VIP на контроле</span><div class="bubble">💎</div></div><div class="kpi-value" id="vipControlCount">0</div><div class="kpi-foot" id="vipDocsProblems">0 проблем с документами</div></div>
+    <div class="card kpi"><div class="kpi-head"><span>До уровня</span><div class="bubble">🎯</div></div><div class="kpi-value" id="nextNeed">0 ₽</div><div class="kpi-foot" id="nextLabel">—</div></div>
+    <div class="card kpi"><div class="kpi-head"><span>Архив к возврату</span><div class="bubble">🗄</div></div><div class="kpi-value" id="returnCount">0</div><div class="kpi-foot">клиентов можно вернуть</div></div>
+    <div class="card kpi"><div class="kpi-head"><span>Средний чек</span><div class="bubble">💳</div></div><div class="kpi-value" id="avgCheck">0 ₽</div><div class="kpi-foot">по оплатившим клиентам</div></div>
+  </section>
+
+  <section class="grid fade">
+    <div class="card"><div class="head"><div><h2>График месяца</h2><p>Факт, счета, взвешенный прогноз и план в одном блоке.</p></div></div><div class="chart" id="monthChart"></div></div>
+    <div class="card"><div class="head"><div><h2>Топ фокуса</h2><p>Кого нужно держать на контроле в первую очередь.</p></div></div><div class="list" id="focusList"></div><div class="empty" id="focusEmpty">Пока нет задач для фокуса.</div></div>
+  </section>
+
 
 </section>
 
@@ -372,7 +374,7 @@ function invoiceDeals(){return state.deals.filter(d=>['Счёт выставле
 function activeDeals(){return state.deals.filter(d=>!['Оплачено','Отказ'].includes(d.stage))}
 function calc(amount){const p=plan();let level='План не выполнен',rate=0,bonus=0,cls='red';if(p.superPlan>0&&amount>=p.superPlan){level='Сверхплан';rate=+p.highRate;bonus=+p.bonus;cls='violet'}else if(p.highPlan>0&&amount>=p.highPlan){level='Повышенный';rate=+p.highRate;cls='green'}else if(p.ordinaryPlan>0&&amount>=p.ordinaryPlan){level='Обычный';rate=+p.ordinaryRate;cls='amber'}return{level,rate,bonus,cls,salary:amount*rate+bonus}}
 function nextNeed(amount){const p=plan();const arr=[['обычного плана',+p.ordinaryPlan],['повышенного плана',+p.highPlan],['сверхплана',+p.superPlan]].filter(x=>x[1]>amount&&x[1]>0).sort((a,b)=>a[1]-b[1]);return arr.length?{label:'до '+arr[0][0],need:arr[0][1]-amount}:{label:'все уровни закрыты',need:0}}
-function setView(v){state.view=v;document.querySelectorAll('.view').forEach(x=>x.classList.toggle('active',x.id===v));document.querySelectorAll('[data-view]').forEach(x=>x.classList.toggle('active',x.dataset.view===v));const titles={dashboard:['Дашборд','Основная страница только для анализа: зарплата, факт, прогноз, график, фокус и риски.'],focus:['Фокус дня','Автоматический список: кого сегодня дожимать, кому писать, где просрочка и какие VIP требуют контроля.'],deals:['Заделы','Рабочая таблица заделов с AMO-ссылками, стадиями, прогнозом и связью с зарплатой.'],vip:['VIP-клиенты','Карточки VIP, депозиты, условия, контроль и быстрый доступ к документам.'],docs:['Документы','Единое место для ссылок на договоры, счета, акты, платёжки и папки клиентов.'],archive:['Архив','Отказы, паузы и клиенты, к которым можно вернуться.'],settings:['Настройки','Планы, ставки, бонус, импорт и экспорт данных.']};$('pageTitle').textContent=titles[v][0];$('pageText').textContent=titles[v][1];save()}
+function setView(v){state.view=v;document.querySelectorAll('.view').forEach(x=>x.classList.toggle('active',x.id===v));document.querySelectorAll('[data-view]').forEach(x=>x.classList.toggle('active',x.dataset.view===v));const titles={dashboard:['Дашборд','v11.1 · Главная теперь показывает графики оплат, конверсию, KPI базы, просрочки и причины потерь.'],focus:['Фокус дня','Автоматический список: кого сегодня дожимать, кому писать, где просрочка и какие VIP требуют контроля.'],deals:['Заделы','Рабочая таблица заделов с AMO-ссылками, стадиями, прогнозом и связью с зарплатой.'],vip:['VIP-клиенты','Карточки VIP, депозиты, условия, контроль и быстрый доступ к документам.'],docs:['Документы','Единое место для ссылок на договоры, счета, акты, платёжки и папки клиентов.'],archive:['Архив','Отказы, паузы и клиенты, к которым можно вернуться.'],settings:['Настройки','Планы, ставки, бонус, импорт и экспорт данных.']};$('pageTitle').textContent=titles[v][0];$('pageText').textContent=titles[v][1];save()}
 
 function percent(a,b){return b>0?Math.round(a/b*100):0}
 function groupByReason(arr){const map={};arr.forEach(a=>{const k=a.reason||'Другое';if(!map[k])map[k]={count:0,sum:0,returnable:0};map[k].count+=1;map[k].sum+=Number(a.amount||0);if(a.canReturn==='yes')map[k].returnable+=1});return Object.entries(map).map(([reason,v])=>({reason,...v})).sort((a,b)=>b.sum-a.sum)}
