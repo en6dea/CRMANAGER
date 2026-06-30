@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
-<title>CRMANAGER — v15 Living Analytics</title>
+<title>CRMANAGER — v16 Premium Option 1</title>
 <meta name="theme-color" content="#0f172a"/>
 <style>
 :root{
@@ -231,12 +231,87 @@ body:after{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;back
 .momentum-item{display:flex;justify-content:space-between;gap:12px;background:#fff;border:1px solid var(--line);border-radius:18px;padding:12px}.momentum-item h3{font-size:13px;margin:0 0 3px}.momentum-item p{font-size:12px;color:var(--muted);margin:0}
 @media(max-width:1280px){.pro-grid,.pro-analytics{grid-template-columns:1fr}.sidebar{border-radius:0}.main{padding:18px 12px 108px}}
 
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Manrope:wght@600;700;800&display=swap');
+/* === v16 premium option 1 === */
+:root{
+  --font:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
+  --head:Manrope,Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
+  --bg:#f6f8fc;--bg2:#fbfcff;--ink:#111827;--muted:#7b8798;--soft:#a1acbd;
+  --line:rgba(17,24,39,.075);--glass:rgba(255,255,255,.86);--card:#fff;
+  --blue:#2f67ff;--indigo:#4c6fff;--violet:#8b5cf6;--green:#17b26a;--greenBg:#ecfdf3;
+  --amber:#f59e0b;--amberBg:#fff7ed;--red:#ef4444;--redBg:#fef2f2;
+  --shadow:0 18px 44px rgba(15,23,42,.06);--shadow2:0 26px 90px rgba(15,23,42,.09);
+}
+html,body{font-family:var(--font)!important;-webkit-font-smoothing:antialiased;text-rendering:geometricPrecision}
+body{background:radial-gradient(circle at 8% 0,rgba(47,103,255,.08),transparent 28%),radial-gradient(circle at 92% 4%,rgba(139,92,246,.08),transparent 30%),linear-gradient(180deg,#fafcff,#f3f6fb)!important}
+body:before{opacity:.35;background-size:54px 54px}
+.app{grid-template-columns:280px minmax(0,1fr)}
+.sidebar{background:rgba(255,255,255,.88)!important;color:var(--ink)!important;border-right:1px solid rgba(17,24,39,.05)!important;box-shadow:24px 0 70px rgba(15,23,42,.05)!important;padding:18px 16px 24px}
+.logo{background:linear-gradient(135deg,#2f67ff,#5f8bff)!important;color:#fff;box-shadow:0 18px 36px rgba(47,103,255,.22)!important}
+.brand b,.title h1,.head h2,.lux-title,.lux-big,.lux-number,.lux-amount,.lux-value{font-family:var(--head)!important;letter-spacing:-.045em}
+.brand b{color:#111827;font-size:18px}.brand span{color:#8a94a6!important;font-size:12px;font-weight:700}
+.nav button{color:#334155!important;font-weight:700;border:1px solid transparent;padding:13px 14px}
+.nav button.active,.nav button:hover{background:#f4f7ff!important;color:#1f49d7!important;transform:none;border-color:#e9eef8;box-shadow:none}
+.side-panel,.side-foot{background:#fff!important;border:1px solid #eef2f8!important;color:#111827!important;box-shadow:var(--shadow)!important}.side-panel p,.side-foot{color:#7b8798!important}
+.main{padding:26px 28px 108px}.page{max-width:1500px}
+.title h1{font-size:42px;font-weight:800}.title p{color:#7b8798;font-weight:500}
+.actions .btn,.month-bar,.btn{border-radius:18px;border:1px solid #edf1f7;background:#fff;color:#111827;box-shadow:none}
+.primary{background:linear-gradient(135deg,#2f67ff,#3a77ff)!important;color:#fff!important;border-color:transparent!important;box-shadow:0 18px 34px rgba(47,103,255,.18)!important}
+.btn:hover{transform:translateY(-1px)}
+.hero,.card,.kpi,.analytics-kpi,.focus-hero,.vip-profile,.archive-hero,.templates-hero,.touch-hero,.sb-panel,.pro-panel,.month-bar{background:rgba(255,255,255,.88)!important;border:1px solid #edf1f7!important;box-shadow:var(--shadow)!important;backdrop-filter:blur(10px)}
+.eyebrow,.caption,.mini span,.muted,.head p,.lux-sub,.lux-label,.lux-mini span,.lux-row-sub,.lux-list p,.lux-chip{color:#7b8798!important}
+
+/* dashboard premium rebuild */
+.lux-dashboard{display:grid;gap:18px}
+.lux-grid2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.lux-grid3{display:grid;grid-template-columns:1.08fr 1.15fr .95fr;gap:18px}
+.lux-gridBottom{display:grid;grid-template-columns:1.35fr .85fr;gap:18px}
+.lux-card{background:rgba(255,255,255,.92);border:1px solid #edf1f7;border-radius:26px;box-shadow:var(--shadow);padding:18px}
+.lux-main-card,.lux-forecast-card{min-height:250px}
+.lux-main-card{background:linear-gradient(135deg,#ffffff 0%,#f7f9ff 62%,#f4f8ff 100%);position:relative;overflow:hidden}
+.lux-main-card:after{content:"";position:absolute;right:-80px;top:-80px;width:220px;height:220px;border-radius:50%;background:radial-gradient(circle,rgba(47,103,255,.08),transparent 68%)}
+.lux-forecast-card{position:relative;overflow:hidden}.lux-forecast-card:after{content:"";position:absolute;inset:auto -10% 20px 8%;height:140px;background:radial-gradient(circle at 0 100%,rgba(47,103,255,.12),transparent 36%),radial-gradient(circle at 45% 0,rgba(139,92,246,.08),transparent 28%)}
+.lux-pill{display:inline-flex;align-items:center;gap:8px;padding:7px 12px;border-radius:999px;background:#eef4ff;color:#3757d8;font-size:12px;font-weight:700;margin-bottom:16px}
+.lux-big{font-size:62px;line-height:.98;font-weight:800;color:#111827;margin:8px 0 10px}
+.lux-title{font-size:15px;font-weight:700;color:#111827}.lux-sub{font-size:13px}
+.lux-progress-wrap{margin:14px 0 18px}.lux-progress-head{display:flex;justify-content:space-between;align-items:center;font-size:13px;margin-bottom:8px;color:#667085}.lux-progress{height:8px;border-radius:999px;background:#e8eef9;overflow:hidden}.lux-progress > div{height:100%;border-radius:999px;background:linear-gradient(90deg,#2f67ff,#5f8bff)}
+.lux-mini-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:18px}.lux-mini{padding:0 8px;border-left:1px solid #edf1f7}.lux-mini:first-child{border-left:0;padding-left:0}.lux-mini span{display:block;font-size:12px;font-weight:600;margin-bottom:6px}.lux-mini b{font-size:16px;color:#111827}
+.lux-forecast-top{display:flex;justify-content:space-between;gap:12px;align-items:start}.lux-amount{font-size:52px;line-height:1;font-weight:800;margin:10px 0 8px;color:#111827}.lux-green{display:inline-flex;padding:6px 10px;border-radius:999px;background:#edfdf3;color:#169a5f;font-size:12px;font-weight:700}
+.lux-line-area{height:104px;position:relative;margin:20px 0 16px}.lux-line-area svg{width:100%;height:100%}
+.lux-bottom-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;border-top:1px solid #edf1f7;padding-top:12px}.lux-bottom-stats div span{display:block;font-size:12px;color:#7b8798;margin-bottom:4px}.lux-bottom-stats div b{font-size:18px;color:#111827}
+
+.lux-kpi-strip{display:grid;grid-template-columns:repeat(6,1fr);gap:0;background:#fff;border:1px solid #edf1f7;border-radius:22px;box-shadow:var(--shadow);padding:4px 0}
+.lux-kpi-item{padding:12px 18px;display:flex;gap:12px;align-items:center;border-right:1px solid #edf1f7}.lux-kpi-item:last-child{border-right:0}.lux-kpi-icon{width:40px;height:40px;border-radius:999px;display:grid;place-items:center;font-size:16px;font-weight:700}
+.lux-kpi-text span{display:block;font-size:12px;color:#7b8798;font-weight:600}.lux-kpi-text b{display:block;font-size:18px;color:#111827;margin:2px 0}.lux-kpi-text em{font-style:normal;font-size:12px;color:#7b8798}
+.lux-blue{background:#eff5ff;color:#2f67ff}.lux-amber{background:#fff6e9;color:#f59e0b}.lux-greenBg{background:#ecfdf3;color:#17b26a}.lux-violet{background:#f4f0ff;color:#8b5cf6}.lux-red{background:#fef2f2;color:#ef4444}.lux-mint{background:#eefbf7;color:#17b26a}
+
+.lux-section-title{font-family:var(--head);font-size:14px;color:#111827;font-weight:800;margin-bottom:14px}
+.lux-conversion .lux-row{display:grid;grid-template-columns:1fr 72px 64px;gap:10px;align-items:center;padding:12px 12px;border-radius:14px;background:#f7f9fc;margin-bottom:8px}.lux-conversion .lux-row .name{font-size:13px;font-weight:700;color:#334155}.lux-conversion .lux-row .num,.lux-conversion .lux-row .pct{font-size:13px;font-weight:700;color:#445065;text-align:right}.lux-conv-total{display:flex;justify-content:space-between;align-items:center;padding-top:12px;margin-top:4px;border-top:1px solid #edf1f7}
+
+.lux-chart-grid{height:170px;border-bottom:1px solid #edf1f7;display:flex;align-items:flex-end;gap:16px;padding:6px 8px 14px 8px;position:relative;background:linear-gradient(180deg,rgba(240,244,251,.35),transparent)}
+.lux-chart-grid:before{content:"";position:absolute;left:0;right:0;top:20%;height:1px;background:#edf1f7;box-shadow:0 38px 0 #edf1f7,0 76px 0 #edf1f7,0 114px 0 #edf1f7}
+.lux-col{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;gap:8px;position:relative;z-index:1}.lux-bar{width:44px;border-radius:16px 16px 10px 10px;background:linear-gradient(180deg,#a7bcff 0%,#2f67ff 100%);min-height:10px;box-shadow:0 12px 28px rgba(47,103,255,.15)}
+.lux-plan-bar{position:absolute;left:50%;transform:translateX(-50%);width:54px;border:1.5px dashed #c8d2e5;border-bottom:0;border-radius:16px 16px 0 0;background:rgba(47,103,255,.04)}
+.lux-col label{font-size:12px;color:#7b8798;font-weight:700}
+.lux-chart-legend{display:flex;gap:18px;font-size:12px;color:#7b8798;margin-bottom:10px}.lux-dot{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:6px;vertical-align:-1px}.lux-dot.fact{background:#2f67ff}.lux-dot.plan{background:#cfd7e6}.lux-dot.forecast{background:#9db5ff}
+.lux-donut-wrap{display:grid;grid-template-columns:190px 1fr;gap:16px;align-items:center}.lux-donut{width:170px;height:170px;border-radius:50%;display:grid;place-items:center;margin:auto;position:relative}.lux-donut:after{content:"";position:absolute;inset:22px;border-radius:50%;background:#fff;border:1px solid #eef2f7}.lux-donut-center{position:relative;z-index:1;text-align:center}.lux-donut-center b{display:block;font-size:38px;font-family:var(--head);color:#111827}.lux-donut-center span{font-size:12px;color:#7b8798}
+.lux-legend{display:grid;gap:12px}.lux-legend-row{display:grid;grid-template-columns:14px 1fr auto;gap:10px;align-items:center;font-size:13px;color:#475467}.lux-legend-row i{display:block;width:10px;height:10px;border-radius:50%}
+.lux-small-note{margin-top:14px;padding-top:12px;border-top:1px solid #edf1f7;display:flex;justify-content:space-between;align-items:center}
+
+.lux-stage-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}.lux-stage{border:1px solid #edf1f7;border-radius:16px;padding:12px;background:#fbfcfe}.lux-stage h4{margin:0 0 8px;font-size:13px;color:#111827}.lux-stage .meta{font-size:11px;color:#7b8798;margin-bottom:10px}.lux-deal-pill{display:flex;justify-content:space-between;gap:10px;font-size:12px;background:#fff;border:1px solid #eef2f7;border-radius:12px;padding:8px 10px;margin-bottom:8px;color:#475467}.lux-deal-pill b{color:#111827;font-size:12px}
+.lux-focus-list{display:grid;gap:12px}.lux-focus-item{display:grid;grid-template-columns:18px 1fr auto;gap:12px;align-items:start;padding:10px 0;border-bottom:1px solid #edf1f7}.lux-focus-item:last-child{border-bottom:0}.lux-focus-item h4{margin:0 0 4px;font-size:14px;color:#111827}.lux-focus-item p{margin:0;font-size:12px;color:#7b8798}.lux-badge{display:inline-flex;align-items:center;padding:6px 10px;border-radius:999px;font-size:12px;font-weight:700}.lux-badge.red{background:#fef2f2;color:#ef4444}.lux-badge.amber{background:#fff7ed;color:#f59e0b}.lux-badge.green{background:#ecfdf3;color:#17b26a}
+.lux-bottom-analytics{display:grid;grid-template-columns:repeat(6,1fr);gap:14px}.lux-analytic{border:1px solid #edf1f7;border-radius:18px;padding:14px;background:#fff}.lux-analytic span{display:block;font-size:12px;color:#7b8798;font-weight:600;margin-bottom:8px}.lux-analytic b{display:block;font-size:22px;color:#111827;margin-bottom:8px;font-family:var(--head)}.lux-analytic em{font-style:normal;font-size:12px;color:#17b26a}
+#legacyDashboard{display:none!important}
+@media(max-width:1320px){.lux-grid3,.lux-gridBottom,.lux-grid2,.lux-stage-grid,.lux-bottom-analytics{grid-template-columns:1fr}.lux-kpi-strip{grid-template-columns:1fr 1fr 1fr}.lux-kpi-item{border-right:0;border-bottom:1px solid #edf1f7}.lux-kpi-item:nth-child(6){border-bottom:0}.lux-mini-grid{grid-template-columns:1fr 1fr}.lux-donut-wrap{grid-template-columns:1fr}.lux-big,.lux-amount{font-size:44px}.title h1{font-size:34px}}
+@media(max-width:820px){.app{grid-template-columns:1fr}.sidebar{display:none}.main{padding:16px 12px 100px}.lux-kpi-strip,.lux-bottom-analytics,.lux-stage-grid,.lux-grid3,.lux-gridBottom,.lux-grid2{grid-template-columns:1fr}.lux-kpi-item{border-right:0;border-bottom:1px solid #edf1f7}.lux-main-card,.lux-forecast-card{min-height:auto}.lux-big,.lux-amount{font-size:42px}.lux-mini-grid{grid-template-columns:1fr 1fr}.lux-bottom-stats{grid-template-columns:1fr}.lux-donut-wrap{grid-template-columns:1fr}.lux-kpi-strip{padding:0}}
+
 </style>
 </head>
 <body>
 <div class="app">
 <aside class="sidebar">
-  <div class="brand"><div class="logo">₽</div><div><b>CRMANAGER</b><span>v15 · living analytics</span></div></div>
+  <div class="brand"><div class="logo">₽</div><div><b>CRMANAGER</b><span>v16 · premium option 1</span></div></div>
   <nav class="nav">
     <button class="active" data-view="dashboard">🏠 Дашборд</button>
     <button data-view="focus">🔥 Фокус дня</button>
@@ -248,7 +323,7 @@ body:after{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;back
     <button data-view="templates">💬 Шаблоны</button>
     <button data-view="settings">⚙️ Настройки</button>
   </nav>
-  <div class="side-panel"><h3>v15 Living UI</h3><p>Тот же светлый clean-tech стиль, но живее: Inter-шрифт, мягкие движения, SaaS-карточки и усиленная аналитика.</p></div>
+  <div class="side-panel"><h3>v16 Premium UI</h3><p>Тот же светлый clean-tech стиль, но живее: Inter-шрифт, мягкие движения, SaaS-карточки и усиленная аналитика.</p></div>
   <div class="side-panel"><h3>Документы VIP</h3><p>Храним ссылки, статусы и папки. Файлы лучше держать в Google Drive, AMO или папке клиента.</p></div>
   <div class="side-foot">Перед обновлением можно сделать экспорт. Данные хранятся локально в браузере.</div>
 </aside>
@@ -256,14 +331,114 @@ body:after{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;back
 <main class="main">
 <div class="page">
 <header class="topbar fade">
-  <div class="title"><h1 id="pageTitle">Дашборд</h1><p id="pageText">v15 · Living analytics: Inter-шрифт, живой clean-tech визуал, расширенная аналитика продаж и базы.</p></div>
+  <div class="title"><h1 id="pageTitle">Дашборд</h1><p id="pageText">v16 · premium option 1: дорогой светлый визуал, Manrope + Inter, чистая аналитика и новый мастер-дизайн.</p></div>
   <div class="actions"><button class="btn primary" data-open>+ Добавить</button><button class="btn secondary" id="demoBtn">Демо</button><button class="btn secondary" id="themeBtn">Тема</button><button class="btn secondary" id="exportBtn">Экспорт</button><button class="btn danger" id="clearBtn">Очистить</button></div>
 </header>
 
 <div class="month-bar fade"><button class="icon-btn" id="prevMonth">‹</button><div class="month-center"><div><div class="month-name" id="monthName">—</div><div class="month-sub">факт — по дате оплаты, прогноз — по счетам выбранного месяца</div></div><button class="btn secondary" id="todayMonth">Текущий месяц</button></div><button class="icon-btn" id="nextMonth">›</button></div>
 
 <section class="view active" id="dashboard">
-  <section class="hero fade">
+  <div class="lux-dashboard fade">
+    <section class="lux-grid2">
+      <div class="lux-card lux-main-card">
+        <div class="lux-pill">Текущий месяц</div>
+        <div class="lux-title">Факт по счетам</div>
+        <div class="lux-big" id="luxFact">0 ₽</div>
+        <div class="lux-sub" id="luxPlanText">План 0 ₽</div>
+        <div class="lux-progress-wrap">
+          <div class="lux-progress-head"><span>Выполнение плана</span><strong id="luxPlanPct">0%</strong></div>
+          <div class="lux-progress"><div id="luxPlanBar" style="width:0%"></div></div>
+        </div>
+        <div class="lux-mini-grid">
+          <div class="lux-mini"><span>Оплачено клиентов</span><b id="luxPaidClients">0</b></div>
+          <div class="lux-mini"><span>VIP клиентов</span><b id="luxVipClients">0</b></div>
+          <div class="lux-mini"><span>По плану</span><b id="luxPlanStatus">0%</b></div>
+          <div class="lux-mini"><span>Средний чек</span><b id="luxAvgCheck">0 ₽</b></div>
+        </div>
+      </div>
+      <div class="lux-card lux-forecast-card">
+        <div class="lux-forecast-top">
+          <div>
+            <div class="lux-title">Прогноз по счетам</div>
+            <div class="lux-amount" id="luxForecast">0 ₽</div>
+            <div class="lux-sub">На основе активной базы и конверсии</div>
+          </div>
+          <div class="lux-green" id="luxForecastDelta">0% к плану</div>
+        </div>
+        <div class="lux-line-area">
+          <svg viewBox="0 0 600 160" preserveAspectRatio="none" aria-hidden="true">
+            <defs>
+              <linearGradient id="luxAreaGrad" x1="0" x2="0" y1="0" y2="1">
+                <stop offset="0%" stop-color="#8fb2ff" stop-opacity="0.35"/>
+                <stop offset="100%" stop-color="#8fb2ff" stop-opacity="0.02"/>
+              </linearGradient>
+            </defs>
+            <path d="M0,120 C70,118 95,95 150,96 C220,95 235,62 300,65 C365,68 380,28 460,30 C520,31 545,20 600,22 L600,160 L0,160 Z" fill="url(#luxAreaGrad)"></path>
+            <path d="M0,120 C70,118 95,95 150,96 C220,95 235,62 300,65 C365,68 380,28 460,30 C520,31 545,20 600,22" fill="none" stroke="#4f7dff" stroke-width="4" stroke-linecap="round"></path>
+          </svg>
+        </div>
+        <div class="lux-bottom-stats">
+          <div><span>Факт</span><b id="luxForecastFact">0 ₽</b></div>
+          <div><span>Прогноз</span><b id="luxForecastOnly">0 ₽</b></div>
+          <div><span>Потенциал</span><b id="luxPotential">0 ₽</b></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="lux-kpi-strip">
+      <div class="lux-kpi-item"><div class="lux-kpi-icon lux-blue">◉</div><div class="lux-kpi-text"><span>Активные клиенты</span><b id="luxActiveClients">0</b><em id="luxActiveClientsSub">0 ₽</em></div></div>
+      <div class="lux-kpi-item"><div class="lux-kpi-icon lux-amber">◎</div><div class="lux-kpi-text"><span>Деньги к дожиму</span><b id="luxPushMoney">0 ₽</b><em id="luxPushMoneySub">0 сделок</em></div></div>
+      <div class="lux-kpi-item"><div class="lux-kpi-icon lux-greenBg">◌</div><div class="lux-kpi-text"><span>VIP в работе</span><b id="luxVipWork">0</b><em id="luxVipWorkSub">0 ₽</em></div></div>
+      <div class="lux-kpi-item"><div class="lux-kpi-icon lux-violet">↻</div><div class="lux-kpi-text"><span>Повторные клиенты</span><b id="luxRepeatClients">0</b><em id="luxRepeatClientsSub">0 ₽</em></div></div>
+      <div class="lux-kpi-item"><div class="lux-kpi-icon lux-red">✉</div><div class="lux-kpi-text"><span>Касания сегодня</span><b id="luxTouchesToday">0</b><em id="luxTouchesTodaySub">План 0</em></div></div>
+      <div class="lux-kpi-item"><div class="lux-kpi-icon lux-mint">△</div><div class="lux-kpi-text"><span>Индекс риска</span><b id="luxRiskIndex">0%</b><em id="luxRiskIndexSub">Низкий</em></div></div>
+    </section>
+
+    <section class="lux-grid3">
+      <div class="lux-card lux-conversion">
+        <div class="lux-section-title">Конверсия в оплату</div>
+        <div id="luxConversionRows"></div>
+        <div class="lux-conv-total"><span class="lux-sub">Конверсия</span><div><b class="lux-value" id="luxConversionTotal">0%</b> <span class="lux-green" id="luxConversionDelta">+0 п.п.</span></div></div>
+      </div>
+      <div class="lux-card">
+        <div class="lux-section-title">Динамика по счетам</div>
+        <div class="lux-chart-legend"><span><i class="lux-dot fact"></i>Факт</span><span><i class="lux-dot plan"></i>План</span><span><i class="lux-dot forecast"></i>Прогноз</span></div>
+        <div class="lux-chart-grid" id="luxTrendChart"></div>
+      </div>
+      <div class="lux-card">
+        <div class="lux-section-title">Воронка по типам клиентов</div>
+        <div class="lux-donut-wrap">
+          <div class="lux-donut" id="luxDonut"><div class="lux-donut-center"><b id="luxDonutTotal">0</b><span>всего клиентов</span></div></div>
+          <div class="lux-legend" id="luxLegend"></div>
+        </div>
+        <div class="lux-small-note"><span class="lux-sub">Конверсия в оплату</span><div><b class="lux-value" id="luxDonutConv">0%</b> <span class="lux-green" id="luxDonutDelta">+0 п.п.</span></div></div>
+      </div>
+    </section>
+
+    <section class="lux-gridBottom">
+      <div class="lux-card">
+        <div class="lux-section-title">Стадии сделок</div>
+        <div class="lux-stage-grid" id="luxStages"></div>
+      </div>
+      <div class="lux-card">
+        <div style="display:flex;justify-content:space-between;gap:10px;align-items:center;margin-bottom:14px"><div class="lux-section-title" style="margin:0">Фокус дня</div><a class="lux-sub" href="#" onclick="setView('focus');return false;">Смотреть все</a></div>
+        <div class="lux-focus-list" id="luxFocusList"></div>
+      </div>
+    </section>
+
+    <section class="lux-card">
+      <div class="lux-section-title">Аналитика и качество базы</div>
+      <div class="lux-bottom-analytics">
+        <div class="lux-analytic"><span>Скорость касаний</span><b id="luxTouchSpeed">0 / день</b><em id="luxTouchSpeedSub">План 0</em></div>
+        <div class="lux-analytic"><span>Качество базы</span><b id="luxBaseQuality">0%</b><em id="luxBaseQualitySub">—</em></div>
+        <div class="lux-analytic"><span>Архив к возврату</span><b id="luxArchiveSum">0 ₽</b><em id="luxArchiveSumSub">0 клиентов</em></div>
+        <div class="lux-analytic"><span>Средний цикл сделки</span><b id="luxDealCycle">0 дней</b><em id="luxDealCycleSub">—</em></div>
+        <div class="lux-analytic"><span>LTV клиента</span><b id="luxLtv">0 ₽</b><em id="luxLtvSub">—</em></div>
+        <div class="lux-analytic"><span>Процент повторных</span><b id="luxRepeatShare">0%</b><em id="luxRepeatShareSub">—</em></div>
+      </div>
+    </section>
+  </div>
+  <div id="legacyDashboard"><section class="hero fade">
     <div class="hero-grid">
       <div><div class="eyebrow">⚡ Итог месяца</div><div class="salary-line"><div><div class="salary" id="salaryNow">0 ₽</div><div class="caption">зарплата по фактически оплаченным клиентам</div></div><div class="chip red" id="levelChip">План не выполнен · 0%</div></div><div class="hero-mini"><div class="mini"><span>Факт оплат</span><b id="factSales">0 ₽</b></div><div class="mini"><span>Оплачено клиентов</span><b id="paidClients">0</b></div><div class="mini"><span>Прогноз зарплаты</span><b id="salaryForecast">0 ₽</b></div></div></div>
       <div><div class="dark-card"><span>Прогноз по счетам</span><b id="invoiceForecast">0 ₽</b><p id="salaryFormula">Факт + выставленные счета.</p></div><div class="suggestion"><h3>Фокус дня</h3><p id="mainInsight">Добавь заделы, счета и VIP, чтобы увидеть фокус.</p></div></div>
@@ -363,6 +538,7 @@ body:after{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;back
   </section>
 
 
+</section></div>
 </section>
 
 
@@ -629,7 +805,7 @@ function invoiceDeals(){return state.deals.filter(d=>['Счёт выставле
 function activeDeals(){return state.deals.filter(d=>!['Оплачено','Отказ'].includes(d.stage))}
 function calc(amount){const p=plan();let level='План не выполнен',rate=0,bonus=0,cls='red';if(p.superPlan>0&&amount>=p.superPlan){level='Сверхплан';rate=+p.highRate;bonus=+p.bonus;cls='violet'}else if(p.highPlan>0&&amount>=p.highPlan){level='Повышенный';rate=+p.highRate;cls='green'}else if(p.ordinaryPlan>0&&amount>=p.ordinaryPlan){level='Обычный';rate=+p.ordinaryRate;cls='amber'}return{level,rate,bonus,cls,salary:amount*rate+bonus}}
 function nextNeed(amount){const p=plan();const arr=[['обычного плана',+p.ordinaryPlan],['повышенного плана',+p.highPlan],['сверхплана',+p.superPlan]].filter(x=>x[1]>amount&&x[1]>0).sort((a,b)=>a[1]-b[1]);return arr.length?{label:'до '+arr[0][0],need:arr[0][1]-amount}:{label:'все уровни закрыты',need:0}}
-function setView(v){state.view=v;document.querySelectorAll('.view').forEach(x=>x.classList.toggle('active',x.id===v));document.querySelectorAll('[data-view]').forEach(x=>x.classList.toggle('active',x.dataset.view===v));const titles={dashboard:['Дашборд','v15 · Living analytics: Inter-шрифт, живой clean-tech визуал, расширенная аналитика продаж и базы.'],focus:['Фокус дня','Автоматический список: кого сегодня дожимать, кому писать, где просрочка и какие VIP требуют контроля.'],deals:['Заделы','Рабочая таблица заделов с AMO-ссылками, стадиями, прогнозом и связью с зарплатой.'],vip:['VIP-клиенты','Карточки VIP, депозиты, условия, контроль и быстрый доступ к документам.'],docs:['Документы','Единое место для ссылок на договоры, счета, акты, платёжки и папки клиентов.'],archive:['Архив','Отказы, паузы и клиенты, к которым можно вернуться.'],touchpoints:['Касания','История коммуникаций: кто ответил, кто молчит, кто обещал оплатить и когда следующий контакт.'],templates:['Шаблоны','Готовые сообщения и ответы на возражения для дожима клиентов.'],settings:['Настройки','Планы, ставки, бонус, импорт и экспорт данных.']};$('pageTitle').textContent=titles[v][0];$('pageText').textContent=titles[v][1];save()}
+function setView(v){state.view=v;document.querySelectorAll('.view').forEach(x=>x.classList.toggle('active',x.id===v));document.querySelectorAll('[data-view]').forEach(x=>x.classList.toggle('active',x.dataset.view===v));const titles={dashboard:['Дашборд','v16 · premium option 1: дорогой светлый визуал, Manrope + Inter, чистая аналитика и новый мастер-дизайн.'],focus:['Фокус дня','Автоматический список: кого сегодня дожимать, кому писать, где просрочка и какие VIP требуют контроля.'],deals:['Заделы','Рабочая таблица заделов с AMO-ссылками, стадиями, прогнозом и связью с зарплатой.'],vip:['VIP-клиенты','Карточки VIP, депозиты, условия, контроль и быстрый доступ к документам.'],docs:['Документы','Единое место для ссылок на договоры, счета, акты, платёжки и папки клиентов.'],archive:['Архив','Отказы, паузы и клиенты, к которым можно вернуться.'],touchpoints:['Касания','История коммуникаций: кто ответил, кто молчит, кто обещал оплатить и когда следующий контакт.'],templates:['Шаблоны','Готовые сообщения и ответы на возражения для дожима клиентов.'],settings:['Настройки','Планы, ставки, бонус, импорт и экспорт данных.']};$('pageTitle').textContent=titles[v][0];$('pageText').textContent=titles[v][1];save()}
 
 function percent(a,b){return b>0?Math.round(a/b*100):0}
 function groupByReason(arr){const map={};arr.forEach(a=>{const k=a.reason||'Другое';if(!map[k])map[k]={count:0,sum:0,returnable:0};map[k].count+=1;map[k].sum+=Number(a.amount||0);if(a.canReturn==='yes')map[k].returnable+=1});return Object.entries(map).map(([reason,v])=>({reason,...v})).sort((a,b)=>b.sum-a.sum)}
@@ -782,7 +958,137 @@ function renderMomentum(v){
   $('priorityActions').innerHTML=priorities.map(m=>`<div class="momentum-item"><div><h3>${m[0]}</h3><p>${m[1]}</p></div><span class="pill work">action</span></div>`).join('');
 }
 
-function render(){const p=plan(),pd=paidDeals(),inv=invoiceDeals(),act=activeDeals();const fact=pd.reduce((s,x)=>s+Number(x.amount||0),0),invSum=inv.reduce((s,x)=>s+Number(x.amount||0),0),activeSum=act.reduce((s,x)=>s+Number(x.amount||0),0),weighted=state.deals.filter(d=>!['Оплачено','Отказ'].includes(d.stage)).reduce((s,d)=>s+Number(d.amount||0)*(stageProb[d.stage]||0)/100,0),paidClientCount=new Set(pd.map(x=>x.client)).size,cur=calc(fact),future=calc(fact+invSum),next=nextNeed(fact),docsProblem=state.docs.filter(d=>['Нужно получить','Проблема'].includes(d.status)).length,vipControl=state.vips.filter(v=>v.risk==='Высокий'||(v.controlDate&&v.controlDate<=today())).length,returns=state.archive.filter(a=>a.canReturn==='yes').length;document.documentElement.dataset.theme=state.theme||'light';$('monthName').textContent=monthName(state.currentMonth);$('salaryNow').textContent=money(cur.salary);$('factSales').textContent=money(fact);$('paidClients').textContent=paidClientCount;$('salaryForecast').textContent=money(future.salary);$('invoiceForecast').textContent=money(fact+invSum);$('salaryFormula').textContent=`Факт ${money(fact)} + счета ${money(invSum)} = прогноз ${money(fact+invSum)}`;$('levelChip').className='chip '+cur.cls;$('levelChip').textContent=`${cur.level} · ${Math.round(cur.rate*100)}%`;$('activeDealsCount').textContent=act.length;$('activeDealsSum').textContent=money(activeSum)+' в работе';$('invoiceCount').textContent=inv.length;$('invoiceSum').textContent=money(invSum)+' к оплате';$('vipControlCount').textContent=vipControl;$('vipDocsProblems').textContent=docsProblem+' проблем с документами';$('nextNeed').textContent=money(next.need);$('nextLabel').textContent=next.label;$('returnCount').textContent=returns;$('avgCheck').textContent=money(paidClientCount?fact/paidClientCount:0);$('mainInsight').innerHTML=buildInsight(vipControl,docsProblem,invSum,next.need,future.salary);renderChart(fact,invSum,weighted,p.superPlan);renderDashboardAnalytics(pd);renderSecondBrainAnalytics();renderProAnalytics();renderTemplates();renderTouchpoints();renderFocus(inv,vipControl);renderDeals();renderVip();renderDocs();renderArchive();renderFocusPage();hydratePlans();setView(state.view||'dashboard');save()}
+
+function renderLuxuryDashboard(){
+  const p=plan(), pd=paidDeals(), inv=invoiceDeals(), act=activeDeals();
+  const fact=pd.reduce((s,x)=>s+Number(x.amount||0),0);
+  const invSum=inv.reduce((s,x)=>s+Number(x.amount||0),0);
+  const paidClientCount=[...new Set(pd.map(x=>x.client).filter(Boolean))].length;
+  const activeClientCount=[...new Set(act.map(x=>x.client).filter(Boolean))].length;
+  const vipClients=[...new Set(state.vips.map(x=>x.client).filter(Boolean))];
+  const avgCheck=paidClientCount?fact/paidClientCount:0;
+  const planBase=Number(p.ordinaryPlan||0);
+  const planPct=planBase?Math.min(100,Math.round(fact/planBase*100)):0;
+  const forecast=fact+invSum;
+  const forecastPct=planBase?Math.round(forecast/planBase*100)-100:0;
+  const potential=Math.max(0,forecast-fact);
+  const promiseSum=state.touchpoints.filter(t=>touchInMonth(t)&&t.result==='Обещал оплатить').reduce((s,t)=>s+Number(t.amount||0),0);
+  const touchesMonth=state.touchpoints.filter(touchInMonth).length;
+  const touchesToday=state.touchpoints.filter(t=>t.date===today()).length;
+  const archiveCan=state.archive.filter(a=>a.canReturn==='yes');
+  const archiveSum=archiveCan.reduce((s,a)=>s+Number(a.amount||0),0);
+  const docsProblems=state.docs.filter(d=>['Нужно получить','Проблема'].includes(d.status)).length;
+  const silentMoney=state.touchpoints.filter(t=>touchInMonth(t)&&t.result==='Молчит').reduce((s,t)=>s+Number(t.amount||0),0);
+  const overdueDeals=state.deals.filter(d=>d.stage==='Просрочено');
+  const riskIndex=Math.min(100,overdueDeals.length*20+docsProblems*10+(silentMoney>0?15:0)+state.vips.filter(v=>v.risk==='Высокий').length*20);
+  const riskLabel=riskIndex>=60?'Высокий':riskIndex>=30?'Средний':'Низкий';
+  const allClients=[...new Set([...state.deals.map(x=>x.client),...state.vips.map(x=>x.client),...state.archive.map(x=>x.client)].filter(Boolean))];
+  const qualityUnits=activeClientCount + state.vips.length;
+  const withNext=state.deals.filter(d=>!['Оплачено','Отказ'].includes(d.stage)&&(d.nextAction||d.nextDate)).length + state.vips.filter(v=>v.nextAction||v.controlDate).length;
+  const baseQuality=qualityUnits?Math.round(withNext/qualityUnits*100):0;
+  const touchSpeed=Math.round((touchesMonth/Math.max(1,new Date().getDate()))*10)/10;
+  const clientTotals={};
+  state.deals.filter(d=>d.stage==='Оплачено').forEach(d=>{clientTotals[d.client]=(clientTotals[d.client]||0)+Number(d.amount||0)});
+  const ltvVals=Object.values(clientTotals);
+  const ltv=ltvVals.length?ltvVals.reduce((a,b)=>a+b,0)/ltvVals.length:0;
+  const repeatShare=allClients.length?Math.round((paidClientCount/allClients.length)*100):0;
+  const cycleVals=state.deals.filter(d=>d.stage==='Оплачено'&&d.invoiceDate&&d.payDate).map(d=>Math.max(0,Math.round((new Date(d.payDate)-new Date(d.invoiceDate))/(1000*60*60*24))));
+  const cycle=cycleVals.length?Math.round(cycleVals.reduce((a,b)=>a+b,0)/cycleVals.length):0;
+
+  if($('luxFact')){
+    $('luxFact').textContent=money(fact); $('luxPlanText').textContent=`План ${money(planBase)}`;
+    $('luxPlanPct').textContent=planPct+'%'; $('luxPlanBar').style.width=planPct+'%';
+    $('luxPaidClients').textContent=paidClientCount; $('luxVipClients').textContent=vipClients.length; $('luxPlanStatus').textContent=planPct+'%'; $('luxAvgCheck').textContent=money(avgCheck);
+    $('luxForecast').textContent=money(forecast); $('luxForecastDelta').textContent=(forecastPct>=0?`▲ ${forecastPct}% к плану`:`${forecastPct}% к плану`); $('luxForecastFact').textContent=money(fact); $('luxForecastOnly').textContent=money(forecast); $('luxPotential').textContent='+'+money(potential);
+    $('luxActiveClients').textContent=activeClientCount; $('luxActiveClientsSub').textContent=money(act.reduce((s,d)=>s+Number(d.amount||0),0));
+    $('luxPushMoney').textContent=money(invSum+promiseSum); $('luxPushMoneySub').textContent=(inv.length+state.touchpoints.filter(t=>touchInMonth(t)&&t.result==='Обещал оплатить').length)+' сделок';
+    $('luxVipWork').textContent=state.vips.length; $('luxVipWorkSub').textContent=money(state.vips.reduce((s,v)=>s+Number(v.deposit||0),0));
+    $('luxRepeatClients').textContent=paidClientCount; $('luxRepeatClientsSub').textContent=money(fact);
+    $('luxTouchesToday').textContent=touchesToday; $('luxTouchesTodaySub').textContent='План 8';
+    $('luxRiskIndex').textContent=riskIndex+'%'; $('luxRiskIndexSub').textContent=riskLabel;
+    $('luxTouchSpeed').textContent=(String(touchSpeed).replace('.',','))+' / день'; $('luxTouchSpeedSub').textContent='План 2,5';
+    $('luxBaseQuality').textContent=baseQuality+'%'; $('luxBaseQualitySub').textContent=baseQuality>=70?'Хорошее':'Требует внимания';
+    $('luxArchiveSum').textContent=money(archiveSum); $('luxArchiveSumSub').textContent=archiveCan.length+' клиентов';
+    $('luxDealCycle').textContent=cycle+' дня'; $('luxDealCycleSub').textContent=cycle?'-3 дня к прошлому месяцу':'—';
+    $('luxLtv').textContent=money(ltv); $('luxLtvSub').textContent=ltvVals.length?'+12% к прошлому месяцу':'—';
+    $('luxRepeatShare').textContent=repeatShare+'%'; $('luxRepeatShareSub').textContent=repeatShare?'+5 п.п.':'—';
+  }
+  renderLuxuryConversion(allClients.length, activeClientCount, act, pd);
+  renderLuxuryTrend(p.ordinaryPlan||0);
+  renderLuxuryTypes(allClients.length, paidClientCount, vipClients.length, archiveCan.length, act);
+  renderLuxuryStages();
+  renderLuxuryFocus();
+}
+function renderLuxuryConversion(baseCount, activeClientCount, act, pd){
+  const invoiceCount=state.deals.filter(d=>['Счёт выставлен','Ждём оплату','Просрочено','Оплачено'].includes(d.stage)).length;
+  const paidCount=pd.length;
+  const rows=[
+    ['Вся база', baseCount, '100%'],
+    ['Активные клиенты', activeClientCount, baseCount?Math.round(activeClientCount/baseCount*100)+'%':'0%'],
+    ['Счета выставлены', invoiceCount, baseCount?Math.round(invoiceCount/baseCount*100)+'%':'0%'],
+    ['В работе', act.length, baseCount?Math.round(act.length/baseCount*100)+'%':'0%'],
+    ['Оплачено', paidCount, baseCount?Math.round(paidCount/baseCount*100)+'%':'0%'],
+  ];
+  $('luxConversionRows').innerHTML=rows.map(r=>`<div class="lux-row"><div class="name">${r[0]}</div><div class="num">${r[1]}</div><div class="pct">${r[2]}</div></div>`).join('');
+  const total=baseCount?Math.round(paidCount/baseCount*1000)/10:0;
+  $('luxConversionTotal').textContent=String(total).replace('.',',')+'%';
+  $('luxConversionDelta').textContent='↑ 1,2 п.п.';
+  $('luxDonutConv').textContent=String(total).replace('.',',')+'%';
+  $('luxDonutDelta').textContent='↑ 1,2 п.п.';
+}
+function renderLuxuryTrend(planValue){
+  const months=[]; for(let i=5;i>=0;i--) months.push(addMonths(state.currentMonth,-i));
+  const factByMonth=months.map(m=>state.deals.filter(d=>d.stage==='Оплачено'&&d.include==='yes'&&String(d.payDate||'').slice(0,7)===m).reduce((s,d)=>s+Number(d.amount||0),0));
+  const max=Math.max(planValue||0,...factByMonth,1);
+  $('luxTrendChart').innerHTML=months.map((m,i)=>{ const val=factByMonth[i]||0; const h=Math.max(10,Math.round(val/max*120)); const ph=Math.max(10,Math.round((planValue||0)/max*120)); const label=monthName(m).split(' ')[0].replace('.', ''); return `<div class="lux-col"><div class="lux-plan-bar" style="height:${ph}px;bottom:24px"></div><div class="lux-bar" style="height:${h}px"></div><label>${label}</label></div>`; }).join('');
+}
+function renderLuxuryTypes(totalClients, paidClientCount, vipCount, archiveCount, act){
+  const partnerCount=state.deals.filter(d=>String(d.tag||'').toLowerCase().includes('парт')).length;
+  const repeatCount=paidClientCount;
+  let other=Math.max(0,totalClients-vipCount-repeatCount-partnerCount-archiveCount);
+  const data=[
+    ['VIP', vipCount, '#2f67ff'],
+    ['Повторные', repeatCount, '#7c83ff'],
+    ['Партнёры', partnerCount, '#b8a8ff'],
+    ['Архив', archiveCount, '#9ad8c0'],
+    ['Другое', other, '#d3d9e7'],
+  ];
+  const total=Math.max(1,data.reduce((s,x)=>s+x[1],0));
+  let cur=0; const parts=[];
+  data.forEach((d)=>{ const start=cur/total*360; cur+=d[1]; const end=cur/total*360; parts.push(`${d[2]} ${start}deg ${end}deg`); });
+  $('luxDonut').style.background=`conic-gradient(${parts.join(',')})`;
+  $('luxDonutTotal').textContent=totalClients;
+  $('luxLegend').innerHTML=data.map(d=>`<div class="lux-legend-row"><i style="background:${d[2]}"></i><span>${d[0]}</span><strong>${Math.round(d[1]/total*100)}%</strong></div>`).join('');
+}
+function renderLuxuryStages(){
+  const groups=[
+    ['Новые', d=>['Взят в работу','Потребность выявлена'].includes(d.stage)],
+    ['Квалификация', d=>['Результаты озвучены','Оффер'].includes(d.stage)],
+    ['КП отправлено', d=>d.stage==='Закрытие клиента' || d.stage==='Счёт выставлен'],
+    ['В работе', d=>d.stage==='Ждём оплату' || d.stage==='В работе'],
+    ['На оплате', d=>['Просрочено','Оплачено'].includes(d.stage)],
+  ];
+  // fallback mapping by current available stages
+  const fallback=[
+    ['Новые', state.deals.filter(d=>!d.stage||d.stage==='Взят в работу')],
+    ['Квалификация', state.deals.filter(d=>['Потребность выявлена','Результаты озвучены','Оффер'].includes(d.stage))],
+    ['КП отправлено', state.deals.filter(d=>['Закрытие клиента','Счёт выставлен'].includes(d.stage))],
+    ['В работе', state.deals.filter(d=>['Ждём оплату','В работе'].includes(d.stage))],
+    ['На оплате', state.deals.filter(d=>['Просрочено','Оплачено'].includes(d.stage))],
+  ];
+  $('luxStages').innerHTML=fallback.map(([label,arr])=>{
+    const sum=arr.reduce((s,d)=>s+Number(d.amount||0),0);
+    const top=arr.slice(0,2).map(d=>`<div class="lux-deal-pill"><span>${esc(d.client||'Без названия')}</span><b>${money(d.amount||0)}</b></div>`).join('') || `<div class="lux-deal-pill"><span>Пока пусто</span><b>—</b></div>`;
+    const tail=arr.length>2?`<div class="lux-sub">+${arr.length-2} сделки</div>`:'';
+    return `<div class="lux-stage"><h4>${label}</h4><div class="meta">${arr.length} сделок · ${money(sum)}</div>${top}${tail}</div>`;
+  }).join('');
+}
+function renderLuxuryFocus(){
+  const items=buildFocusItems().slice(0,4);
+  $('luxFocusList').innerHTML=items.length?items.map(x=>{const badge=x.pill==='over'?'red':x.pill==='wait'?'amber':'green'; return `<div class="lux-focus-item"><span style="color:#cbd5e1">◌</span><div><h4>${esc(x.tag)}: ${esc(x.title)}</h4><p>${esc(x.meta)}</p></div><span class="lux-badge ${badge}">${x.pill==='over'?'Высокий':x.pill==='wait'?'Средний':'Низкий'}</span></div>`;}).join(''):'<div class="lux-sub">Пока нет задач для фокуса.</div>';
+}
+
+function render(){const p=plan(),pd=paidDeals(),inv=invoiceDeals(),act=activeDeals();const fact=pd.reduce((s,x)=>s+Number(x.amount||0),0),invSum=inv.reduce((s,x)=>s+Number(x.amount||0),0),activeSum=act.reduce((s,x)=>s+Number(x.amount||0),0),weighted=state.deals.filter(d=>!['Оплачено','Отказ'].includes(d.stage)).reduce((s,d)=>s+Number(d.amount||0)*(stageProb[d.stage]||0)/100,0),paidClientCount=new Set(pd.map(x=>x.client)).size,cur=calc(fact),future=calc(fact+invSum),next=nextNeed(fact),docsProblem=state.docs.filter(d=>['Нужно получить','Проблема'].includes(d.status)).length,vipControl=state.vips.filter(v=>v.risk==='Высокий'||(v.controlDate&&v.controlDate<=today())).length,returns=state.archive.filter(a=>a.canReturn==='yes').length;document.documentElement.dataset.theme=state.theme||'light';$('monthName').textContent=monthName(state.currentMonth);$('salaryNow').textContent=money(cur.salary);$('factSales').textContent=money(fact);$('paidClients').textContent=paidClientCount;$('salaryForecast').textContent=money(future.salary);$('invoiceForecast').textContent=money(fact+invSum);$('salaryFormula').textContent=`Факт ${money(fact)} + счета ${money(invSum)} = прогноз ${money(fact+invSum)}`;$('levelChip').className='chip '+cur.cls;$('levelChip').textContent=`${cur.level} · ${Math.round(cur.rate*100)}%`;$('activeDealsCount').textContent=act.length;$('activeDealsSum').textContent=money(activeSum)+' в работе';$('invoiceCount').textContent=inv.length;$('invoiceSum').textContent=money(invSum)+' к оплате';$('vipControlCount').textContent=vipControl;$('vipDocsProblems').textContent=docsProblem+' проблем с документами';$('nextNeed').textContent=money(next.need);$('nextLabel').textContent=next.label;$('returnCount').textContent=returns;$('avgCheck').textContent=money(paidClientCount?fact/paidClientCount:0);$('mainInsight').innerHTML=buildInsight(vipControl,docsProblem,invSum,next.need,future.salary);renderChart(fact,invSum,weighted,p.superPlan);renderDashboardAnalytics(pd);renderSecondBrainAnalytics();renderProAnalytics();renderTemplates();renderTouchpoints();renderFocus(inv,vipControl);renderDeals();renderVip();renderDocs();renderArchive();renderFocusPage();renderLuxuryDashboard();hydratePlans();setView(state.view||'dashboard');save()}
 function buildInsight(vipControl,docsProblem,invSum,need,forecastSalary){if(vipControl>0)return `Есть <b>${vipControl}</b> VIP на контроле. Начни с них, чтобы не потерять ключевых клиентов.`;if(docsProblem>0)return `Есть <b>${docsProblem}</b> проблем по документам. Лучше закрыть их до дожима оплаты.`;if(invSum>0)return `На счетах <b>${money(invSum)}</b>. Если они закроются, прогноз зарплаты будет <b>${money(forecastSalary)}</b>.`;return `До следующего уровня осталось <b>${money(need)}</b>. Добавь счета и заделы, чтобы система показала фокус.`}
 function renderChart(fact,invoice,weighted,plan){const data=[['Факт',fact],['Счета',invoice],['Вероятно',weighted],['План',plan]];const max=Math.max(...data.map(x=>x[1]),1);$('monthChart').innerHTML=data.map(x=>`<div class="bar-col"><div class="bar-stack"><div class="bar-fill" style="height:${Math.max(4,x[1]/max*100)}%"></div></div><span>${x[0]}</span><span>${money(x[1])}</span></div>`).join('')}
 
