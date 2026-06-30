@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
-<title>CRMANAGER — Salary Room v13 Touchpoints</title>
+<title>CRMANAGER — v14 Second Brain Style</title>
 <meta name="theme-color" content="#0f172a"/>
 <style>
 :root{
@@ -144,12 +144,44 @@ button,input,select,textarea{font:inherit}button{cursor:pointer}.app{display:gri
 @media(max-width:1280px){.focus-board,.focus-hero-grid{grid-template-columns:1fr}}
 
 @media(max-width:1280px){.kpis{grid-template-columns:repeat(3,minmax(0,1fr))}.grid,.hero-grid{grid-template-columns:1fr}.grid3{grid-template-columns:1fr}.chart{height:240px}}@media(max-width:980px){.app{grid-template-columns:1fr}.sidebar{display:none}.main{padding:16px 12px 92px}.topbar{display:block}.actions{margin-top:14px;justify-content:stretch}.actions .btn{flex:1}.mobile-nav{display:flex}.title h1{font-size:30px}.salary{font-size:48px}.hero-mini{grid-template-columns:1fr}.form-grid{grid-template-columns:1fr}}@media(max-width:620px){.kpis{grid-template-columns:1fr}.hero{padding:18px;border-radius:28px}.card{border-radius:24px}.salary{font-size:42px}.actions{display:grid;grid-template-columns:1fr 1fr}.actions .primary{grid-column:span 2}.month-bar{display:grid;grid-template-columns:auto 1fr auto}.list-item{align-items:flex-start;flex-direction:column}.list-side{text-align:left;align-items:flex-start}.drawer{padding:16px}.chart{overflow:auto}.chart{gap:8px}.bar-col{min-width:54px}}
+
+/* v14 Second Brain inspired redesign */
+:root{
+  --bg:#f4f7fb;--bg2:#fbfdff;--ink:#111827;--muted:#6b7280;--soft:#9ca3af;
+  --line:rgba(17,24,39,.08);--glass:rgba(255,255,255,.74);--card:#ffffff;
+  --blue:#2563eb;--indigo:#3b82f6;--violet:#7c3aed;--green:#059669;--greenBg:#ecfdf5;
+  --amber:#d97706;--amberBg:#fff7ed;--red:#dc2626;--redBg:#fef2f2;
+  --shadow:0 18px 50px rgba(15,23,42,.07);--shadow2:0 24px 72px rgba(15,23,42,.10);
+  --r:30px;--r2:20px;--font:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif
+}
+body{background:radial-gradient(circle at 15% 0,rgba(37,99,235,.12),transparent 34%),radial-gradient(circle at 88% 6%,rgba(125,211,252,.16),transparent 34%),linear-gradient(180deg,#fbfdff,#eef4fb)!important}
+body:before{background-size:46px 46px;opacity:.7}
+.sidebar{background:rgba(255,255,255,.78)!important;color:var(--ink)!important;border-right:1px solid rgba(15,23,42,.08)!important;backdrop-filter:blur(22px);box-shadow:16px 0 60px rgba(15,23,42,.05)}
+.logo{background:linear-gradient(135deg,#2563eb,#60a5fa)!important;color:#fff}
+.brand b{color:var(--ink)}.brand span{color:var(--muted)!important}
+.nav button{color:#334155!important;border:1px solid transparent}.nav button.active,.nav button:hover{background:#fff!important;color:#0f172a!important;border-color:rgba(15,23,42,.08);box-shadow:0 10px 28px rgba(15,23,42,.06);transform:none}
+.side-panel,.side-foot{background:rgba(255,255,255,.70)!important;color:var(--ink)!important;border:1px solid rgba(15,23,42,.08)!important}.side-panel p,.side-foot{color:var(--muted)!important}
+.main{padding:28px 28px 108px}.page{max-width:1540px}.topbar{align-items:center}.title h1{font-size:42px;letter-spacing:-.06em}.title p{font-size:15px}
+.btn{border-radius:18px}.primary{background:linear-gradient(135deg,#2563eb,#60a5fa)!important;box-shadow:0 18px 34px rgba(37,99,235,.18)!important}.secondary{background:rgba(255,255,255,.82)!important}
+.month-bar,.card,.hero,.focus-hero,.vip-profile,.archive-hero,.templates-hero,.touch-hero{background:rgba(255,255,255,.76)!important;border:1px solid rgba(255,255,255,.72)!important;box-shadow:var(--shadow)!important;backdrop-filter:blur(22px)}
+.hero{padding:28px}.salary{font-size:64px}.dark-card{background:linear-gradient(145deg,#111827,#1e293b)!important;border:1px solid rgba(255,255,255,.08)}
+.kpi,.analytics-kpi{min-height:128px}.kpi-value,.analytics-kpi b{letter-spacing:-.06em}.chart{background:rgba(255,255,255,.64)!important}
+.sb-analytics{display:grid;grid-template-columns:1.05fr .95fr;gap:18px;margin-bottom:18px}
+.sb-panel{background:rgba(255,255,255,.76);border:1px solid rgba(255,255,255,.72);box-shadow:var(--shadow);backdrop-filter:blur(22px);border-radius:30px;padding:18px}
+.sb-panel h2{font-size:20px;margin:0 0 6px}.sb-panel p{font-size:13px;color:var(--muted);margin:0 0 14px;line-height:1.45}
+.sb-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-bottom:18px}
+.sb-card{background:#fff;border:1px solid var(--line);border-radius:22px;padding:16px;min-height:112px}
+.sb-card span{display:block;font-size:12px;color:var(--muted);font-weight:950;margin-bottom:9px}.sb-card b{display:block;font-size:26px;letter-spacing:-.05em}.sb-card p{margin:6px 0 0;font-size:12px;color:var(--muted);line-height:1.35}
+.stage-grid{display:grid;gap:10px}.stage-row{background:#fff;border:1px solid var(--line);border-radius:18px;padding:12px}.stage-top{display:flex;justify-content:space-between;gap:12px;margin-bottom:9px}.stage-top b{font-size:13px}.stage-top span{font-size:12px;color:var(--muted);font-weight:900}.stage-line{height:10px;border-radius:999px;background:rgba(148,163,184,.18);overflow:hidden}.stage-line div{height:100%;border-radius:999px;background:linear-gradient(135deg,#2563eb,#60a5fa)}
+.insight-list{display:grid;gap:10px}.insight{display:flex;justify-content:space-between;gap:12px;align-items:flex-start;background:#fff;border:1px solid var(--line);border-radius:18px;padding:13px}.insight h3{font-size:14px;margin:0 0 4px}.insight p{font-size:12px;color:var(--muted);margin:0;line-height:1.35}
+@media(max-width:1280px){.sb-analytics,.sb-grid{grid-template-columns:1fr}.title h1{font-size:34px}.salary{font-size:48px}}
+
 </style>
 </head>
 <body>
 <div class="app">
 <aside class="sidebar">
-  <div class="brand"><div class="logo">₽</div><div><b>CRMANAGER</b><span>v13 · touchpoints & history</span></div></div>
+  <div class="brand"><div class="logo">₽</div><div><b>CRMANAGER</b><span>v14 · second brain analytics</span></div></div>
   <nav class="nav">
     <button class="active" data-view="dashboard">🏠 Дашборд</button>
     <button data-view="focus">🔥 Фокус дня</button>
@@ -161,7 +193,7 @@ button,input,select,textarea{font:inherit}button{cursor:pointer}.app{display:gri
     <button data-view="templates">💬 Шаблоны</button>
     <button data-view="settings">⚙️ Настройки</button>
   </nav>
-  <div class="side-panel"><h3>v13 Touchpoints</h3><p>Добавлена история касаний: звонки, сообщения, обещания оплатить, молчание и следующий контакт.</p></div>
+  <div class="side-panel"><h3>v14 Analytics</h3><p>Редизайн в стиле Second Brain OS: светлый интерфейс, больше воздуха, больше аналитики и меньше визуального шума.</p></div>
   <div class="side-panel"><h3>Документы VIP</h3><p>Храним ссылки, статусы и папки. Файлы лучше держать в Google Drive, AMO или папке клиента.</p></div>
   <div class="side-foot">Перед обновлением можно сделать экспорт. Данные хранятся локально в браузере.</div>
 </aside>
@@ -169,7 +201,7 @@ button,input,select,textarea{font:inherit}button{cursor:pointer}.app{display:gri
 <main class="main">
 <div class="page">
 <header class="topbar fade">
-  <div class="title"><h1 id="pageTitle">Дашборд</h1><p id="pageText">v13 · Добавлена история касаний, контроль коммуникаций и обещанные оплаты.</p></div>
+  <div class="title"><h1 id="pageTitle">Дашборд</h1><p id="pageText">v14 · Second Brain style: светлая аналитическая панель, больше KPI, воронка, риски и деньги к дожиму.</p></div>
   <div class="actions"><button class="btn primary" data-open>+ Добавить</button><button class="btn secondary" id="demoBtn">Демо</button><button class="btn secondary" id="themeBtn">Тема</button><button class="btn secondary" id="exportBtn">Экспорт</button><button class="btn danger" id="clearBtn">Очистить</button></div>
 </header>
 
@@ -180,6 +212,27 @@ button,input,select,textarea{font:inherit}button{cursor:pointer}.app{display:gri
     <div class="hero-grid">
       <div><div class="eyebrow">⚡ Итог месяца</div><div class="salary-line"><div><div class="salary" id="salaryNow">0 ₽</div><div class="caption">зарплата по фактически оплаченным клиентам</div></div><div class="chip red" id="levelChip">План не выполнен · 0%</div></div><div class="hero-mini"><div class="mini"><span>Факт оплат</span><b id="factSales">0 ₽</b></div><div class="mini"><span>Оплачено клиентов</span><b id="paidClients">0</b></div><div class="mini"><span>Прогноз зарплаты</span><b id="salaryForecast">0 ₽</b></div></div></div>
       <div><div class="dark-card"><span>Прогноз по счетам</span><b id="invoiceForecast">0 ₽</b><p id="salaryFormula">Факт + выставленные счета.</p></div><div class="suggestion"><h3>Фокус дня</h3><p id="mainInsight">Добавь заделы, счета и VIP, чтобы увидеть фокус.</p></div></div>
+    </div>
+  </section>
+
+
+  <section class="sb-grid fade">
+    <div class="sb-card"><span>Деньги к дожиму</span><b id="sbMoneyToPush">0 ₽</b><p>счета + обещанные оплаты + архив</p></div>
+    <div class="sb-card"><span>Индекс риска</span><b id="sbRiskIndex">0</b><p>просрочки, молчание, документы, VIP</p></div>
+    <div class="sb-card"><span>Скорость касаний</span><b id="sbTouchRate">0</b><p>касаний на активный задел</p></div>
+    <div class="sb-card"><span>Качество базы</span><b id="sbBaseQuality">0%</b><p>доля клиентов с понятным следующим шагом</p></div>
+  </section>
+
+  <section class="sb-analytics fade">
+    <div class="sb-panel">
+      <h2>Стадии воронки</h2>
+      <p>Сколько клиентов находится на каждом этапе и где застревают деньги.</p>
+      <div class="stage-grid" id="stageAnalytics"></div>
+    </div>
+    <div class="sb-panel">
+      <h2>Управленческие инсайты</h2>
+      <p>Что прямо сейчас влияет на зарплату, прогноз и риск месяца.</p>
+      <div class="insight-list" id="managementInsights"></div>
     </div>
   </section>
 
@@ -494,7 +547,7 @@ function invoiceDeals(){return state.deals.filter(d=>['Счёт выставле
 function activeDeals(){return state.deals.filter(d=>!['Оплачено','Отказ'].includes(d.stage))}
 function calc(amount){const p=plan();let level='План не выполнен',rate=0,bonus=0,cls='red';if(p.superPlan>0&&amount>=p.superPlan){level='Сверхплан';rate=+p.highRate;bonus=+p.bonus;cls='violet'}else if(p.highPlan>0&&amount>=p.highPlan){level='Повышенный';rate=+p.highRate;cls='green'}else if(p.ordinaryPlan>0&&amount>=p.ordinaryPlan){level='Обычный';rate=+p.ordinaryRate;cls='amber'}return{level,rate,bonus,cls,salary:amount*rate+bonus}}
 function nextNeed(amount){const p=plan();const arr=[['обычного плана',+p.ordinaryPlan],['повышенного плана',+p.highPlan],['сверхплана',+p.superPlan]].filter(x=>x[1]>amount&&x[1]>0).sort((a,b)=>a[1]-b[1]);return arr.length?{label:'до '+arr[0][0],need:arr[0][1]-amount}:{label:'все уровни закрыты',need:0}}
-function setView(v){state.view=v;document.querySelectorAll('.view').forEach(x=>x.classList.toggle('active',x.id===v));document.querySelectorAll('[data-view]').forEach(x=>x.classList.toggle('active',x.dataset.view===v));const titles={dashboard:['Дашборд','v13 · Добавлена история касаний, контроль коммуникаций и обещанные оплаты.'],focus:['Фокус дня','Автоматический список: кого сегодня дожимать, кому писать, где просрочка и какие VIP требуют контроля.'],deals:['Заделы','Рабочая таблица заделов с AMO-ссылками, стадиями, прогнозом и связью с зарплатой.'],vip:['VIP-клиенты','Карточки VIP, депозиты, условия, контроль и быстрый доступ к документам.'],docs:['Документы','Единое место для ссылок на договоры, счета, акты, платёжки и папки клиентов.'],archive:['Архив','Отказы, паузы и клиенты, к которым можно вернуться.'],touchpoints:['Касания','История коммуникаций: кто ответил, кто молчит, кто обещал оплатить и когда следующий контакт.'],templates:['Шаблоны','Готовые сообщения и ответы на возражения для дожима клиентов.'],settings:['Настройки','Планы, ставки, бонус, импорт и экспорт данных.']};$('pageTitle').textContent=titles[v][0];$('pageText').textContent=titles[v][1];save()}
+function setView(v){state.view=v;document.querySelectorAll('.view').forEach(x=>x.classList.toggle('active',x.id===v));document.querySelectorAll('[data-view]').forEach(x=>x.classList.toggle('active',x.dataset.view===v));const titles={dashboard:['Дашборд','v14 · Second Brain style: светлая аналитическая панель, больше KPI, воронка, риски и деньги к дожиму.'],focus:['Фокус дня','Автоматический список: кого сегодня дожимать, кому писать, где просрочка и какие VIP требуют контроля.'],deals:['Заделы','Рабочая таблица заделов с AMO-ссылками, стадиями, прогнозом и связью с зарплатой.'],vip:['VIP-клиенты','Карточки VIP, депозиты, условия, контроль и быстрый доступ к документам.'],docs:['Документы','Единое место для ссылок на договоры, счета, акты, платёжки и папки клиентов.'],archive:['Архив','Отказы, паузы и клиенты, к которым можно вернуться.'],touchpoints:['Касания','История коммуникаций: кто ответил, кто молчит, кто обещал оплатить и когда следующий контакт.'],templates:['Шаблоны','Готовые сообщения и ответы на возражения для дожима клиентов.'],settings:['Настройки','Планы, ставки, бонус, импорт и экспорт данных.']};$('pageTitle').textContent=titles[v][0];$('pageText').textContent=titles[v][1];save()}
 
 function percent(a,b){return b>0?Math.round(a/b*100):0}
 function groupByReason(arr){const map={};arr.forEach(a=>{const k=a.reason||'Другое';if(!map[k])map[k]={count:0,sum:0,returnable:0};map[k].count+=1;map[k].sum+=Number(a.amount||0);if(a.canReturn==='yes')map[k].returnable+=1});return Object.entries(map).map(([reason,v])=>({reason,...v})).sort((a,b)=>b.sum-a.sum)}
@@ -564,7 +617,41 @@ function renderTouchNext(){const due=state.touchpoints.filter(t=>t.nextDate&&day
 function renderClientPulse(){const map={};state.touchpoints.forEach(t=>{if(!map[t.client])map[t.client]={client:t.client,count:0,last:'',promise:0,silent:0,amount:0,result:''};const m=map[t.client];m.count++;if(!m.last||t.date>m.last){m.last=t.date;m.result=t.result}if(t.result==='Обещал оплатить'){m.promise++;m.amount+=Number(t.amount||0)}if(t.result==='Молчит')m.silent++});const arr=Object.values(map).sort((a,b)=>(b.promise*3+b.silent*2+b.count)-(a.promise*3+a.silent*2+a.count));const list=$('clientPulseList');list.innerHTML='';$('clientPulseEmpty').style.display=arr.length?'none':'block';arr.slice(0,8).forEach(c=>{const div=document.createElement('div');div.className='pulse-row';div.innerHTML=`<div><h3>${esc(c.client)}</h3><p>${c.count} касаний · последний результат: ${esc(c.result||'—')}</p></div><div class="data-side"><b>${money(c.amount)}</b><span class="pill ${c.silent?'over':c.promise?'pay':'work'}">${c.silent?c.silent+' молчит':c.promise?c.promise+' обещ.':'контакт'}</span></div>`;list.appendChild(div)})}
 function addTouch(){const client=$('touchClient').value.trim();if(!client){alert('Заполни клиента.');return}state.touchpoints.unshift({id:Date.now(),date:$('touchDate').value||today(),client,type:$('touchType').value,result:$('touchResult').value,amount:Number($('touchAmount').value||0),nextDate:$('touchNextDate').value,nextAction:$('touchNextAction').value.trim(),amo:$('touchAmo').value.trim(),comment:$('touchComment').value.trim()});['touchClient','touchAmount','touchNextDate','touchNextAction','touchAmo','touchComment'].forEach(id=>$(id).value='');closeDrawer();render()}
 
-function render(){const p=plan(),pd=paidDeals(),inv=invoiceDeals(),act=activeDeals();const fact=pd.reduce((s,x)=>s+Number(x.amount||0),0),invSum=inv.reduce((s,x)=>s+Number(x.amount||0),0),activeSum=act.reduce((s,x)=>s+Number(x.amount||0),0),weighted=state.deals.filter(d=>!['Оплачено','Отказ'].includes(d.stage)).reduce((s,d)=>s+Number(d.amount||0)*(stageProb[d.stage]||0)/100,0),paidClientCount=new Set(pd.map(x=>x.client)).size,cur=calc(fact),future=calc(fact+invSum),next=nextNeed(fact),docsProblem=state.docs.filter(d=>['Нужно получить','Проблема'].includes(d.status)).length,vipControl=state.vips.filter(v=>v.risk==='Высокий'||(v.controlDate&&v.controlDate<=today())).length,returns=state.archive.filter(a=>a.canReturn==='yes').length;document.documentElement.dataset.theme=state.theme||'light';$('monthName').textContent=monthName(state.currentMonth);$('salaryNow').textContent=money(cur.salary);$('factSales').textContent=money(fact);$('paidClients').textContent=paidClientCount;$('salaryForecast').textContent=money(future.salary);$('invoiceForecast').textContent=money(fact+invSum);$('salaryFormula').textContent=`Факт ${money(fact)} + счета ${money(invSum)} = прогноз ${money(fact+invSum)}`;$('levelChip').className='chip '+cur.cls;$('levelChip').textContent=`${cur.level} · ${Math.round(cur.rate*100)}%`;$('activeDealsCount').textContent=act.length;$('activeDealsSum').textContent=money(activeSum)+' в работе';$('invoiceCount').textContent=inv.length;$('invoiceSum').textContent=money(invSum)+' к оплате';$('vipControlCount').textContent=vipControl;$('vipDocsProblems').textContent=docsProblem+' проблем с документами';$('nextNeed').textContent=money(next.need);$('nextLabel').textContent=next.label;$('returnCount').textContent=returns;$('avgCheck').textContent=money(paidClientCount?fact/paidClientCount:0);$('mainInsight').innerHTML=buildInsight(vipControl,docsProblem,invSum,next.need,future.salary);renderChart(fact,invSum,weighted,p.superPlan);renderDashboardAnalytics(pd);renderTemplates();renderTouchpoints();renderFocus(inv,vipControl);renderDeals();renderVip();renderDocs();renderArchive();renderFocusPage();hydratePlans();setView(state.view||'dashboard');save()}
+
+function renderSecondBrainAnalytics(){
+  if(!$('sbMoneyToPush'))return;
+  const inv=invoiceDeals(), invSum=inv.reduce((s,d)=>s+Number(d.amount||0),0);
+  const promiseSum=(state.touchpoints||[]).filter(t=>touchInMonth(t)&&t.result==='Обещал оплатить').reduce((s,t)=>s+Number(t.amount||0),0);
+  const archiveSum=(state.archive||[]).filter(a=>a.canReturn==='yes').reduce((s,a)=>s+Number(a.amount||0),0);
+  const overdue=state.deals.filter(d=>d.stage==='Просрочено'), docsProblems=state.docs.filter(d=>['Нужно получить','Проблема'].includes(d.status));
+  const silent=(state.touchpoints||[]).filter(t=>touchInMonth(t)&&t.result==='Молчит');
+  const vipHigh=state.vips.filter(v=>v.risk==='Высокий');
+  const riskIndex=overdue.length*25+docsProblems.length*12+silent.length*15+vipHigh.length*20;
+  const active=activeDeals();
+  const touches=(state.touchpoints||[]).filter(touchInMonth).length;
+  const withNext=active.filter(d=>d.nextAction||d.nextDate).length + state.vips.filter(v=>v.nextAction||v.controlDate).length;
+  const baseUnits=active.length+state.vips.length;
+  $('sbMoneyToPush').textContent=money(invSum+promiseSum+archiveSum);
+  $('sbRiskIndex').textContent=Math.min(100,riskIndex);
+  $('sbTouchRate').textContent=active.length?Math.round(touches/active.length*10)/10:0;
+  $('sbBaseQuality').textContent=percent(withNext,baseUnits)+'%';
+  renderStageAnalytics();
+  const insights=[
+    ['Ближайшие деньги',`К дожиму сейчас ${money(invSum+promiseSum)}: счета и обещанные оплаты.`,'pay'],
+    ['Риск месяца',`Просрочек: ${overdue.length}, молчаний: ${silent.length}, проблем документов: ${docsProblems.length}.`,'over'],
+    ['VIP-фокус',`VIP с высоким риском: ${vipHigh.length}. Они должны быть в работе первыми.`,'violetP'],
+    ['Архивный потенциал',`Можно вернуть из архива: ${money(archiveSum)}.`,'work']
+  ];
+  $('managementInsights').innerHTML=insights.map(i=>`<div class="insight"><div><h3>${i[0]}</h3><p>${i[1]}</p></div><span class="pill ${i[2]}">KPI</span></div>`).join('');
+}
+function renderStageAnalytics(){
+  const stages=['Задел','В работе','Оффер','Счёт выставлен','Ждём оплату','Просрочено','Оплачено','Отказ'];
+  const rows=stages.map(s=>{const arr=state.deals.filter(d=>d.stage===s);return{stage:s,count:arr.length,sum:arr.reduce((a,d)=>a+Number(d.amount||0),0)}}).filter(x=>x.count||x.sum);
+  const max=Math.max(...rows.map(x=>x.sum),1);
+  $('stageAnalytics').innerHTML=rows.map(r=>`<div class="stage-row"><div class="stage-top"><b>${r.stage}</b><span>${r.count} · ${money(r.sum)}</span></div><div class="stage-line"><div style="width:${Math.max(4,r.sum/max*100)}%"></div></div></div>`).join('')||'<div class="empty">Пока нет стадий для анализа.</div>';
+}
+
+function render(){const p=plan(),pd=paidDeals(),inv=invoiceDeals(),act=activeDeals();const fact=pd.reduce((s,x)=>s+Number(x.amount||0),0),invSum=inv.reduce((s,x)=>s+Number(x.amount||0),0),activeSum=act.reduce((s,x)=>s+Number(x.amount||0),0),weighted=state.deals.filter(d=>!['Оплачено','Отказ'].includes(d.stage)).reduce((s,d)=>s+Number(d.amount||0)*(stageProb[d.stage]||0)/100,0),paidClientCount=new Set(pd.map(x=>x.client)).size,cur=calc(fact),future=calc(fact+invSum),next=nextNeed(fact),docsProblem=state.docs.filter(d=>['Нужно получить','Проблема'].includes(d.status)).length,vipControl=state.vips.filter(v=>v.risk==='Высокий'||(v.controlDate&&v.controlDate<=today())).length,returns=state.archive.filter(a=>a.canReturn==='yes').length;document.documentElement.dataset.theme=state.theme||'light';$('monthName').textContent=monthName(state.currentMonth);$('salaryNow').textContent=money(cur.salary);$('factSales').textContent=money(fact);$('paidClients').textContent=paidClientCount;$('salaryForecast').textContent=money(future.salary);$('invoiceForecast').textContent=money(fact+invSum);$('salaryFormula').textContent=`Факт ${money(fact)} + счета ${money(invSum)} = прогноз ${money(fact+invSum)}`;$('levelChip').className='chip '+cur.cls;$('levelChip').textContent=`${cur.level} · ${Math.round(cur.rate*100)}%`;$('activeDealsCount').textContent=act.length;$('activeDealsSum').textContent=money(activeSum)+' в работе';$('invoiceCount').textContent=inv.length;$('invoiceSum').textContent=money(invSum)+' к оплате';$('vipControlCount').textContent=vipControl;$('vipDocsProblems').textContent=docsProblem+' проблем с документами';$('nextNeed').textContent=money(next.need);$('nextLabel').textContent=next.label;$('returnCount').textContent=returns;$('avgCheck').textContent=money(paidClientCount?fact/paidClientCount:0);$('mainInsight').innerHTML=buildInsight(vipControl,docsProblem,invSum,next.need,future.salary);renderChart(fact,invSum,weighted,p.superPlan);renderDashboardAnalytics(pd);renderSecondBrainAnalytics();renderTemplates();renderTouchpoints();renderFocus(inv,vipControl);renderDeals();renderVip();renderDocs();renderArchive();renderFocusPage();hydratePlans();setView(state.view||'dashboard');save()}
 function buildInsight(vipControl,docsProblem,invSum,need,forecastSalary){if(vipControl>0)return `Есть <b>${vipControl}</b> VIP на контроле. Начни с них, чтобы не потерять ключевых клиентов.`;if(docsProblem>0)return `Есть <b>${docsProblem}</b> проблем по документам. Лучше закрыть их до дожима оплаты.`;if(invSum>0)return `На счетах <b>${money(invSum)}</b>. Если они закроются, прогноз зарплаты будет <b>${money(forecastSalary)}</b>.`;return `До следующего уровня осталось <b>${money(need)}</b>. Добавь счета и заделы, чтобы система показала фокус.`}
 function renderChart(fact,invoice,weighted,plan){const data=[['Факт',fact],['Счета',invoice],['Вероятно',weighted],['План',plan]];const max=Math.max(...data.map(x=>x[1]),1);$('monthChart').innerHTML=data.map(x=>`<div class="bar-col"><div class="bar-stack"><div class="bar-fill" style="height:${Math.max(4,x[1]/max*100)}%"></div></div><span>${x[0]}</span><span>${money(x[1])}</span></div>`).join('')}
 
