@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Зарплата менеджера — модуль мотивации</title>
+  <style>
+    :root{
+      --bg:#f6f2eb;
+      --panel:#fffdf9;
+      --card:#ffffff;
+      --ink:#201814;
+      --muted:#7b6e64;
+      --line:#e7ded2;
+      --accent:#6f4e37;
+      --accent-2:#9b7658;
+      --green:#16784f;
+      --green-bg:#e9f6ef;
+      --red:#a23b3b;
+      --red-bg:#fff0ee;
+      --yellow:#9a6a00;
+      --yellow-bg:#fff6df;
+      --shadow:0 16px 40px rgba(66,42,26,.08);
+      --radius:22px;
+      --radius-sm:14px;
+      --font: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;background:linear-gradient(135deg,#fbf7f1 0%,#f4eee6 45%,#fffdf9 100%);color:var(--ink);font-family:var(--font);min-height:100vh}
+    .app{display:grid;grid-template-columns:280px minmax(0,1fr);min-height:100vh}
+    aside{padding:28px 20px;background:#241914;color:#fff;position:sticky;top:0;height:100vh;overflow:auto}
+    .brand{display:flex;align-items:center;gap:12px;margin-bottom:28px}
+    .logo{width:44px;height:44px;border-radius:16px;background:linear-gradient(145deg,#d1b092,#6f4e37);display:grid;place-items:center;font-weight:800;box-shadow:0 12px 30px rgba(0,0,0,.28)}
+    .brand h1{font-size:16px;line-height:1.1;margin:0}.brand span{display:block;color:#cdbeb1;font-size:12px;margin-top:4px}
+    .nav{display:flex;flex-direction:column;gap:8px;margin-top:18px}.nav button{border:0;background:transparent;color:#dbcfc4;text-align:left;padding:13px 14px;border-radius:14px;font-size:14px;cursor:pointer}.nav button.active,.nav button:hover{background:rgba(255,255,255,.1);color:#fff}.aside-card{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.1);border-radius:18px;padding:16px;margin-top:22px}.aside-card p{color:#cfc1b5;font-size:13px;line-height:1.45;margin:0}.aside-card strong{color:#fff}
+    main{padding:30px;overflow:hidden}.topbar{display:flex;justify-content:space-between;gap:16px;align-items:flex-start;margin-bottom:22px}.title h2{font-size:30px;margin:0 0 8px}.title p{margin:0;color:var(--muted)}.actions{display:flex;gap:10px;flex-wrap:wrap}.btn{border:0;border-radius:14px;padding:12px 16px;background:var(--accent);color:#fff;font-weight:700;cursor:pointer;box-shadow:0 10px 25px rgba(111,78,55,.18)}.btn.secondary{background:#fff;color:var(--ink);border:1px solid var(--line);box-shadow:none}.btn.danger{background:#a23b3b}.grid{display:grid;gap:18px}.grid.kpi{grid-template-columns:repeat(4,minmax(0,1fr));margin-bottom:20px}.card{background:rgba(255,255,255,.88);border:1px solid rgba(231,222,210,.9);border-radius:var(--radius);box-shadow:var(--shadow);padding:20px}.kpi-card{min-height:138px;display:flex;flex-direction:column;justify-content:space-between}.kpi-label{color:var(--muted);font-size:13px;font-weight:700}.kpi-value{font-size:26px;font-weight:900;letter-spacing:-.03em}.kpi-foot{font-size:12px;color:var(--muted)}.badge{display:inline-flex;align-items:center;gap:6px;padding:7px 10px;border-radius:999px;font-size:12px;font-weight:800}.badge.green{background:var(--green-bg);color:var(--green)}.badge.yellow{background:var(--yellow-bg);color:var(--yellow)}.badge.red{background:var(--red-bg);color:var(--red)}.badge.neutral{background:#f2ece4;color:#6f4e37}
+    .layout{display:grid;grid-template-columns:1.15fr .85fr;gap:18px}.section-title{display:flex;justify-content:space-between;gap:10px;align-items:center;margin-bottom:14px}.section-title h3{margin:0;font-size:18px}.section-title small{color:var(--muted)}
+    .form-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}.field label{display:block;font-size:12px;font-weight:800;color:var(--muted);margin-bottom:7px}.field input,.field select,.field textarea{width:100%;border:1px solid var(--line);border-radius:14px;padding:12px 13px;background:#fff;color:var(--ink);font:inherit;outline:none}.field input:focus,.field select:focus,.field textarea:focus{border-color:#c49b79;box-shadow:0 0 0 3px rgba(196,155,121,.16)}.field textarea{min-height:82px;resize:vertical}.row-actions{display:flex;gap:10px;align-items:end}.two{grid-template-columns:repeat(2,minmax(0,1fr))}.one{grid-template-columns:1fr}.progress-wrap{margin-top:12px}.progress-meta{display:flex;justify-content:space-between;font-size:13px;color:var(--muted);margin-bottom:8px}.progress{height:14px;background:#efe6da;border-radius:999px;overflow:hidden}.progress div{height:100%;background:linear-gradient(90deg,#6f4e37,#d1a277);border-radius:999px;width:0;transition:.35s}
+    table{width:100%;border-collapse:separate;border-spacing:0 9px}th{text-align:left;color:var(--muted);font-size:12px;padding:0 10px;font-weight:900}td{background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:12px 10px;font-size:13px}td:first-child{border-left:1px solid var(--line);border-radius:14px 0 0 14px}td:last-child{border-right:1px solid var(--line);border-radius:0 14px 14px 0}.table-wrap{overflow:auto}.mini-btn{border:0;background:#f1e9df;color:#5a3d2d;border-radius:10px;padding:8px 10px;cursor:pointer;font-weight:800}.mini-btn.red{background:#fff0ee;color:#9a2f2f}.empty{padding:26px;border:1px dashed #d6c6b7;border-radius:16px;color:var(--muted);text-align:center;background:#fffaf4}.insight{display:flex;gap:12px;align-items:flex-start;border-radius:16px;padding:14px;background:#fffaf3;border:1px solid #efe1d2;margin-top:10px}.insight b{display:block;margin-bottom:4px}.insight span{color:var(--muted);font-size:13px;line-height:1.4}.dot{width:10px;height:10px;border-radius:50%;background:#6f4e37;margin-top:4px;flex:none}.quick-list{display:grid;gap:10px}.quick-item{display:flex;justify-content:space-between;gap:10px;align-items:center;padding:13px;background:#fff;border:1px solid var(--line);border-radius:16px}.quick-item div small{display:block;color:var(--muted);margin-top:3px}.tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}.tab{border:1px solid var(--line);background:#fff;color:var(--ink);border-radius:999px;padding:10px 14px;cursor:pointer;font-weight:800}.tab.active{background:var(--accent);color:#fff;border-color:var(--accent)}.hidden{display:none!important}.footer-note{color:var(--muted);font-size:12px;margin-top:16px;line-height:1.4}.mobile-bar{display:none;position:fixed;left:12px;right:12px;bottom:12px;z-index:20;background:#241914;border-radius:22px;box-shadow:0 15px 50px rgba(0,0,0,.28);padding:8px}.mobile-bar button{flex:1;border:0;background:transparent;color:#d6cabe;padding:10px 4px;border-radius:16px;font-size:11px;font-weight:800}.mobile-bar button.active{background:#fff;color:#241914}
+    @media(max-width:1100px){.grid.kpi{grid-template-columns:repeat(2,minmax(0,1fr))}.layout{grid-template-columns:1fr}.app{grid-template-columns:1fr}aside{display:none;height:auto;position:relative}.topbar{flex-direction:column}.mobile-bar{display:flex}main{padding:22px 14px 88px}.title h2{font-size:24px}.form-grid{grid-template-columns:1fr}.two{grid-template-columns:1fr}.kpi-value{font-size:24px}}
+    @media(max-width:560px){.grid.kpi{grid-template-columns:1fr}.card{padding:16px;border-radius:18px}.actions{width:100%}.btn{flex:1}.table-wrap{margin-left:-6px;margin-right:-6px}.kpi-card{min-height:118px}.topbar{margin-bottom:14px}.title p{font-size:14px}}
+    @media print{aside,.actions,.mobile-bar,.nav,.mini-btn,.tabs{display:none!important}main{padding:0}.app{display:block}.card{box-shadow:none;border:1px solid #ddd;break-inside:avoid}.grid.kpi{grid-template-columns:repeat(4,1fr)}body{background:#fff}}
+  </style>
+</head>
+<body>
+  <div class="app">
+    <aside>
+      <div class="brand"><div class="logo">₽</div><div><h1>Зарплата<br>менеджера</h1><span>модуль мотивации</span></div></div>
+      <div class="nav">
+        <button class="active" data-view="dashboard">Отчёт</button>
+        <button data-view="payments">Оплаты</button>
+        <button data-view="settings">Планы</button>
+        <button data-view="logic">Логика</button>
+      </div>
+      <div class="aside-card"><p><strong>Принцип:</strong><br>заполняешь только планы и оплаты. Всё остальное считается автоматически: факт, ставка, бонус, зарплата и сколько осталось до следующего уровня.</p></div>
+    </aside>
+
+    <main>
+      <div class="topbar">
+        <div class="title"><h2>Модуль «Зарплата»</h2><p>Первый шаг будущего кабинета менеджера: план, факт, ставка, бонус и прогноз.</p></div>
+        <div class="actions"><button class="btn secondary" id="exportBtn">Экспорт</button><button class="btn secondary" id="demoBtn">Демо</button><button class="btn danger" id="clearBtn">Очистить</button></div>
+      </div>
+
+      <section id="dashboard" class="view">
+        <div class="grid kpi">
+          <div class="card kpi-card"><div><div class="kpi-label">Факт оплат за месяц</div><div class="kpi-value" id="factSales">0 ₽</div></div><div class="kpi-foot" id="paymentsCount">0 оплат</div></div>
+          <div class="card kpi-card"><div><div class="kpi-label">Текущий уровень</div><div class="kpi-value" id="levelName">Нет плана</div></div><div id="levelBadge" class="badge neutral">ставка 0%</div></div>
+          <div class="card kpi-card"><div><div class="kpi-label">Зарплата сейчас</div><div class="kpi-value" id="salaryNow">0 ₽</div></div><div class="kpi-foot" id="salaryFormula">0% + бонус 0 ₽</div></div>
+          <div class="card kpi-card"><div><div class="kpi-label">До следующего уровня</div><div class="kpi-value" id="nextNeed">0 ₽</div></div><div class="kpi-foot" id="nextLabel">заполни планы</div></div>
+        </div>
+
+        <div class="layout">
+          <div class="card">
+            <div class="section-title"><h3>Прогресс месяца</h3><small id="monthLabel"></small></div>
+            <div class="progress-wrap"><div class="progress-meta"><span>Обычный план</span><b id="ordinaryProgressText">0%</b></div><div class="progress"><div id="ordinaryProgress"></div></div></div>
+            <div class="progress-wrap"><div class="progress-meta"><span>Повышенный план</span><b id="highProgressText">0%</b></div><div class="progress"><div id="highProgress"></div></div></div>
+            <div class="progress-wrap"><div class="progress-meta"><span>Сверхповышенный план</span><b id="superProgressText">0%</b></div><div class="progress"><div id="superProgress"></div></div></div>
+            <div id="mainInsight" class="insight"><div class="dot"></div><div><b>Система готова</b><span>Введи планы и оплаты — дашборд сам рассчитает уровень и зарплату.</span></div></div>
+          </div>
+
+          <div class="card">
+            <div class="section-title"><h3>Коротко по деньгам</h3><small>автоматически</small></div>
+            <div class="quick-list">
+              <div class="quick-item"><div><b>Средний чек</b><small>по оплаченным строкам</small></div><b id="avgCheck">0 ₽</b></div>
+              <div class="quick-item"><div><b>Бонус</b><small>при сверхповышенном плане</small></div><b id="bonusValue">0 ₽</b></div>
+              <div class="quick-item"><div><b>Прогноз с ожидаемыми</b><small>оплачено + ждём оплату</small></div><b id="forecastValue">0 ₽</b></div>
+              <div class="quick-item"><div><b>Прогноз зарплаты</b><small>если ожидаемые оплатят</small></div><b id="forecastSalary">0 ₽</b></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="layout" style="margin-top:18px">
+          <div class="card">
+            <div class="section-title"><h3>Быстрый ввод оплаты</h3><small>минимум действий</small></div>
+            <div class="form-grid">
+              <div class="field"><label>Дата</label><input type="date" id="payDate"></div>
+              <div class="field"><label>Клиент</label><input type="text" id="payClient" placeholder="Например, ООО Альфа"></div>
+              <div class="field"><label>Сумма</label><input type="number" id="payAmount" placeholder="150000"></div>
+              <div class="field"><label>Статус</label><select id="payStatus"><option>Оплачено</option><option>Ждём оплату</option><option>Просрочено</option><option>Депозит</option><option>Списание депозита</option><option>Возврат</option><option>Отмена</option></select></div>
+              <div class="field"><label>Входит в план</label><select id="payInclude"><option value="yes">Да</option><option value="no">Нет</option></select></div>
+              <div class="field row-actions"><button class="btn" id="addPayBtn" style="width:100%">Добавить</button></div>
+            </div>
+            <p class="footer-note">В факт зарплаты попадают строки со статусами «Оплачено» и «Депозит», если стоит «Входит в план = Да». Возвраты не уменьшают зарплату.</p>
+          </div>
+
+          <div class="card">
+            <div class="section-title"><h3>Планы месяца</h3><small>ручной ввод</small></div>
+            <div class="form-grid one">
+              <div class="field"><label>Месяц</label><input type="month" id="monthInput"></div>
+              <div class="field"><label>Обычный план, ₽</label><input type="number" id="ordinaryPlan"></div>
+              <div class="field"><label>Повышенный план, ₽</label><input type="number" id="highPlan"></div>
+              <div class="field"><label>Сверхповышенный план, ₽</label><input type="number" id="superPlan"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="payments" class="view hidden">
+        <div class="card">
+          <div class="section-title"><h3>Оплаты месяца</h3><small>ручной ввод и контроль</small></div>
+          <div class="table-wrap"><table><thead><tr><th>Дата</th><th>Клиент</th><th>Сумма</th><th>Статус</th><th>В план</th><th>Комментарий</th><th></th></tr></thead><tbody id="paymentsBody"></tbody></table></div>
+          <div id="emptyPayments" class="empty">Пока нет оплат. Добавь первую оплату на главном экране.</div>
+        </div>
+      </section>
+
+      <section id="settings" class="view hidden">
+        <div class="card">
+          <div class="section-title"><h3>Настройки мотивации</h3><small>можно менять</small></div>
+          <div class="form-grid two">
+            <div class="field"><label>Ставка обычного плана</label><input type="number" id="ordinaryRate" step="0.01"></div>
+            <div class="field"><label>Ставка повышенного/сверхплана</label><input type="number" id="highRate" step="0.01"></div>
+            <div class="field"><label>Бонус за сверхповышенный план</label><input type="number" id="bonusInput"></div>
+            <div class="field"><label>Статусы, которые входят в факт</label><input value="Оплачено, Депозит" disabled></div>
+          </div>
+          <p class="footer-note">По твоей логике: 6% считается от всей суммы продаж месяца после достижения повышенного/сверхповышенного плана. Бонус 30 000 ₽ начисляется один раз при сверхповышенном плане.</p>
+        </div>
+      </section>
+
+      <section id="logic" class="view hidden">
+        <div class="card">
+          <div class="section-title"><h3>Логика расчёта</h3><small>зафиксировано</small></div>
+          <div class="quick-list">
+            <div class="quick-item"><div><b>Факт продаж</b><small>Сумма оплат за выбранный месяц по дате оплаты.</small></div></div>
+            <div class="quick-item"><div><b>В зарплату входят</b><small>Оплачено и Депозит, если «Входит в план = Да».</small></div></div>
+            <div class="quick-item"><div><b>Возврат</b><small>Не уменьшает факт продаж и зарплату.</small></div></div>
+            <div class="quick-item"><div><b>Ставка</b><small>5% при обычном плане, 6% при повышенном и сверхповышенном.</small></div></div>
+            <div class="quick-item"><div><b>Бонус</b><small>+30 000 ₽ один раз при достижении сверхповышенного плана.</small></div></div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <div class="mobile-bar">
+    <button class="active" data-view="dashboard">Отчёт</button>
+    <button data-view="payments">Оплаты</button>
+    <button data-view="settings">Планы</button>
+    <button data-view="logic">Логика</button>
+  </div>
+
+<script>
+const fmt = new Intl.NumberFormat('ru-RU', { style:'currency', currency:'RUB', maximumFractionDigits:0 });
+const percent = (x)=>`${Math.round(x)}%`;
+const defaultState = { settings:{ month:new Date().toISOString().slice(0,7), ordinaryPlan:1000000, highPlan:1500000, superPlan:2000000, ordinaryRate:0.05, highRate:0.06, bonus:30000 }, payments:[] };
+let state = load();
+function load(){ try{ return JSON.parse(localStorage.getItem('salaryModuleState')) || structuredClone(defaultState); }catch(e){ return structuredClone(defaultState); } }
+function save(){ localStorage.setItem('salaryModuleState', JSON.stringify(state)); }
+function el(id){ return document.getElementById(id); }
+function monthName(m){ const [y,mo]=m.split('-'); return new Date(+y,+mo-1,1).toLocaleDateString('ru-RU',{month:'long', year:'numeric'}); }
+function isInMonth(date, month){ return (date||'').slice(0,7) === month; }
+function factPayments(){ return state.payments.filter(p => isInMonth(p.date,state.settings.month) && p.include === 'yes' && ['Оплачено','Депозит'].includes(p.status)); }
+function expectedPayments(){ return state.payments.filter(p => isInMonth(p.date,state.settings.month) && p.include === 'yes' && ['Ждём оплату','Просрочено'].includes(p.status)); }
+function calcByAmount(amount){ const s=state.settings; let level='План не выполнен', rate=0, bonus=0, badge='red'; if(amount>=Number(s.superPlan||0) && Number(s.superPlan||0)>0){ level='Сверхплан'; rate=Number(s.highRate); bonus=Number(s.bonus); badge='green'; } else if(amount>=Number(s.highPlan||0) && Number(s.highPlan||0)>0){ level='Повышенный'; rate=Number(s.highRate); badge='green'; } else if(amount>=Number(s.ordinaryPlan||0) && Number(s.ordinaryPlan||0)>0){ level='Обычный'; rate=Number(s.ordinaryRate); badge='yellow'; } return { level, rate, bonus, salary: amount*rate+bonus, badge }; }
+function nextThreshold(amount){ const s=state.settings; const levels=[['обычного плана',Number(s.ordinaryPlan)],['повышенного плана',Number(s.highPlan)],['сверхповышенного плана',Number(s.superPlan)]].filter(x=>x[1]>amount && x[1]>0).sort((a,b)=>a[1]-b[1]); if(!levels.length) return {need:0,label:'все уровни выполнены'}; return {need:levels[0][1]-amount,label:`до ${levels[0][0]}`}; }
+function setProgress(id,textId, amount, plan){ const v = plan>0 ? Math.min(100, amount/plan*100) : 0; el(id).style.width = `${v}%`; el(textId).textContent = `${percent(v)} / ${fmt.format(plan||0)}`; }
+function updateInputs(){ const s=state.settings; el('monthInput').value=s.month; el('ordinaryPlan').value=s.ordinaryPlan; el('highPlan').value=s.highPlan; el('superPlan').value=s.superPlan; el('ordinaryRate').value=s.ordinaryRate; el('highRate').value=s.highRate; el('bonusInput').value=s.bonus; el('payDate').value=new Date().toISOString().slice(0,10); }
+function render(){ const s=state.settings; const facts=factPayments(); const expected=expectedPayments(); const fact=facts.reduce((a,p)=>a+Number(p.amount||0),0); const expectedSum=expected.reduce((a,p)=>a+Number(p.amount||0),0); const current=calcByAmount(fact); const forecast=calcByAmount(fact+expectedSum); const next=nextThreshold(fact); const avg=facts.length ? fact/facts.length : 0; el('monthLabel').textContent=monthName(s.month); el('factSales').textContent=fmt.format(fact); el('paymentsCount').textContent=`${facts.length} оплат`; el('levelName').textContent=current.level; el('levelBadge').className=`badge ${current.badge}`; el('levelBadge').textContent=`ставка ${Math.round(current.rate*100)}%`; el('salaryNow').textContent=fmt.format(current.salary); el('salaryFormula').textContent=`${Math.round(current.rate*100)}% + бонус ${fmt.format(current.bonus)}`; el('nextNeed').textContent=fmt.format(next.need); el('nextLabel').textContent=next.label; el('avgCheck').textContent=fmt.format(avg); el('bonusValue').textContent=fmt.format(current.bonus); el('forecastValue').textContent=fmt.format(fact+expectedSum); el('forecastSalary').textContent=fmt.format(forecast.salary); setProgress('ordinaryProgress','ordinaryProgressText',fact,Number(s.ordinaryPlan)); setProgress('highProgress','highProgressText',fact,Number(s.highPlan)); setProgress('superProgress','superProgressText',fact,Number(s.superPlan)); const insight=el('mainInsight'); if(current.level==='Сверхплан'){ insight.innerHTML='<div class="dot"></div><div><b>Сверхповышенный план выполнен</b><span>Бонус включён. Сейчас важно удержать качество оплат и закрыть остаточные ожидаемые счета.</span></div>'; } else if(next.need>0){ insight.innerHTML=`<div class="dot"></div><div><b>Следующая цель: ${next.label}</b><span>Осталось закрыть ${fmt.format(next.need)}. Прогноз с ожидаемыми оплатами: ${fmt.format(fact+expectedSum)}.</span></div>`; } else { insight.innerHTML='<div class="dot"></div><div><b>Все уровни выполнены</b><span>Можно смотреть прогноз и усиливать результат месяца.</span></div>'; }
+  renderPayments(); save(); }
+function renderPayments(){ const body=el('paymentsBody'); const rows=state.payments.filter(p=>isInMonth(p.date,state.settings.month)); body.innerHTML=''; el('emptyPayments').style.display=rows.length?'none':'block'; rows.forEach((p,i)=>{ const tr=document.createElement('tr'); tr.innerHTML=`<td>${p.date||''}</td><td>${escapeHtml(p.client||'')}</td><td><b>${fmt.format(Number(p.amount||0))}</b></td><td>${p.status}</td><td>${p.include==='yes'?'Да':'Нет'}</td><td>${escapeHtml(p.comment||'')}</td><td><button class="mini-btn red" data-del="${state.payments.indexOf(p)}">Удалить</button></td>`; body.appendChild(tr); }); body.querySelectorAll('[data-del]').forEach(btn=>btn.onclick=()=>{ state.payments.splice(Number(btn.dataset.del),1); render(); }); }
+function escapeHtml(s){ return String(s).replace(/[&<>"]/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
+function addPayment(){ const date=el('payDate').value; const client=el('payClient').value.trim(); const amount=Number(el('payAmount').value); if(!date || !client || !amount){ alert('Заполни дату, клиента и сумму.'); return; } state.payments.push({date, client, amount, status:el('payStatus').value, include:el('payInclude').value, comment:''}); el('payClient').value=''; el('payAmount').value=''; render(); }
+['monthInput','ordinaryPlan','highPlan','superPlan','ordinaryRate','highRate','bonusInput'].forEach(id=>{ el(id).addEventListener('input',()=>{ const map={monthInput:'month',ordinaryPlan:'ordinaryPlan',highPlan:'highPlan',superPlan:'superPlan',ordinaryRate:'ordinaryRate',highRate:'highRate',bonusInput:'bonus'}; state.settings[map[id]]= id==='monthInput'?el(id).value:Number(el(id).value); render(); }); });
+el('addPayBtn').onclick=addPayment;
+el('demoBtn').onclick=()=>{ state=structuredClone(defaultState); state.settings={month:new Date().toISOString().slice(0,7),ordinaryPlan:1000000,highPlan:1500000,superPlan:2000000,ordinaryRate:0.05,highRate:0.06,bonus:30000}; const m=state.settings.month; state.payments=[{date:`${m}-03`,client:'ООО Вектор',amount:420000,status:'Оплачено',include:'yes',comment:''},{date:`${m}-07`,client:'ИП Орлова',amount:280000,status:'Депозит',include:'yes',comment:'пополнение'},{date:`${m}-11`,client:'ООО Север',amount:350000,status:'Оплачено',include:'yes',comment:''},{date:`${m}-16`,client:'ГК Альфа',amount:520000,status:'Ждём оплату',include:'yes',comment:'счёт выставлен'},{date:`${m}-18`,client:'ООО Линия',amount:190000,status:'Просрочено',include:'yes',comment:'напомнить'}]; updateInputs(); render(); };
+el('clearBtn').onclick=()=>{ if(confirm('Очистить оплаты и вернуть настройки по умолчанию?')){ state=structuredClone(defaultState); updateInputs(); render(); } };
+el('exportBtn').onclick=()=>{ const blob=new Blob([JSON.stringify(state,null,2)],{type:'application/json'}); const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='salary-module-data.json'; a.click(); URL.revokeObjectURL(a.href); };
+document.querySelectorAll('[data-view]').forEach(btn=>{ btn.onclick=()=>{ const view=btn.dataset.view; document.querySelectorAll('.view').forEach(v=>v.classList.add('hidden')); el(view).classList.remove('hidden'); document.querySelectorAll('[data-view]').forEach(b=>b.classList.toggle('active', b.dataset.view===view)); }; });
+updateInputs(); render();
+</script>
+</body>
+</html>
