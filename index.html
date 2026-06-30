@@ -42,6 +42,24 @@ button,input,select,textarea{font:inherit}button{cursor:pointer}.app{display:gri
 
 
 
+
+.analytics-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:18px}
+.data-list{display:grid;gap:10px}
+.data-row{display:flex;justify-content:space-between;gap:12px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:20px;padding:14px}
+.data-row h3{font-size:14px;margin:0 0 4px}.data-row p{font-size:12px;color:var(--muted);margin:0}.data-side{text-align:right;display:flex;flex-direction:column;align-items:flex-end;gap:6px}
+.funnel{display:grid;gap:12px}
+.funnel-row{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:14px}
+.funnel-row-top{display:flex;justify-content:space-between;gap:12px;align-items:center;margin-bottom:10px}
+.funnel-row-top b{font-size:14px}.funnel-row-top span{font-size:12px;color:var(--muted);font-weight:900}
+.funnel-bar{height:12px;border-radius:999px;background:rgba(148,163,184,.18);overflow:hidden}
+.funnel-bar div{height:100%;border-radius:999px;background:linear-gradient(135deg,var(--blue),var(--indigo))}
+.analytics-kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin-bottom:18px}
+.analytics-kpi{background:var(--glass);border:1px solid rgba(255,255,255,.58);box-shadow:var(--shadow);backdrop-filter:blur(18px);border-radius:26px;padding:18px}
+.analytics-kpi span{display:block;font-size:12px;color:var(--muted);font-weight:950;margin-bottom:8px}
+.analytics-kpi b{display:block;font-size:26px;letter-spacing:-.05em;margin-bottom:6px}
+.analytics-kpi p{margin:0;font-size:12px;color:var(--muted);line-height:1.45}
+@media(max-width:1280px){.analytics-grid,.analytics-kpis{grid-template-columns:1fr}}
+
 .archive-hero{background:linear-gradient(135deg,rgba(255,255,255,.90),rgba(255,255,255,.64));border:1px solid rgba(255,255,255,.62);box-shadow:var(--shadow2);border-radius:34px;padding:24px;margin-bottom:18px}
 .archive-hero-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
 .archive-card{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:16px}
@@ -142,6 +160,36 @@ button,input,select,textarea{font:inherit}button{cursor:pointer}.app{display:gri
     <div class="card"><div class="head"><div><h2>График месяца</h2><p>Факт, счета, взвешенный прогноз и план в одном блоке.</p></div></div><div class="chart" id="monthChart"></div></div>
     <div class="card"><div class="head"><div><h2>Топ фокуса</h2><p>Кого нужно держать на контроле в первую очередь.</p></div></div><div class="list" id="focusList"></div><div class="empty" id="focusEmpty">Пока нет задач для фокуса.</div></div>
   </section>
+
+  <section class="analytics-kpis fade">
+    <div class="analytics-kpi"><span>Конверсия счёт → оплата</span><b id="convInvoicePaid">0%</b><p id="convInvoicePaidText">0 из 0 счетов оплачено</p></div>
+    <div class="analytics-kpi"><span>Конверсия база → оплата</span><b id="convBasePaid">0%</b><p id="convBasePaidText">0 из 0 клиентов дошли до оплаты</p></div>
+    <div class="analytics-kpi"><span>Просрочка</span><b id="overdueCount">0</b><p id="overdueText">0 ₽ просрочено</p></div>
+    <div class="analytics-kpi"><span>Проблемы базы</span><b id="baseProblems">0</b><p id="baseProblemsText">0 документов и рисков</p></div>
+  </section>
+
+  <section class="analytics-grid fade">
+    <div class="card">
+      <div class="head"><div><h2>График оплат по дням</h2><p>Видно, в какие дни месяца приходят деньги и где провалы.</p></div></div>
+      <div class="chart" id="paymentsDayChart"></div>
+    </div>
+    <div class="card">
+      <div class="head"><div><h2>Конверсия по базе</h2><p>От всей базы к активным, затем к счетам и к оплатам.</p></div></div>
+      <div class="funnel" id="conversionFunnel"></div>
+    </div>
+  </section>
+
+  <section class="analytics-grid fade">
+    <div class="card">
+      <div class="head"><div><h2>Оцифровка базы</h2><p>Ключевые KPI, которые важно держать перед глазами каждый день.</p></div></div>
+      <div class="data-list" id="baseKpiList"></div>
+    </div>
+    <div class="card">
+      <div class="head"><div><h2>Причины потерь и возврата</h2><p>Понимание, почему база теряется и где лежат деньги на возврате.</p></div></div>
+      <div class="data-list" id="archiveReasonsList"></div>
+    </div>
+  </section>
+
 </section>
 
 
@@ -325,7 +373,16 @@ function activeDeals(){return state.deals.filter(d=>!['Оплачено','Отк
 function calc(amount){const p=plan();let level='План не выполнен',rate=0,bonus=0,cls='red';if(p.superPlan>0&&amount>=p.superPlan){level='Сверхплан';rate=+p.highRate;bonus=+p.bonus;cls='violet'}else if(p.highPlan>0&&amount>=p.highPlan){level='Повышенный';rate=+p.highRate;cls='green'}else if(p.ordinaryPlan>0&&amount>=p.ordinaryPlan){level='Обычный';rate=+p.ordinaryRate;cls='amber'}return{level,rate,bonus,cls,salary:amount*rate+bonus}}
 function nextNeed(amount){const p=plan();const arr=[['обычного плана',+p.ordinaryPlan],['повышенного плана',+p.highPlan],['сверхплана',+p.superPlan]].filter(x=>x[1]>amount&&x[1]>0).sort((a,b)=>a[1]-b[1]);return arr.length?{label:'до '+arr[0][0],need:arr[0][1]-amount}:{label:'все уровни закрыты',need:0}}
 function setView(v){state.view=v;document.querySelectorAll('.view').forEach(x=>x.classList.toggle('active',x.id===v));document.querySelectorAll('[data-view]').forEach(x=>x.classList.toggle('active',x.dataset.view===v));const titles={dashboard:['Дашборд','Основная страница только для анализа: зарплата, факт, прогноз, график, фокус и риски.'],focus:['Фокус дня','Автоматический список: кого сегодня дожимать, кому писать, где просрочка и какие VIP требуют контроля.'],deals:['Заделы','Рабочая таблица заделов с AMO-ссылками, стадиями, прогнозом и связью с зарплатой.'],vip:['VIP-клиенты','Карточки VIP, депозиты, условия, контроль и быстрый доступ к документам.'],docs:['Документы','Единое место для ссылок на договоры, счета, акты, платёжки и папки клиентов.'],archive:['Архив','Отказы, паузы и клиенты, к которым можно вернуться.'],settings:['Настройки','Планы, ставки, бонус, импорт и экспорт данных.']};$('pageTitle').textContent=titles[v][0];$('pageText').textContent=titles[v][1];save()}
-function render(){const p=plan(),pd=paidDeals(),inv=invoiceDeals(),act=activeDeals();const fact=pd.reduce((s,x)=>s+Number(x.amount||0),0),invSum=inv.reduce((s,x)=>s+Number(x.amount||0),0),activeSum=act.reduce((s,x)=>s+Number(x.amount||0),0),weighted=state.deals.filter(d=>!['Оплачено','Отказ'].includes(d.stage)).reduce((s,d)=>s+Number(d.amount||0)*(stageProb[d.stage]||0)/100,0),paidClientCount=new Set(pd.map(x=>x.client)).size,cur=calc(fact),future=calc(fact+invSum),next=nextNeed(fact),docsProblem=state.docs.filter(d=>['Нужно получить','Проблема'].includes(d.status)).length,vipControl=state.vips.filter(v=>v.risk==='Высокий'||(v.controlDate&&v.controlDate<=today())).length,returns=state.archive.filter(a=>a.canReturn==='yes').length;document.documentElement.dataset.theme=state.theme||'light';$('monthName').textContent=monthName(state.currentMonth);$('salaryNow').textContent=money(cur.salary);$('factSales').textContent=money(fact);$('paidClients').textContent=paidClientCount;$('salaryForecast').textContent=money(future.salary);$('invoiceForecast').textContent=money(fact+invSum);$('salaryFormula').textContent=`Факт ${money(fact)} + счета ${money(invSum)} = прогноз ${money(fact+invSum)}`;$('levelChip').className='chip '+cur.cls;$('levelChip').textContent=`${cur.level} · ${Math.round(cur.rate*100)}%`;$('activeDealsCount').textContent=act.length;$('activeDealsSum').textContent=money(activeSum)+' в работе';$('invoiceCount').textContent=inv.length;$('invoiceSum').textContent=money(invSum)+' к оплате';$('vipControlCount').textContent=vipControl;$('vipDocsProblems').textContent=docsProblem+' проблем с документами';$('nextNeed').textContent=money(next.need);$('nextLabel').textContent=next.label;$('returnCount').textContent=returns;$('avgCheck').textContent=money(paidClientCount?fact/paidClientCount:0);$('mainInsight').innerHTML=buildInsight(vipControl,docsProblem,invSum,next.need,future.salary);renderChart(fact,invSum,weighted,p.superPlan);renderFocus(inv,vipControl);renderDeals();renderVip();renderDocs();renderArchive();renderFocusPage();hydratePlans();setView(state.view||'dashboard');save()}
+
+function percent(a,b){return b>0?Math.round(a/b*100):0}
+function groupByReason(arr){const map={};arr.forEach(a=>{const k=a.reason||'Другое';if(!map[k])map[k]={count:0,sum:0,returnable:0};map[k].count+=1;map[k].sum+=Number(a.amount||0);if(a.canReturn==='yes')map[k].returnable+=1});return Object.entries(map).map(([reason,v])=>({reason,...v})).sort((a,b)=>b.sum-a.sum)}
+function renderPaymentsDayChart(pd){const map={};pd.forEach(d=>{const day=(d.payDate||'').slice(-2);if(day)map[day]=(map[day]||0)+Number(d.amount||0)});const entries=Object.entries(map).sort((a,b)=>a[0].localeCompare(b[0]));const chart=$('paymentsDayChart');if(!entries.length){chart.innerHTML='<div class="empty" style="width:100%">Пока нет оплат в выбранном месяце.</div>';return}const max=Math.max(...entries.map(x=>x[1]),1);chart.innerHTML=entries.slice(0,12).map(([day,sum])=>`<div class="bar-col"><div class="bar-stack"><div class="bar-fill" style="height:${Math.max(4,sum/max*100)}%"></div></div><span>${day}</span><span>${money(sum)}</span></div>`).join('')}
+function renderConversionFunnel(baseCount,activeCount,invoiceCount,paidCount){const rows=[['Вся база',baseCount,baseCount],['Активные заделы',activeCount,baseCount],['Есть счёт / этап оплаты',invoiceCount,baseCount],['Оплаты',paidCount,baseCount]];$('conversionFunnel').innerHTML=rows.map(r=>`<div class="funnel-row"><div class="funnel-row-top"><b>${r[0]}</b><span>${r[1]} · ${percent(r[1],r[2])}%</span></div><div class="funnel-bar"><div style="width:${percent(r[1],r[2])}%"></div></div></div>`).join('')}
+function renderBaseKpiList(k){const rows=[['Клиентов в базе','все уникальные клиенты в системе',k.baseCount],['Активные заделы','клиенты в работе прямо сейчас',k.activeCount],['Счета / этап оплаты','клиенты, которых уже можно дожимать на деньги',k.invoiceAllCount],['Оплаченных клиентов','сколько клиентов оплатили в месяце',k.paidUnique],['Документные проблемы','не хватает платёжек, договоров, актов',k.docsProblems],['VIP с высоким риском','критичные VIP на контроле',k.vipHigh],['Архив на возврате','клиенты, которых можно вернуть',k.archiveBack]];$('baseKpiList').innerHTML=rows.map(r=>`<div class="data-row"><div><h3>${r[0]}</h3><p>${r[1]}</p></div><div class="data-side"><b>${r[2]}</b></div></div>`).join('')}
+function renderArchiveReasonsList(){const reasons=groupByReason(state.archive);if(!reasons.length){$('archiveReasonsList').innerHTML='<div class="empty">Архив пока пуст.</div>';return}$('archiveReasonsList').innerHTML=reasons.slice(0,6).map(r=>`<div class="data-row"><div><h3>${esc(r.reason)}</h3><p>${r.count} клиентов · к возврату ${r.returnable}</p></div><div class="data-side"><b>${money(r.sum)}</b></div></div>`).join('')}
+function renderDashboardAnalytics(pd){const allClients=[...new Set([...state.deals.map(x=>x.client),...state.vips.map(x=>x.client),...state.archive.map(x=>x.client)].filter(Boolean))];const baseCount=allClients.length;const activeCount=state.deals.filter(d=>!['Оплачено','Отказ'].includes(d.stage)).length;const invoiceAll=state.deals.filter(d=>['Счёт выставлен','Ждём оплату','Просрочено','Оплачено'].includes(d.stage));const invoiceAllCount=invoiceAll.length;const paidCount=pd.length;const paidUnique=[...new Set(pd.map(x=>x.client))].length;const convInvoicePaid=percent(paidCount,invoiceAllCount);const convBasePaid=percent(paidUnique,baseCount);const overdueDeals=state.deals.filter(d=>d.stage==='Просрочено');const overdueSum=overdueDeals.reduce((s,d)=>s+Number(d.amount||0),0);const docsProblems=state.docs.filter(d=>['Нужно получить','Проблема'].includes(d.status)).length;const vipHigh=state.vips.filter(v=>v.risk==='Высокий').length;const archiveBack=state.archive.filter(a=>a.canReturn==='yes').length;$('convInvoicePaid').textContent=convInvoicePaid+'%';$('convInvoicePaidText').textContent=`${paidCount} из ${invoiceAllCount} счетов оплачено`;$('convBasePaid').textContent=convBasePaid+'%';$('convBasePaidText').textContent=`${paidUnique} из ${baseCount} клиентов дошли до оплаты`;$('overdueCount').textContent=overdueDeals.length;$('overdueText').textContent=`${money(overdueSum)} просрочено`;$('baseProblems').textContent=docsProblems+vipHigh;$('baseProblemsText').textContent=`${docsProblems} документов и ${vipHigh} VIP-рисков`;renderPaymentsDayChart(pd);renderConversionFunnel(baseCount,activeCount,invoiceAllCount,paidCount);renderBaseKpiList({baseCount,activeCount,invoiceAllCount,paidCount,paidUnique,docsProblems,vipHigh,archiveBack});renderArchiveReasonsList()}
+
+function render(){const p=plan(),pd=paidDeals(),inv=invoiceDeals(),act=activeDeals();const fact=pd.reduce((s,x)=>s+Number(x.amount||0),0),invSum=inv.reduce((s,x)=>s+Number(x.amount||0),0),activeSum=act.reduce((s,x)=>s+Number(x.amount||0),0),weighted=state.deals.filter(d=>!['Оплачено','Отказ'].includes(d.stage)).reduce((s,d)=>s+Number(d.amount||0)*(stageProb[d.stage]||0)/100,0),paidClientCount=new Set(pd.map(x=>x.client)).size,cur=calc(fact),future=calc(fact+invSum),next=nextNeed(fact),docsProblem=state.docs.filter(d=>['Нужно получить','Проблема'].includes(d.status)).length,vipControl=state.vips.filter(v=>v.risk==='Высокий'||(v.controlDate&&v.controlDate<=today())).length,returns=state.archive.filter(a=>a.canReturn==='yes').length;document.documentElement.dataset.theme=state.theme||'light';$('monthName').textContent=monthName(state.currentMonth);$('salaryNow').textContent=money(cur.salary);$('factSales').textContent=money(fact);$('paidClients').textContent=paidClientCount;$('salaryForecast').textContent=money(future.salary);$('invoiceForecast').textContent=money(fact+invSum);$('salaryFormula').textContent=`Факт ${money(fact)} + счета ${money(invSum)} = прогноз ${money(fact+invSum)}`;$('levelChip').className='chip '+cur.cls;$('levelChip').textContent=`${cur.level} · ${Math.round(cur.rate*100)}%`;$('activeDealsCount').textContent=act.length;$('activeDealsSum').textContent=money(activeSum)+' в работе';$('invoiceCount').textContent=inv.length;$('invoiceSum').textContent=money(invSum)+' к оплате';$('vipControlCount').textContent=vipControl;$('vipDocsProblems').textContent=docsProblem+' проблем с документами';$('nextNeed').textContent=money(next.need);$('nextLabel').textContent=next.label;$('returnCount').textContent=returns;$('avgCheck').textContent=money(paidClientCount?fact/paidClientCount:0);$('mainInsight').innerHTML=buildInsight(vipControl,docsProblem,invSum,next.need,future.salary);renderChart(fact,invSum,weighted,p.superPlan);renderDashboardAnalytics(pd);renderFocus(inv,vipControl);renderDeals();renderVip();renderDocs();renderArchive();renderFocusPage();hydratePlans();setView(state.view||'dashboard');save()}
 function buildInsight(vipControl,docsProblem,invSum,need,forecastSalary){if(vipControl>0)return `Есть <b>${vipControl}</b> VIP на контроле. Начни с них, чтобы не потерять ключевых клиентов.`;if(docsProblem>0)return `Есть <b>${docsProblem}</b> проблем по документам. Лучше закрыть их до дожима оплаты.`;if(invSum>0)return `На счетах <b>${money(invSum)}</b>. Если они закроются, прогноз зарплаты будет <b>${money(forecastSalary)}</b>.`;return `До следующего уровня осталось <b>${money(need)}</b>. Добавь счета и заделы, чтобы система показала фокус.`}
 function renderChart(fact,invoice,weighted,plan){const data=[['Факт',fact],['Счета',invoice],['Вероятно',weighted],['План',plan]];const max=Math.max(...data.map(x=>x[1]),1);$('monthChart').innerHTML=data.map(x=>`<div class="bar-col"><div class="bar-stack"><div class="bar-fill" style="height:${Math.max(4,x[1]/max*100)}%"></div></div><span>${x[0]}</span><span>${money(x[1])}</span></div>`).join('')}
 
