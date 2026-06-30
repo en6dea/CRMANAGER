@@ -3,189 +3,771 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Зарплата менеджера — модуль мотивации</title>
+  <title>Salary Room — модуль зарплаты менеджера</title>
+  <meta name="theme-color" content="#0f172a" />
   <style>
     :root{
-      --bg:#f6f2eb;
-      --panel:#fffdf9;
-      --card:#ffffff;
-      --ink:#201814;
-      --muted:#7b6e64;
-      --line:#e7ded2;
-      --accent:#6f4e37;
-      --accent-2:#9b7658;
-      --green:#16784f;
-      --green-bg:#e9f6ef;
-      --red:#a23b3b;
-      --red-bg:#fff0ee;
-      --yellow:#9a6a00;
-      --yellow-bg:#fff6df;
-      --shadow:0 16px 40px rgba(66,42,26,.08);
-      --radius:22px;
-      --radius-sm:14px;
-      --font: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+      --bg:#f4f7fb;
+      --bg-2:#eef3f9;
+      --surface:rgba(255,255,255,.82);
+      --surface-strong:#ffffff;
+      --ink:#111827;
+      --muted:#6b7280;
+      --muted-2:#94a3b8;
+      --line:rgba(148,163,184,.24);
+      --accent:#2563eb;
+      --accent-2:#4f46e5;
+      --success:#059669;
+      --success-bg:#ecfdf5;
+      --warning:#d97706;
+      --warning-bg:#fff7ed;
+      --danger:#dc2626;
+      --danger-bg:#fef2f2;
+      --vip:#7c3aed;
+      --vip-bg:#f5f3ff;
+      --card-shadow:0 12px 34px rgba(15,23,42,.08);
+      --glass-shadow:0 20px 50px rgba(15,23,42,.08);
+      --radius:26px;
+      --radius-sm:18px;
+      --radius-xs:14px;
+      --max:1440px;
+      --font:Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
     }
     *{box-sizing:border-box}
-    body{margin:0;background:linear-gradient(135deg,#fbf7f1 0%,#f4eee6 45%,#fffdf9 100%);color:var(--ink);font-family:var(--font);min-height:100vh}
-    .app{display:grid;grid-template-columns:280px minmax(0,1fr);min-height:100vh}
-    aside{padding:28px 20px;background:#241914;color:#fff;position:sticky;top:0;height:100vh;overflow:auto}
-    .brand{display:flex;align-items:center;gap:12px;margin-bottom:28px}
-    .logo{width:44px;height:44px;border-radius:16px;background:linear-gradient(145deg,#d1b092,#6f4e37);display:grid;place-items:center;font-weight:800;box-shadow:0 12px 30px rgba(0,0,0,.28)}
-    .brand h1{font-size:16px;line-height:1.1;margin:0}.brand span{display:block;color:#cdbeb1;font-size:12px;margin-top:4px}
-    .nav{display:flex;flex-direction:column;gap:8px;margin-top:18px}.nav button{border:0;background:transparent;color:#dbcfc4;text-align:left;padding:13px 14px;border-radius:14px;font-size:14px;cursor:pointer}.nav button.active,.nav button:hover{background:rgba(255,255,255,.1);color:#fff}.aside-card{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.1);border-radius:18px;padding:16px;margin-top:22px}.aside-card p{color:#cfc1b5;font-size:13px;line-height:1.45;margin:0}.aside-card strong{color:#fff}
-    main{padding:30px;overflow:hidden}.topbar{display:flex;justify-content:space-between;gap:16px;align-items:flex-start;margin-bottom:22px}.title h2{font-size:30px;margin:0 0 8px}.title p{margin:0;color:var(--muted)}.actions{display:flex;gap:10px;flex-wrap:wrap}.btn{border:0;border-radius:14px;padding:12px 16px;background:var(--accent);color:#fff;font-weight:700;cursor:pointer;box-shadow:0 10px 25px rgba(111,78,55,.18)}.btn.secondary{background:#fff;color:var(--ink);border:1px solid var(--line);box-shadow:none}.btn.danger{background:#a23b3b}.grid{display:grid;gap:18px}.grid.kpi{grid-template-columns:repeat(4,minmax(0,1fr));margin-bottom:20px}.card{background:rgba(255,255,255,.88);border:1px solid rgba(231,222,210,.9);border-radius:var(--radius);box-shadow:var(--shadow);padding:20px}.kpi-card{min-height:138px;display:flex;flex-direction:column;justify-content:space-between}.kpi-label{color:var(--muted);font-size:13px;font-weight:700}.kpi-value{font-size:26px;font-weight:900;letter-spacing:-.03em}.kpi-foot{font-size:12px;color:var(--muted)}.badge{display:inline-flex;align-items:center;gap:6px;padding:7px 10px;border-radius:999px;font-size:12px;font-weight:800}.badge.green{background:var(--green-bg);color:var(--green)}.badge.yellow{background:var(--yellow-bg);color:var(--yellow)}.badge.red{background:var(--red-bg);color:var(--red)}.badge.neutral{background:#f2ece4;color:#6f4e37}
-    .layout{display:grid;grid-template-columns:1.15fr .85fr;gap:18px}.section-title{display:flex;justify-content:space-between;gap:10px;align-items:center;margin-bottom:14px}.section-title h3{margin:0;font-size:18px}.section-title small{color:var(--muted)}
-    .form-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}.field label{display:block;font-size:12px;font-weight:800;color:var(--muted);margin-bottom:7px}.field input,.field select,.field textarea{width:100%;border:1px solid var(--line);border-radius:14px;padding:12px 13px;background:#fff;color:var(--ink);font:inherit;outline:none}.field input:focus,.field select:focus,.field textarea:focus{border-color:#c49b79;box-shadow:0 0 0 3px rgba(196,155,121,.16)}.field textarea{min-height:82px;resize:vertical}.row-actions{display:flex;gap:10px;align-items:end}.two{grid-template-columns:repeat(2,minmax(0,1fr))}.one{grid-template-columns:1fr}.progress-wrap{margin-top:12px}.progress-meta{display:flex;justify-content:space-between;font-size:13px;color:var(--muted);margin-bottom:8px}.progress{height:14px;background:#efe6da;border-radius:999px;overflow:hidden}.progress div{height:100%;background:linear-gradient(90deg,#6f4e37,#d1a277);border-radius:999px;width:0;transition:.35s}
-    table{width:100%;border-collapse:separate;border-spacing:0 9px}th{text-align:left;color:var(--muted);font-size:12px;padding:0 10px;font-weight:900}td{background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:12px 10px;font-size:13px}td:first-child{border-left:1px solid var(--line);border-radius:14px 0 0 14px}td:last-child{border-right:1px solid var(--line);border-radius:0 14px 14px 0}.table-wrap{overflow:auto}.mini-btn{border:0;background:#f1e9df;color:#5a3d2d;border-radius:10px;padding:8px 10px;cursor:pointer;font-weight:800}.mini-btn.red{background:#fff0ee;color:#9a2f2f}.empty{padding:26px;border:1px dashed #d6c6b7;border-radius:16px;color:var(--muted);text-align:center;background:#fffaf4}.insight{display:flex;gap:12px;align-items:flex-start;border-radius:16px;padding:14px;background:#fffaf3;border:1px solid #efe1d2;margin-top:10px}.insight b{display:block;margin-bottom:4px}.insight span{color:var(--muted);font-size:13px;line-height:1.4}.dot{width:10px;height:10px;border-radius:50%;background:#6f4e37;margin-top:4px;flex:none}.quick-list{display:grid;gap:10px}.quick-item{display:flex;justify-content:space-between;gap:10px;align-items:center;padding:13px;background:#fff;border:1px solid var(--line);border-radius:16px}.quick-item div small{display:block;color:var(--muted);margin-top:3px}.tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}.tab{border:1px solid var(--line);background:#fff;color:var(--ink);border-radius:999px;padding:10px 14px;cursor:pointer;font-weight:800}.tab.active{background:var(--accent);color:#fff;border-color:var(--accent)}.hidden{display:none!important}.footer-note{color:var(--muted);font-size:12px;margin-top:16px;line-height:1.4}.mobile-bar{display:none;position:fixed;left:12px;right:12px;bottom:12px;z-index:20;background:#241914;border-radius:22px;box-shadow:0 15px 50px rgba(0,0,0,.28);padding:8px}.mobile-bar button{flex:1;border:0;background:transparent;color:#d6cabe;padding:10px 4px;border-radius:16px;font-size:11px;font-weight:800}.mobile-bar button.active{background:#fff;color:#241914}
-    @media(max-width:1100px){.grid.kpi{grid-template-columns:repeat(2,minmax(0,1fr))}.layout{grid-template-columns:1fr}.app{grid-template-columns:1fr}aside{display:none;height:auto;position:relative}.topbar{flex-direction:column}.mobile-bar{display:flex}main{padding:22px 14px 88px}.title h2{font-size:24px}.form-grid{grid-template-columns:1fr}.two{grid-template-columns:1fr}.kpi-value{font-size:24px}}
-    @media(max-width:560px){.grid.kpi{grid-template-columns:1fr}.card{padding:16px;border-radius:18px}.actions{width:100%}.btn{flex:1}.table-wrap{margin-left:-6px;margin-right:-6px}.kpi-card{min-height:118px}.topbar{margin-bottom:14px}.title p{font-size:14px}}
-    @media print{aside,.actions,.mobile-bar,.nav,.mini-btn,.tabs{display:none!important}main{padding:0}.app{display:block}.card{box-shadow:none;border:1px solid #ddd;break-inside:avoid}.grid.kpi{grid-template-columns:repeat(4,1fr)}body{background:#fff}}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:var(--font);
+      color:var(--ink);
+      background:
+        radial-gradient(circle at top left, rgba(99,102,241,.10), transparent 26%),
+        radial-gradient(circle at top right, rgba(37,99,235,.10), transparent 30%),
+        linear-gradient(180deg, #f8fbff 0%, #f4f7fb 40%, #eff4fa 100%);
+      min-height:100vh;
+    }
+    button,input,select,textarea{font:inherit}
+    a{text-decoration:none;color:inherit}
+    .shell{display:grid;grid-template-columns:280px minmax(0,1fr);min-height:100vh}
+    .sidebar{
+      position:sticky;top:0;height:100vh;padding:26px 18px;background:rgba(15,23,42,.92);backdrop-filter:blur(20px);
+      color:#e5eefb;border-right:1px solid rgba(255,255,255,.08)
+    }
+    .brand{display:flex;align-items:center;gap:14px;margin-bottom:28px}
+    .brand-mark{width:48px;height:48px;border-radius:18px;background:linear-gradient(135deg,#60a5fa,#4f46e5 45%,#7c3aed);box-shadow:0 14px 36px rgba(79,70,229,.38);display:grid;place-items:center;font-weight:900;font-size:22px;color:#fff}
+    .brand h1{font-size:18px;line-height:1.1;margin:0}
+    .brand p{margin:4px 0 0;color:#aab8d0;font-size:12px}
+    .nav{display:grid;gap:8px;margin-top:12px}
+    .nav-btn{border:0;background:transparent;color:#d7e2f0;padding:14px 14px;border-radius:16px;text-align:left;display:flex;align-items:center;gap:12px;cursor:pointer;font-weight:700;transition:.2s}
+    .nav-btn svg{opacity:.9}
+    .nav-btn:hover,.nav-btn.active{background:rgba(255,255,255,.08);color:#fff}
+    .side-card{margin-top:22px;padding:18px;border-radius:20px;background:linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.05));border:1px solid rgba(255,255,255,.08)}
+    .side-card h3{margin:0 0 10px;font-size:14px}
+    .side-card p{margin:0;color:#b8c6da;font-size:13px;line-height:1.5}
+    .side-foot{position:absolute;left:18px;right:18px;bottom:22px;padding:14px 16px;border-radius:18px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08);font-size:12px;color:#afbdd1}
+    .main{padding:26px 26px 90px;overflow:hidden}
+    .page{max-width:var(--max);margin:0 auto}
+    .topbar{display:flex;align-items:flex-start;justify-content:space-between;gap:18px;margin-bottom:20px}
+    .headline h2{margin:0;font-size:34px;letter-spacing:-.04em}
+    .headline p{margin:8px 0 0;color:var(--muted);font-size:15px;max-width:720px;line-height:1.5}
+    .top-actions{display:flex;gap:10px;flex-wrap:wrap}
+    .btn{
+      border:0;border-radius:16px;padding:12px 16px;font-weight:800;cursor:pointer;
+      transition:transform .15s, box-shadow .2s, opacity .2s;
+    }
+    .btn:hover{transform:translateY(-1px)}
+    .btn-primary{background:linear-gradient(135deg,var(--accent),var(--accent-2));color:#fff;box-shadow:0 16px 32px rgba(79,70,229,.20)}
+    .btn-secondary{background:rgba(255,255,255,.82);color:var(--ink);border:1px solid var(--line);box-shadow:var(--card-shadow)}
+    .btn-danger{background:#fff;color:var(--danger);border:1px solid rgba(220,38,38,.18)}
+    .hero{
+      background:linear-gradient(135deg, rgba(255,255,255,.82), rgba(255,255,255,.72));
+      border:1px solid rgba(255,255,255,.70);
+      border-radius:32px;
+      box-shadow:var(--glass-shadow);
+      backdrop-filter:blur(22px);
+      padding:22px;
+      overflow:hidden;
+      position:relative;
+      margin-bottom:18px;
+    }
+    .hero::before{
+      content:"";position:absolute;right:-70px;top:-70px;width:240px;height:240px;border-radius:50%;
+      background:radial-gradient(circle, rgba(79,70,229,.20), rgba(79,70,229,0) 70%);
+      pointer-events:none;
+    }
+    .hero-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:18px;align-items:stretch}
+    .salary-card{padding:6px 4px 4px}
+    .eyebrow{display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border-radius:999px;background:rgba(37,99,235,.10);color:var(--accent);font-size:12px;font-weight:800;margin-bottom:14px}
+    .salary-main{display:flex;align-items:flex-end;gap:16px;flex-wrap:wrap}
+    .salary-main h3{font-size:52px;line-height:.95;letter-spacing:-.05em;margin:0}
+    .salary-main p{margin:0;color:var(--muted);font-size:14px}
+    .status-chip{display:inline-flex;align-items:center;gap:8px;padding:10px 12px;border-radius:999px;font-size:13px;font-weight:800}
+    .chip-green{background:var(--success-bg);color:var(--success)}
+    .chip-amber{background:var(--warning-bg);color:var(--warning)}
+    .chip-red{background:var(--danger-bg);color:var(--danger)}
+    .chip-vip{background:var(--vip-bg);color:var(--vip)}
+    .hero-metrics{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:18px}
+    .mini-stat{padding:16px;border-radius:20px;background:rgba(255,255,255,.72);border:1px solid rgba(255,255,255,.68)}
+    .mini-stat small{display:block;color:var(--muted);font-weight:700;margin-bottom:8px}
+    .mini-stat b{font-size:22px;letter-spacing:-.03em}
+    .hero-panel{display:grid;gap:12px}
+    .panel-card{padding:18px;border-radius:24px;background:linear-gradient(180deg,#0f172a,#1e293b);color:#fff;box-shadow:0 18px 36px rgba(15,23,42,.22)}
+    .panel-card h4{margin:0 0 8px;font-size:14px;color:#c9d6e8}
+    .panel-card .big{font-size:34px;font-weight:900;letter-spacing:-.04em;margin:0 0 6px}
+    .panel-card p{margin:0;color:#b6c5d8;font-size:13px;line-height:1.5}
+    .forecast-box{padding:18px;border-radius:24px;background:linear-gradient(135deg,#ffffff,#f8fbff);border:1px solid var(--line)}
+    .forecast-row{display:flex;justify-content:space-between;align-items:flex-end;gap:12px;margin-bottom:10px}
+    .forecast-row h4{margin:0;font-size:16px}
+    .forecast-row span{color:var(--muted);font-size:13px}
+    .forecast-val{font-size:30px;font-weight:900;letter-spacing:-.04em}
+    .grid-6{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:14px;margin-bottom:18px}
+    .card{background:var(--surface);backdrop-filter:blur(18px);border:1px solid rgba(255,255,255,.68);box-shadow:var(--card-shadow);border-radius:28px;padding:18px}
+    .kpi-card{min-height:132px;display:flex;flex-direction:column;justify-content:space-between}
+    .kpi-top{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}
+    .kpi-top small{color:var(--muted);font-weight:700}
+    .icon-badge{width:42px;height:42px;border-radius:15px;display:grid;place-items:center;background:#fff;border:1px solid rgba(148,163,184,.18);box-shadow:0 8px 20px rgba(15,23,42,.05)}
+    .kpi-value{font-size:30px;line-height:1;letter-spacing:-.04em;font-weight:900}
+    .kpi-foot{font-size:12px;color:var(--muted)}
+    .content-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:18px}
+    .section-head{display:flex;justify-content:space-between;gap:12px;align-items:center;margin-bottom:14px}
+    .section-head h3{margin:0;font-size:18px;letter-spacing:-.03em}
+    .section-head p{margin:0;color:var(--muted);font-size:13px}
+    .progress-stack{display:grid;gap:14px}
+    .progress-card{padding:16px;border-radius:22px;background:#fff;border:1px solid rgba(148,163,184,.18)}
+    .progress-line{height:12px;background:#edf2f7;border-radius:999px;overflow:hidden;margin-top:10px}
+    .progress-line>div{height:100%;border-radius:999px;transition:width .4s ease}
+    .bar-1{background:linear-gradient(90deg,#60a5fa,#2563eb)}
+    .bar-2{background:linear-gradient(90deg,#818cf8,#4f46e5)}
+    .bar-3{background:linear-gradient(90deg,#c084fc,#7c3aed)}
+    .progress-meta{display:flex;justify-content:space-between;gap:10px;align-items:center}
+    .progress-meta b{font-size:15px}
+    .progress-meta span{font-size:13px;color:var(--muted)}
+    .list{display:grid;gap:12px}
+    .list-item{display:flex;justify-content:space-between;gap:12px;align-items:center;padding:14px 16px;border-radius:18px;background:#fff;border:1px solid rgba(148,163,184,.18)}
+    .list-item h4{margin:0 0 4px;font-size:14px}
+    .list-item p{margin:0;color:var(--muted);font-size:12px}
+    .pill{display:inline-flex;align-items:center;padding:8px 10px;border-radius:999px;font-size:12px;font-weight:800}
+    .pill.wait{background:var(--warning-bg);color:var(--warning)}
+    .pill.over{background:var(--danger-bg);color:var(--danger)}
+    .pill.pay{background:var(--success-bg);color:var(--success)}
+    .controls-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;margin-top:18px}
+    .subtle{color:var(--muted);font-size:13px;line-height:1.5}
+    .form-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+    .field label{display:block;font-size:12px;font-weight:800;color:var(--muted);margin-bottom:8px}
+    .field input,.field select,.field textarea{
+      width:100%;padding:13px 14px;border-radius:16px;border:1px solid rgba(148,163,184,.22);background:#fff;color:var(--ink);outline:none;
+      transition:border-color .15s, box-shadow .15s, transform .15s;
+    }
+    .field input:focus,.field select:focus,.field textarea:focus{border-color:rgba(79,70,229,.45);box-shadow:0 0 0 4px rgba(79,70,229,.10)}
+    .field textarea{min-height:94px;resize:vertical}
+    .inline-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
+    .ghost-note{padding:14px 16px;border-radius:18px;background:linear-gradient(180deg,#fbfdff,#f7faff);border:1px dashed rgba(148,163,184,.36);color:var(--muted);font-size:13px;line-height:1.5}
+    table{width:100%;border-collapse:separate;border-spacing:0 10px}
+    th{text-align:left;padding:0 10px 6px;color:var(--muted);font-size:12px;font-weight:800}
+    td{padding:14px 10px;background:#fff;border-top:1px solid rgba(148,163,184,.18);border-bottom:1px solid rgba(148,163,184,.18);font-size:13px}
+    td:first-child{border-left:1px solid rgba(148,163,184,.18);border-radius:16px 0 0 16px}
+    td:last-child{border-right:1px solid rgba(148,163,184,.18);border-radius:0 16px 16px 0}
+    .table-wrap{overflow:auto}
+    .empty{padding:30px;text-align:center;border-radius:22px;background:linear-gradient(180deg,#fbfdff,#f7faff);border:1px dashed rgba(148,163,184,.30);color:var(--muted)}
+    .action-link{border:0;background:#eff6ff;color:var(--accent);border-radius:12px;padding:8px 10px;font-weight:800;cursor:pointer}
+    .danger-link{background:#fef2f2;color:var(--danger)}
+    .logic-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+    .logic-card{padding:16px;border-radius:20px;background:#fff;border:1px solid rgba(148,163,184,.18)}
+    .logic-card h4{margin:0 0 6px;font-size:15px}
+    .logic-card p{margin:0;color:var(--muted);font-size:13px;line-height:1.5}
+    .mobile-nav{display:none;position:fixed;left:12px;right:12px;bottom:12px;z-index:35;padding:8px;background:rgba(15,23,42,.92);backdrop-filter:blur(14px);border-radius:22px;box-shadow:0 18px 50px rgba(15,23,42,.28)}
+    .mobile-nav button{flex:1;border:0;background:transparent;color:#c8d5e6;padding:10px 6px;border-radius:16px;font-size:11px;font-weight:800;cursor:pointer}
+    .mobile-nav button.active{background:#fff;color:#0f172a}
+    .drawer-backdrop{position:fixed;inset:0;background:rgba(15,23,42,.34);opacity:0;pointer-events:none;transition:.2s;z-index:40}
+    .drawer{position:fixed;top:0;right:0;height:100vh;width:min(420px,100vw);background:rgba(255,255,255,.96);backdrop-filter:blur(18px);box-shadow:-20px 0 60px rgba(15,23,42,.14);padding:20px;transform:translateX(102%);transition:.25s;z-index:41;overflow:auto}
+    .drawer.open{transform:translateX(0)}
+    .drawer-backdrop.show{opacity:1;pointer-events:auto}
+    .drawer-head{display:flex;justify-content:space-between;gap:12px;align-items:flex-start;margin-bottom:14px}
+    .drawer-head h3{margin:0;font-size:22px}
+    .muted{color:var(--muted)}
+    .stack{display:grid;gap:12px}
+    .small{font-size:12px;color:var(--muted)}
+    .sr{position:absolute;left:-9999px}
+    @media (max-width:1260px){
+      .grid-6{grid-template-columns:repeat(3,minmax(0,1fr))}
+      .content-grid,.hero-grid,.controls-grid{grid-template-columns:1fr}
+    }
+    @media (max-width:980px){
+      .shell{grid-template-columns:1fr}
+      .sidebar{display:none}
+      .main{padding:18px 14px 92px}
+      .topbar{flex-direction:column;align-items:stretch}
+      .hero{padding:18px}
+      .salary-main h3{font-size:42px}
+      .headline h2{font-size:28px}
+      .mobile-nav{display:flex}
+    }
+    @media (max-width:720px){
+      .hero-metrics,.grid-6,.logic-grid,.form-grid{grid-template-columns:1fr}
+      .salary-main{align-items:flex-start;flex-direction:column}
+      .kpi-value{font-size:26px}
+      .panel-card .big,.forecast-val{font-size:28px}
+      .btn{width:100%;justify-content:center}
+      .top-actions{display:grid;grid-template-columns:1fr 1fr}
+      .top-actions .btn-primary{grid-column:span 2}
+      .list-item{align-items:flex-start;flex-direction:column}
+    }
+    @media print{
+      .sidebar,.mobile-nav,.top-actions,.drawer,.drawer-backdrop{display:none!important}
+      .main{padding:0}
+      body{background:#fff}
+      .card,.hero{box-shadow:none;border:1px solid #ddd}
+    }
   </style>
 </head>
 <body>
-  <div class="app">
-    <aside>
-      <div class="brand"><div class="logo">₽</div><div><h1>Зарплата<br>менеджера</h1><span>модуль мотивации</span></div></div>
-      <div class="nav">
-        <button class="active" data-view="dashboard">Отчёт</button>
-        <button data-view="payments">Оплаты</button>
-        <button data-view="settings">Планы</button>
-        <button data-view="logic">Логика</button>
+  <div class="shell">
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="brand-mark">₽</div>
+        <div>
+          <h1>Salary Room</h1>
+          <p>личный кабинет менеджера</p>
+        </div>
       </div>
-      <div class="aside-card"><p><strong>Принцип:</strong><br>заполняешь только планы и оплаты. Всё остальное считается автоматически: факт, ставка, бонус, зарплата и сколько осталось до следующего уровня.</p></div>
+
+      <div class="nav">
+        <button class="nav-btn active" data-scroll="dashboard"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M3 13.2 12 4l9 9.2V20a1 1 0 0 1-1 1h-5.5v-5h-5V21H4a1 1 0 0 1-1-1v-6.8Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg> Обзор</button>
+        <button class="nav-btn" data-scroll="paymentsSection"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M4 7.5A2.5 2.5 0 0 1 6.5 5h11A2.5 2.5 0 0 1 20 7.5v9a2.5 2.5 0 0 1-2.5 2.5h-11A2.5 2.5 0 0 1 4 16.5v-9Z" stroke="currentColor" stroke-width="1.8"/><path d="M4 9h16" stroke="currentColor" stroke-width="1.8"/></svg> Оплаты</button>
+        <button class="nav-btn" data-open="drawer"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M12 5v14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg> Быстрый ввод</button>
+        <button class="nav-btn" data-scroll="logicSection"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.8"/><path d="M12 7v6l3.5 2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg> Логика</button>
+      </div>
+
+      <div class="side-card">
+        <h3>Заполняется легко</h3>
+        <p>Ты вводишь только планы месяца и оплаты. Всё остальное система считает сама: факт, прогноз, уровень плана, ставку, бонус и итоговую зарплату.</p>
+      </div>
+      <div class="side-card">
+        <h3>Сейчас фокус</h3>
+        <p>Делаем красивую премиальную версию только для модуля зарплаты. Позже это станет ядром полной системы менеджера.</p>
+      </div>
+
+      <div class="side-foot">
+        v3 redesign · desktop + mobile · данные сохраняются локально в браузере
+      </div>
     </aside>
 
-    <main>
-      <div class="topbar">
-        <div class="title"><h2>Модуль «Зарплата»</h2><p>Первый шаг будущего кабинета менеджера: план, факт, ставка, бонус и прогноз.</p></div>
-        <div class="actions"><button class="btn secondary" id="exportBtn">Экспорт</button><button class="btn secondary" id="demoBtn">Демо</button><button class="btn danger" id="clearBtn">Очистить</button></div>
-      </div>
-
-      <section id="dashboard" class="view">
-        <div class="grid kpi">
-          <div class="card kpi-card"><div><div class="kpi-label">Факт оплат за месяц</div><div class="kpi-value" id="factSales">0 ₽</div></div><div class="kpi-foot" id="paymentsCount">0 оплат</div></div>
-          <div class="card kpi-card"><div><div class="kpi-label">Текущий уровень</div><div class="kpi-value" id="levelName">Нет плана</div></div><div id="levelBadge" class="badge neutral">ставка 0%</div></div>
-          <div class="card kpi-card"><div><div class="kpi-label">Зарплата сейчас</div><div class="kpi-value" id="salaryNow">0 ₽</div></div><div class="kpi-foot" id="salaryFormula">0% + бонус 0 ₽</div></div>
-          <div class="card kpi-card"><div><div class="kpi-label">До следующего уровня</div><div class="kpi-value" id="nextNeed">0 ₽</div></div><div class="kpi-foot" id="nextLabel">заполни планы</div></div>
+    <main class="main">
+      <div class="page">
+        <div class="topbar">
+          <div class="headline">
+            <h2>Зарплата менеджера</h2>
+            <p>Красивый личный кабинет для контроля плана, оплат, ставки и текущей зарплаты. Без хаоса, без лишних действий, с фокусом только на самом важном.</p>
+          </div>
+          <div class="top-actions">
+            <button class="btn btn-primary" id="openDrawerTop">+ Добавить оплату</button>
+            <button class="btn btn-secondary" id="demoBtn">Демо-данные</button>
+            <button class="btn btn-secondary" id="exportBtn">Экспорт</button>
+            <button class="btn btn-danger" id="clearBtn">Очистить</button>
+          </div>
         </div>
 
-        <div class="layout">
-          <div class="card">
-            <div class="section-title"><h3>Прогресс месяца</h3><small id="monthLabel"></small></div>
-            <div class="progress-wrap"><div class="progress-meta"><span>Обычный план</span><b id="ordinaryProgressText">0%</b></div><div class="progress"><div id="ordinaryProgress"></div></div></div>
-            <div class="progress-wrap"><div class="progress-meta"><span>Повышенный план</span><b id="highProgressText">0%</b></div><div class="progress"><div id="highProgress"></div></div></div>
-            <div class="progress-wrap"><div class="progress-meta"><span>Сверхповышенный план</span><b id="superProgressText">0%</b></div><div class="progress"><div id="superProgress"></div></div></div>
-            <div id="mainInsight" class="insight"><div class="dot"></div><div><b>Система готова</b><span>Введи планы и оплаты — дашборд сам рассчитает уровень и зарплату.</span></div></div>
-          </div>
-
-          <div class="card">
-            <div class="section-title"><h3>Коротко по деньгам</h3><small>автоматически</small></div>
-            <div class="quick-list">
-              <div class="quick-item"><div><b>Средний чек</b><small>по оплаченным строкам</small></div><b id="avgCheck">0 ₽</b></div>
-              <div class="quick-item"><div><b>Бонус</b><small>при сверхповышенном плане</small></div><b id="bonusValue">0 ₽</b></div>
-              <div class="quick-item"><div><b>Прогноз с ожидаемыми</b><small>оплачено + ждём оплату</small></div><b id="forecastValue">0 ₽</b></div>
-              <div class="quick-item"><div><b>Прогноз зарплаты</b><small>если ожидаемые оплатят</small></div><b id="forecastSalary">0 ₽</b></div>
+        <section id="dashboard" class="hero">
+          <div class="hero-grid">
+            <div class="salary-card">
+              <div class="eyebrow">⚡ Месяц: <span id="monthLabel"></span></div>
+              <div class="salary-main">
+                <div>
+                  <h3 id="salaryNow">0 ₽</h3>
+                  <p>текущая зарплата по факту оплат</p>
+                </div>
+                <div class="status-chip chip-red" id="levelChip">План не выполнен · ставка 0%</div>
+              </div>
+              <div class="hero-metrics">
+                <div class="mini-stat"><small>Факт оплат</small><b id="factSales">0 ₽</b></div>
+                <div class="mini-stat"><small>Прогноз зарплаты</small><b id="salaryForecast">0 ₽</b></div>
+                <div class="mini-stat"><small>До следующего уровня</small><b id="nextNeed">0 ₽</b></div>
+              </div>
+            </div>
+            <div class="hero-panel">
+              <div class="panel-card">
+                <h4>Личный статус месяца</h4>
+                <div class="big" id="levelName">Нет плана</div>
+                <p id="salaryFormula">Ставка 0% · бонус 0 ₽</p>
+              </div>
+              <div class="forecast-box">
+                <div class="forecast-row"><div><h4>Прогноз продаж</h4><span>факт + ожидаемые оплаты</span></div><div class="forecast-val" id="forecastSales">0 ₽</div></div>
+                <div class="ghost-note" id="mainInsight">Заполни планы и добавь оплаты, чтобы увидеть прогноз.</div>
+              </div>
             </div>
           </div>
-        </div>
+        </section>
 
-        <div class="layout" style="margin-top:18px">
+        <section class="grid-6">
+          <div class="card kpi-card">
+            <div class="kpi-top"><small>План месяца</small><div class="icon-badge">🎯</div></div>
+            <div class="kpi-value" id="ordinaryPlanValue">0 ₽</div>
+            <div class="kpi-foot">обычный уровень</div>
+          </div>
+          <div class="card kpi-card">
+            <div class="kpi-top"><small>Повышенный план</small><div class="icon-badge">🚀</div></div>
+            <div class="kpi-value" id="highPlanValue">0 ₽</div>
+            <div class="kpi-foot">ставка 6% на весь месяц</div>
+          </div>
+          <div class="card kpi-card">
+            <div class="kpi-top"><small>Сверхплан</small><div class="icon-badge">🏆</div></div>
+            <div class="kpi-value" id="superPlanValue">0 ₽</div>
+            <div class="kpi-foot">6% + бонус 30 000 ₽</div>
+          </div>
+          <div class="card kpi-card">
+            <div class="kpi-top"><small>Ожидает оплаты</small><div class="icon-badge">🧾</div></div>
+            <div class="kpi-value" id="waitingValue">0 ₽</div>
+            <div class="kpi-foot" id="waitingCount">0 счетов на контроле</div>
+          </div>
+          <div class="card kpi-card">
+            <div class="kpi-top"><small>Средний чек</small><div class="icon-badge">💳</div></div>
+            <div class="kpi-value" id="avgCheck">0 ₽</div>
+            <div class="kpi-foot">по статусам «Оплачено» и «Депозит»</div>
+          </div>
+          <div class="card kpi-card">
+            <div class="kpi-top"><small>Количество оплат</small><div class="icon-badge">📌</div></div>
+            <div class="kpi-value" id="paymentsCount">0</div>
+            <div class="kpi-foot">операций, попавших в факт</div>
+          </div>
+        </section>
+
+        <section class="content-grid">
           <div class="card">
-            <div class="section-title"><h3>Быстрый ввод оплаты</h3><small>минимум действий</small></div>
+            <div class="section-head">
+              <div>
+                <h3>Прогресс по трём планам</h3>
+                <p>Автоматически показывает, насколько месяц продвинулся к каждой цели.</p>
+              </div>
+              <button class="btn btn-secondary" id="openPlansBtn">Изменить планы</button>
+            </div>
+            <div class="progress-stack">
+              <div class="progress-card">
+                <div class="progress-meta"><b>Обычный план</b><span id="ordinaryProgressText">0%</span></div>
+                <div class="progress-line"><div class="bar-1" id="ordinaryProgress"></div></div>
+              </div>
+              <div class="progress-card">
+                <div class="progress-meta"><b>Повышенный план</b><span id="highProgressText">0%</span></div>
+                <div class="progress-line"><div class="bar-2" id="highProgress"></div></div>
+              </div>
+              <div class="progress-card">
+                <div class="progress-meta"><b>Сверхплан</b><span id="superProgressText">0%</span></div>
+                <div class="progress-line"><div class="bar-3" id="superProgress"></div></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="section-head">
+              <div>
+                <h3>Счета на контроле</h3>
+                <p>То, что ещё может прибавить результат месяца.</p>
+              </div>
+              <button class="btn btn-secondary" id="openDrawerControl">Добавить</button>
+            </div>
+            <div class="list" id="controlList"></div>
+            <div class="empty" id="controlEmpty">Пока нет счетов на контроле. Добавь оплату со статусом «Ждём оплату» или «Просрочено».</div>
+          </div>
+        </section>
+
+        <section class="controls-grid" id="paymentsSection">
+          <div class="card">
+            <div class="section-head">
+              <div>
+                <h3>Быстрый ввод</h3>
+                <p>Минимум полей — максимум автоматизации.</p>
+              </div>
+            </div>
             <div class="form-grid">
-              <div class="field"><label>Дата</label><input type="date" id="payDate"></div>
-              <div class="field"><label>Клиент</label><input type="text" id="payClient" placeholder="Например, ООО Альфа"></div>
-              <div class="field"><label>Сумма</label><input type="number" id="payAmount" placeholder="150000"></div>
-              <div class="field"><label>Статус</label><select id="payStatus"><option>Оплачено</option><option>Ждём оплату</option><option>Просрочено</option><option>Депозит</option><option>Списание депозита</option><option>Возврат</option><option>Отмена</option></select></div>
-              <div class="field"><label>Входит в план</label><select id="payInclude"><option value="yes">Да</option><option value="no">Нет</option></select></div>
-              <div class="field row-actions"><button class="btn" id="addPayBtn" style="width:100%">Добавить</button></div>
+              <div class="field"><label for="payDateInline">Дата оплаты</label><input id="payDateInline" type="date"></div>
+              <div class="field"><label for="payClientInline">Клиент</label><input id="payClientInline" type="text" placeholder="Например, ООО Вектор"></div>
+              <div class="field"><label for="payAmountInline">Сумма</label><input id="payAmountInline" type="number" placeholder="0"></div>
+              <div class="field"><label for="payStatusInline">Статус</label><select id="payStatusInline"></select></div>
+              <div class="field"><label for="payIncludeInline">Входит в план</label><select id="payIncludeInline"><option value="yes">Да</option><option value="no">Нет</option></select></div>
+              <div class="field"><label for="payCommentInline">Комментарий</label><input id="payCommentInline" type="text" placeholder="Короткая пометка"></div>
             </div>
-            <p class="footer-note">В факт зарплаты попадают строки со статусами «Оплачено» и «Депозит», если стоит «Входит в план = Да». Возвраты не уменьшают зарплату.</p>
+            <div class="inline-row">
+              <button class="btn btn-primary" id="addPayBtnInline">Сохранить оплату</button>
+            </div>
+            <div class="ghost-note" style="margin-top:14px">В факт попадают только статусы <b>«Оплачено»</b> и <b>«Депозит»</b>, если переключатель «Входит в план» стоит на <b>Да</b>.</div>
           </div>
 
-          <div class="card">
-            <div class="section-title"><h3>Планы месяца</h3><small>ручной ввод</small></div>
-            <div class="form-grid one">
-              <div class="field"><label>Месяц</label><input type="month" id="monthInput"></div>
-              <div class="field"><label>Обычный план, ₽</label><input type="number" id="ordinaryPlan"></div>
-              <div class="field"><label>Повышенный план, ₽</label><input type="number" id="highPlan"></div>
-              <div class="field"><label>Сверхповышенный план, ₽</label><input type="number" id="superPlan"></div>
+          <div class="card" id="logicSection">
+            <div class="section-head">
+              <div>
+                <h3>Логика расчёта</h3>
+                <p>Зафиксировано под твою модель мотивации.</p>
+              </div>
+            </div>
+            <div class="logic-grid">
+              <div class="logic-card"><h4>Факт</h4><p>Сумма оплат за выбранный месяц по дате оплаты.</p></div>
+              <div class="logic-card"><h4>Входят в план</h4><p>Статусы «Оплачено» и «Депозит», если указано «Да».</p></div>
+              <div class="logic-card"><h4>Ставка</h4><p>5% при обычном плане, 6% при повышенном и сверхплане.</p></div>
+              <div class="logic-card"><h4>Бонус</h4><p>30 000 ₽ один раз при достижении сверхповышенного плана.</p></div>
+              <div class="logic-card"><h4>Возврат</h4><p>Не уменьшает факт продаж и зарплату.</p></div>
+              <div class="logic-card"><h4>Прогноз</h4><p>Считается как факт плюс ожидаемые оплаты в этом месяце.</p></div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      <section id="payments" class="view hidden">
-        <div class="card">
-          <div class="section-title"><h3>Оплаты месяца</h3><small>ручной ввод и контроль</small></div>
-          <div class="table-wrap"><table><thead><tr><th>Дата</th><th>Клиент</th><th>Сумма</th><th>Статус</th><th>В план</th><th>Комментарий</th><th></th></tr></thead><tbody id="paymentsBody"></tbody></table></div>
-          <div id="emptyPayments" class="empty">Пока нет оплат. Добавь первую оплату на главном экране.</div>
-        </div>
-      </section>
-
-      <section id="settings" class="view hidden">
-        <div class="card">
-          <div class="section-title"><h3>Настройки мотивации</h3><small>можно менять</small></div>
-          <div class="form-grid two">
-            <div class="field"><label>Ставка обычного плана</label><input type="number" id="ordinaryRate" step="0.01"></div>
-            <div class="field"><label>Ставка повышенного/сверхплана</label><input type="number" id="highRate" step="0.01"></div>
-            <div class="field"><label>Бонус за сверхповышенный план</label><input type="number" id="bonusInput"></div>
-            <div class="field"><label>Статусы, которые входят в факт</label><input value="Оплачено, Депозит" disabled></div>
+        <section class="card" style="margin-top:18px">
+          <div class="section-head">
+            <div>
+              <h3>Лента оплат месяца</h3>
+              <p>Всё, что ты добавил в выбранный месяц. Можно удалить лишнее в один клик.</p>
+            </div>
           </div>
-          <p class="footer-note">По твоей логике: 6% считается от всей суммы продаж месяца после достижения повышенного/сверхповышенного плана. Бонус 30 000 ₽ начисляется один раз при сверхповышенном плане.</p>
-        </div>
-      </section>
-
-      <section id="logic" class="view hidden">
-        <div class="card">
-          <div class="section-title"><h3>Логика расчёта</h3><small>зафиксировано</small></div>
-          <div class="quick-list">
-            <div class="quick-item"><div><b>Факт продаж</b><small>Сумма оплат за выбранный месяц по дате оплаты.</small></div></div>
-            <div class="quick-item"><div><b>В зарплату входят</b><small>Оплачено и Депозит, если «Входит в план = Да».</small></div></div>
-            <div class="quick-item"><div><b>Возврат</b><small>Не уменьшает факт продаж и зарплату.</small></div></div>
-            <div class="quick-item"><div><b>Ставка</b><small>5% при обычном плане, 6% при повышенном и сверхповышенном.</small></div></div>
-            <div class="quick-item"><div><b>Бонус</b><small>+30 000 ₽ один раз при достижении сверхповышенного плана.</small></div></div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Дата</th>
+                  <th>Клиент</th>
+                  <th>Сумма</th>
+                  <th>Статус</th>
+                  <th>В план</th>
+                  <th>Комментарий</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody id="paymentsBody"></tbody>
+            </table>
           </div>
-        </div>
-      </section>
+          <div class="empty" id="emptyPayments">Пока нет оплат. Добавь первую операцию, и дашборд оживёт автоматически.</div>
+        </section>
+      </div>
     </main>
   </div>
 
-  <div class="mobile-bar">
-    <button class="active" data-view="dashboard">Отчёт</button>
-    <button data-view="payments">Оплаты</button>
-    <button data-view="settings">Планы</button>
-    <button data-view="logic">Логика</button>
+  <div class="mobile-nav">
+    <button class="active" data-scroll="dashboard">Обзор</button>
+    <button data-scroll="paymentsSection">Оплаты</button>
+    <button data-open="drawer">Добавить</button>
+    <button data-scroll="logicSection">Логика</button>
   </div>
 
-<script>
-const fmt = new Intl.NumberFormat('ru-RU', { style:'currency', currency:'RUB', maximumFractionDigits:0 });
-const percent = (x)=>`${Math.round(x)}%`;
-const defaultState = { settings:{ month:new Date().toISOString().slice(0,7), ordinaryPlan:1000000, highPlan:1500000, superPlan:2000000, ordinaryRate:0.05, highRate:0.06, bonus:30000 }, payments:[] };
-let state = load();
-function load(){ try{ return JSON.parse(localStorage.getItem('salaryModuleState')) || structuredClone(defaultState); }catch(e){ return structuredClone(defaultState); } }
-function save(){ localStorage.setItem('salaryModuleState', JSON.stringify(state)); }
-function el(id){ return document.getElementById(id); }
-function monthName(m){ const [y,mo]=m.split('-'); return new Date(+y,+mo-1,1).toLocaleDateString('ru-RU',{month:'long', year:'numeric'}); }
-function isInMonth(date, month){ return (date||'').slice(0,7) === month; }
-function factPayments(){ return state.payments.filter(p => isInMonth(p.date,state.settings.month) && p.include === 'yes' && ['Оплачено','Депозит'].includes(p.status)); }
-function expectedPayments(){ return state.payments.filter(p => isInMonth(p.date,state.settings.month) && p.include === 'yes' && ['Ждём оплату','Просрочено'].includes(p.status)); }
-function calcByAmount(amount){ const s=state.settings; let level='План не выполнен', rate=0, bonus=0, badge='red'; if(amount>=Number(s.superPlan||0) && Number(s.superPlan||0)>0){ level='Сверхплан'; rate=Number(s.highRate); bonus=Number(s.bonus); badge='green'; } else if(amount>=Number(s.highPlan||0) && Number(s.highPlan||0)>0){ level='Повышенный'; rate=Number(s.highRate); badge='green'; } else if(amount>=Number(s.ordinaryPlan||0) && Number(s.ordinaryPlan||0)>0){ level='Обычный'; rate=Number(s.ordinaryRate); badge='yellow'; } return { level, rate, bonus, salary: amount*rate+bonus, badge }; }
-function nextThreshold(amount){ const s=state.settings; const levels=[['обычного плана',Number(s.ordinaryPlan)],['повышенного плана',Number(s.highPlan)],['сверхповышенного плана',Number(s.superPlan)]].filter(x=>x[1]>amount && x[1]>0).sort((a,b)=>a[1]-b[1]); if(!levels.length) return {need:0,label:'все уровни выполнены'}; return {need:levels[0][1]-amount,label:`до ${levels[0][0]}`}; }
-function setProgress(id,textId, amount, plan){ const v = plan>0 ? Math.min(100, amount/plan*100) : 0; el(id).style.width = `${v}%`; el(textId).textContent = `${percent(v)} / ${fmt.format(plan||0)}`; }
-function updateInputs(){ const s=state.settings; el('monthInput').value=s.month; el('ordinaryPlan').value=s.ordinaryPlan; el('highPlan').value=s.highPlan; el('superPlan').value=s.superPlan; el('ordinaryRate').value=s.ordinaryRate; el('highRate').value=s.highRate; el('bonusInput').value=s.bonus; el('payDate').value=new Date().toISOString().slice(0,10); }
-function render(){ const s=state.settings; const facts=factPayments(); const expected=expectedPayments(); const fact=facts.reduce((a,p)=>a+Number(p.amount||0),0); const expectedSum=expected.reduce((a,p)=>a+Number(p.amount||0),0); const current=calcByAmount(fact); const forecast=calcByAmount(fact+expectedSum); const next=nextThreshold(fact); const avg=facts.length ? fact/facts.length : 0; el('monthLabel').textContent=monthName(s.month); el('factSales').textContent=fmt.format(fact); el('paymentsCount').textContent=`${facts.length} оплат`; el('levelName').textContent=current.level; el('levelBadge').className=`badge ${current.badge}`; el('levelBadge').textContent=`ставка ${Math.round(current.rate*100)}%`; el('salaryNow').textContent=fmt.format(current.salary); el('salaryFormula').textContent=`${Math.round(current.rate*100)}% + бонус ${fmt.format(current.bonus)}`; el('nextNeed').textContent=fmt.format(next.need); el('nextLabel').textContent=next.label; el('avgCheck').textContent=fmt.format(avg); el('bonusValue').textContent=fmt.format(current.bonus); el('forecastValue').textContent=fmt.format(fact+expectedSum); el('forecastSalary').textContent=fmt.format(forecast.salary); setProgress('ordinaryProgress','ordinaryProgressText',fact,Number(s.ordinaryPlan)); setProgress('highProgress','highProgressText',fact,Number(s.highPlan)); setProgress('superProgress','superProgressText',fact,Number(s.superPlan)); const insight=el('mainInsight'); if(current.level==='Сверхплан'){ insight.innerHTML='<div class="dot"></div><div><b>Сверхповышенный план выполнен</b><span>Бонус включён. Сейчас важно удержать качество оплат и закрыть остаточные ожидаемые счета.</span></div>'; } else if(next.need>0){ insight.innerHTML=`<div class="dot"></div><div><b>Следующая цель: ${next.label}</b><span>Осталось закрыть ${fmt.format(next.need)}. Прогноз с ожидаемыми оплатами: ${fmt.format(fact+expectedSum)}.</span></div>`; } else { insight.innerHTML='<div class="dot"></div><div><b>Все уровни выполнены</b><span>Можно смотреть прогноз и усиливать результат месяца.</span></div>'; }
-  renderPayments(); save(); }
-function renderPayments(){ const body=el('paymentsBody'); const rows=state.payments.filter(p=>isInMonth(p.date,state.settings.month)); body.innerHTML=''; el('emptyPayments').style.display=rows.length?'none':'block'; rows.forEach((p,i)=>{ const tr=document.createElement('tr'); tr.innerHTML=`<td>${p.date||''}</td><td>${escapeHtml(p.client||'')}</td><td><b>${fmt.format(Number(p.amount||0))}</b></td><td>${p.status}</td><td>${p.include==='yes'?'Да':'Нет'}</td><td>${escapeHtml(p.comment||'')}</td><td><button class="mini-btn red" data-del="${state.payments.indexOf(p)}">Удалить</button></td>`; body.appendChild(tr); }); body.querySelectorAll('[data-del]').forEach(btn=>btn.onclick=()=>{ state.payments.splice(Number(btn.dataset.del),1); render(); }); }
-function escapeHtml(s){ return String(s).replace(/[&<>"]/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
-function addPayment(){ const date=el('payDate').value; const client=el('payClient').value.trim(); const amount=Number(el('payAmount').value); if(!date || !client || !amount){ alert('Заполни дату, клиента и сумму.'); return; } state.payments.push({date, client, amount, status:el('payStatus').value, include:el('payInclude').value, comment:''}); el('payClient').value=''; el('payAmount').value=''; render(); }
-['monthInput','ordinaryPlan','highPlan','superPlan','ordinaryRate','highRate','bonusInput'].forEach(id=>{ el(id).addEventListener('input',()=>{ const map={monthInput:'month',ordinaryPlan:'ordinaryPlan',highPlan:'highPlan',superPlan:'superPlan',ordinaryRate:'ordinaryRate',highRate:'highRate',bonusInput:'bonus'}; state.settings[map[id]]= id==='monthInput'?el(id).value:Number(el(id).value); render(); }); });
-el('addPayBtn').onclick=addPayment;
-el('demoBtn').onclick=()=>{ state=structuredClone(defaultState); state.settings={month:new Date().toISOString().slice(0,7),ordinaryPlan:1000000,highPlan:1500000,superPlan:2000000,ordinaryRate:0.05,highRate:0.06,bonus:30000}; const m=state.settings.month; state.payments=[{date:`${m}-03`,client:'ООО Вектор',amount:420000,status:'Оплачено',include:'yes',comment:''},{date:`${m}-07`,client:'ИП Орлова',amount:280000,status:'Депозит',include:'yes',comment:'пополнение'},{date:`${m}-11`,client:'ООО Север',amount:350000,status:'Оплачено',include:'yes',comment:''},{date:`${m}-16`,client:'ГК Альфа',amount:520000,status:'Ждём оплату',include:'yes',comment:'счёт выставлен'},{date:`${m}-18`,client:'ООО Линия',amount:190000,status:'Просрочено',include:'yes',comment:'напомнить'}]; updateInputs(); render(); };
-el('clearBtn').onclick=()=>{ if(confirm('Очистить оплаты и вернуть настройки по умолчанию?')){ state=structuredClone(defaultState); updateInputs(); render(); } };
-el('exportBtn').onclick=()=>{ const blob=new Blob([JSON.stringify(state,null,2)],{type:'application/json'}); const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='salary-module-data.json'; a.click(); URL.revokeObjectURL(a.href); };
-document.querySelectorAll('[data-view]').forEach(btn=>{ btn.onclick=()=>{ const view=btn.dataset.view; document.querySelectorAll('.view').forEach(v=>v.classList.add('hidden')); el(view).classList.remove('hidden'); document.querySelectorAll('[data-view]').forEach(b=>b.classList.toggle('active', b.dataset.view===view)); }; });
-updateInputs(); render();
-</script>
+  <div class="drawer-backdrop" id="drawerBackdrop"></div>
+  <aside class="drawer" id="drawer">
+    <div class="drawer-head">
+      <div>
+        <h3>Быстрый ввод оплаты</h3>
+        <div class="muted">Минимум действий — максимум результата</div>
+      </div>
+      <button class="btn btn-secondary" id="closeDrawer">Закрыть</button>
+    </div>
+    <div class="stack">
+      <div class="card" style="padding:16px;border-radius:22px">
+        <div class="form-grid">
+          <div class="field"><label for="payDate">Дата оплаты</label><input id="payDate" type="date"></div>
+          <div class="field"><label for="payClient">Клиент</label><input id="payClient" type="text" placeholder="Например, ООО Вектор"></div>
+          <div class="field"><label for="payAmount">Сумма</label><input id="payAmount" type="number" placeholder="0"></div>
+          <div class="field"><label for="payStatus">Статус</label><select id="payStatus"></select></div>
+          <div class="field"><label for="payInclude">Входит в план</label><select id="payInclude"><option value="yes">Да</option><option value="no">Нет</option></select></div>
+          <div class="field"><label for="payComment">Комментарий</label><input id="payComment" type="text" placeholder="Например, счёт выставлен"></div>
+        </div>
+        <div class="inline-row"><button class="btn btn-primary" id="addPayBtn">Сохранить</button></div>
+      </div>
+      <div class="card" style="padding:16px;border-radius:22px">
+        <div class="section-head"><div><h3>Планы месяца</h3><p>Можно менять в любой момент</p></div></div>
+        <div class="form-grid">
+          <div class="field"><label for="monthInput">Месяц</label><input id="monthInput" type="month"></div>
+          <div class="field"><label for="ordinaryPlan">Обычный план</label><input id="ordinaryPlan" type="number"></div>
+          <div class="field"><label for="highPlan">Повышенный план</label><input id="highPlan" type="number"></div>
+          <div class="field"><label for="superPlan">Сверхповышенный план</label><input id="superPlan" type="number"></div>
+          <div class="field"><label for="ordinaryRate">Ставка обычного плана</label><input id="ordinaryRate" type="number" step="0.01"></div>
+          <div class="field"><label for="highRate">Ставка повышенного/сверхплана</label><input id="highRate" type="number" step="0.01"></div>
+          <div class="field"><label for="bonusInput">Бонус за сверхплан</label><input id="bonusInput" type="number"></div>
+        </div>
+        <p class="small">6% считается от всей суммы продаж месяца после достижения повышенного или сверхповышенного плана. Бонус 30 000 ₽ начисляется один раз при достижении сверхплана.</p>
+      </div>
+    </div>
+  </aside>
+
+  <script>
+    const fmt = new Intl.NumberFormat('ru-RU', { style:'currency', currency:'RUB', maximumFractionDigits:0 });
+    const statuses = ['Оплачено','Ждём оплату','Просрочено','Депозит','Списание депозита','Возврат','Отмена'];
+    const defaultState = {
+      settings:{
+        month:new Date().toISOString().slice(0,7),
+        ordinaryPlan:1000000,
+        highPlan:1500000,
+        superPlan:2000000,
+        ordinaryRate:0.05,
+        highRate:0.06,
+        bonus:30000
+      },
+      payments:[]
+    };
+
+    let state = loadState();
+
+    function loadState(){
+      try{
+        const raw = localStorage.getItem('salaryRoomV3');
+        if(!raw) return structuredClone(defaultState);
+        const parsed = JSON.parse(raw);
+        return {
+          settings:{...defaultState.settings,...(parsed.settings||{})},
+          payments:Array.isArray(parsed.payments)?parsed.payments:[]
+        };
+      }catch(e){
+        return structuredClone(defaultState);
+      }
+    }
+    function saveState(){ localStorage.setItem('salaryRoomV3', JSON.stringify(state)); }
+    const $ = (id)=>document.getElementById(id);
+    const qsa = (sel)=>Array.from(document.querySelectorAll(sel));
+
+    function monthName(m){
+      const [y,mo] = m.split('-');
+      return new Date(+y, +mo - 1, 1).toLocaleDateString('ru-RU',{month:'long', year:'numeric'});
+    }
+    function currency(v){ return fmt.format(Number(v||0)); }
+    function inMonth(date, month){ return String(date||'').slice(0,7) === month; }
+    function factPayments(){
+      return state.payments.filter(p => inMonth(p.date, state.settings.month) && p.include === 'yes' && ['Оплачено','Депозит'].includes(p.status));
+    }
+    function expectedPayments(){
+      return state.payments.filter(p => inMonth(p.date, state.settings.month) && p.include === 'yes' && ['Ждём оплату','Просрочено'].includes(p.status));
+    }
+    function currentCalc(amount){
+      const s = state.settings;
+      const ordinary = Number(s.ordinaryPlan||0);
+      const high = Number(s.highPlan||0);
+      const sup = Number(s.superPlan||0);
+      const ordinaryRate = Number(s.ordinaryRate||0);
+      const highRate = Number(s.highRate||0);
+      const bonus = Number(s.bonus||0);
+      let level = 'План не выполнен';
+      let rate = 0;
+      let addBonus = 0;
+      let chip = 'chip-red';
+      if(sup > 0 && amount >= sup){ level = 'Сверхплан'; rate = highRate; addBonus = bonus; chip = 'chip-vip'; }
+      else if(high > 0 && amount >= high){ level = 'Повышенный план'; rate = highRate; chip = 'chip-green'; }
+      else if(ordinary > 0 && amount >= ordinary){ level = 'Обычный план'; rate = ordinaryRate; chip = 'chip-amber'; }
+      const salary = amount * rate + addBonus;
+      return { level, rate, bonus:addBonus, salary, chip };
+    }
+    function nextThreshold(amount){
+      const s = state.settings;
+      const map = [
+        {name:'обычного плана', value:Number(s.ordinaryPlan||0)},
+        {name:'повышенного плана', value:Number(s.highPlan||0)},
+        {name:'сверхповышенного плана', value:Number(s.superPlan||0)}
+      ].filter(x=>x.value > 0 && x.value > amount).sort((a,b)=>a.value-b.value);
+      if(!map.length) return { need:0, label:'все уровни выполнены' };
+      return { need: map[0].value - amount, label: `до ${map[0].name}` };
+    }
+    function setProgress(barId, textId, amount, plan){
+      const progress = plan > 0 ? Math.min(100, amount / plan * 100) : 0;
+      $(barId).style.width = progress + '%';
+      $(textId).textContent = `${Math.round(progress)}% · ${currency(plan)}`;
+    }
+    function populateStatusSelect(select){
+      select.innerHTML = statuses.map(s=>`<option value="${s}">${s}</option>`).join('');
+    }
+    function bindInputs(){
+      const mapping = {
+        monthInput:'month', ordinaryPlan:'ordinaryPlan', highPlan:'highPlan', superPlan:'superPlan',
+        ordinaryRate:'ordinaryRate', highRate:'highRate', bonusInput:'bonus'
+      };
+      Object.keys(mapping).forEach(id=>{
+        $(id).addEventListener('input', ()=>{
+          state.settings[mapping[id]] = id === 'monthInput' ? $(id).value : Number($(id).value);
+          render();
+        });
+      });
+    }
+    function hydrateInputs(){
+      const s = state.settings;
+      $('monthInput').value = s.month;
+      $('ordinaryPlan').value = s.ordinaryPlan;
+      $('highPlan').value = s.highPlan;
+      $('superPlan').value = s.superPlan;
+      $('ordinaryRate').value = s.ordinaryRate;
+      $('highRate').value = s.highRate;
+      $('bonusInput').value = s.bonus;
+      const today = new Date().toISOString().slice(0,10);
+      ['payDate','payDateInline'].forEach(id=>{ $(id).value = today; });
+    }
+    function addPaymentFrom(prefix=''){
+      const get = (name)=>$(name + prefix);
+      const date = get('payDate').value;
+      const client = get('payClient').value.trim();
+      const amount = Number(get('payAmount').value);
+      const status = get('payStatus').value;
+      const include = get('payInclude').value;
+      const comment = get('payComment').value.trim();
+      if(!date || !client || !amount){ alert('Заполни дату, клиента и сумму.'); return; }
+      state.payments.unshift({ date, client, amount, status, include, comment });
+      ['payClient','payAmount','payComment'].forEach(field=> get(field).value = '');
+      render();
+      closeDrawer();
+    }
+    function renderControlList(expected){
+      const list = $('controlList');
+      list.innerHTML = '';
+      $('controlEmpty').style.display = expected.length ? 'none' : 'block';
+      expected.sort((a,b)=>Number(b.amount)-Number(a.amount)).slice(0,6).forEach(p=>{
+        const statusClass = p.status === 'Просрочено' ? 'over' : 'wait';
+        const item = document.createElement('div');
+        item.className = 'list-item';
+        item.innerHTML = `
+          <div>
+            <h4>${escapeHtml(p.client)}</h4>
+            <p>${escapeHtml(p.comment || 'счёт на контроле')}</p>
+          </div>
+          <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap">
+            <span class="pill ${statusClass}">${p.status}</span>
+            <strong>${currency(p.amount)}</strong>
+          </div>
+        `;
+        list.appendChild(item);
+      });
+    }
+    function renderPaymentsTable(){
+      const rows = state.payments.filter(p=>inMonth(p.date, state.settings.month));
+      const body = $('paymentsBody');
+      body.innerHTML = '';
+      $('emptyPayments').style.display = rows.length ? 'none' : 'block';
+      rows.forEach((p, idx)=>{
+        const realIndex = state.payments.indexOf(p);
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td>${escapeHtml(p.date)}</td>
+          <td>${escapeHtml(p.client)}</td>
+          <td><strong>${currency(p.amount)}</strong></td>
+          <td>${badgeHtml(p.status)}</td>
+          <td>${p.include === 'yes' ? 'Да' : 'Нет'}</td>
+          <td>${escapeHtml(p.comment || '')}</td>
+          <td><button class="action-link danger-link" data-del="${realIndex}">Удалить</button></td>
+        `;
+        body.appendChild(tr);
+      });
+      qsa('[data-del]').forEach(btn=>btn.onclick = ()=>{
+        state.payments.splice(Number(btn.dataset.del), 1);
+        render();
+      });
+    }
+    function badgeHtml(status){
+      const map = {
+        'Оплачено':'pay', 'Депозит':'pay', 'Ждём оплату':'wait', 'Просрочено':'over', 'Возврат':'over', 'Отмена':'over', 'Списание депозита':'wait'
+      };
+      return `<span class="pill ${map[status] || 'wait'}">${status}</span>`;
+    }
+    function render(){
+      const s = state.settings;
+      const facts = factPayments();
+      const expected = expectedPayments();
+      const fact = facts.reduce((sum,p)=>sum + Number(p.amount||0), 0);
+      const expectedSum = expected.reduce((sum,p)=>sum + Number(p.amount||0), 0);
+      const avg = facts.length ? fact / facts.length : 0;
+      const current = currentCalc(fact);
+      const forecast = currentCalc(fact + expectedSum);
+      const next = nextThreshold(fact);
+
+      $('monthLabel').textContent = monthName(s.month);
+      $('factSales').textContent = currency(fact);
+      $('salaryNow').textContent = currency(current.salary);
+      $('salaryForecast').textContent = currency(forecast.salary);
+      $('levelName').textContent = current.level;
+      $('salaryFormula').textContent = `Ставка ${Math.round(current.rate*100)}% · бонус ${currency(current.bonus)}`;
+      $('levelChip').className = `status-chip ${current.chip}`;
+      $('levelChip').textContent = `${current.level} · ставка ${Math.round(current.rate*100)}%`;
+      $('nextNeed').textContent = currency(next.need);
+      $('forecastSales').textContent = currency(fact + expectedSum);
+      $('ordinaryPlanValue').textContent = currency(s.ordinaryPlan);
+      $('highPlanValue').textContent = currency(s.highPlan);
+      $('superPlanValue').textContent = currency(s.superPlan);
+      $('waitingValue').textContent = currency(expectedSum);
+      $('waitingCount').textContent = `${expected.length} счетов на контроле`;
+      $('avgCheck').textContent = currency(avg);
+      $('paymentsCount').textContent = String(facts.length);
+
+      const insight = current.level === 'Сверхплан'
+        ? `Сверхплан выполнен. Бонус включён, а текущая зарплата уже составляет <b>${currency(current.salary)}</b>. Можно добивать ожидаемые оплаты и усиливать итог месяца.`
+        : expectedSum > 0
+          ? `Сейчас до следующего уровня осталось <b>${currency(next.need)}</b>. Если закроются ожидаемые оплаты на <b>${currency(expectedSum)}</b>, прогноз зарплаты составит <b>${currency(forecast.salary)}</b>.`
+          : `Сейчас до следующего уровня осталось <b>${currency(next.need)}</b>. Добавь оплаты или ожидаемые счета, чтобы видеть прогноз месяца более точно.`;
+      $('mainInsight').innerHTML = insight;
+
+      setProgress('ordinaryProgress','ordinaryProgressText', fact, Number(s.ordinaryPlan));
+      setProgress('highProgress','highProgressText', fact, Number(s.highPlan));
+      setProgress('superProgress','superProgressText', fact, Number(s.superPlan));
+
+      renderControlList(expected);
+      renderPaymentsTable();
+      saveState();
+    }
+    function escapeHtml(str){
+      return String(str ?? '').replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]));
+    }
+
+    function openDrawer(){ $('drawer').classList.add('open'); $('drawerBackdrop').classList.add('show'); }
+    function closeDrawer(){ $('drawer').classList.remove('open'); $('drawerBackdrop').classList.remove('show'); }
+
+    function loadDemo(){
+      state = structuredClone(defaultState);
+      const m = new Date().toISOString().slice(0,7);
+      state.settings = { month:m, ordinaryPlan:1000000, highPlan:1600000, superPlan:2200000, ordinaryRate:0.05, highRate:0.06, bonus:30000 };
+      state.payments = [
+        { date:`${m}-03`, client:'ООО Вектор', amount:420000, status:'Оплачено', include:'yes', comment:'закрыто по счёту' },
+        { date:`${m}-07`, client:'ИП Орлова', amount:280000, status:'Депозит', include:'yes', comment:'пополнение депозита' },
+        { date:`${m}-10`, client:'ООО Статус', amount:350000, status:'Оплачено', include:'yes', comment:'договор закрыт' },
+        { date:`${m}-15`, client:'ГК Альфа', amount:520000, status:'Ждём оплату', include:'yes', comment:'счёт выставлен' },
+        { date:`${m}-18`, client:'ООО Линия', amount:190000, status:'Просрочено', include:'yes', comment:'нужно напомнить' },
+        { date:`${m}-22`, client:'VIP Бренд', amount:300000, status:'Оплачено', include:'yes', comment:'доплата по проекту' }
+      ];
+      hydrateInputs();
+      render();
+    }
+
+    function exportData(){
+      const blob = new Blob([JSON.stringify(state, null, 2)], { type:'application/json' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `salary-room-${state.settings.month}.json`;
+      a.click();
+      URL.revokeObjectURL(url);
+    }
+
+    function clearData(){
+      if(confirm('Очистить все оплаты и вернуть настройки по умолчанию?')){
+        state = structuredClone(defaultState);
+        hydrateInputs();
+        render();
+      }
+    }
+
+    function attachScrollNav(){
+      qsa('[data-scroll]').forEach(btn=>{
+        btn.addEventListener('click', ()=>{
+          const id = btn.dataset.scroll;
+          const target = $(id);
+          if(target){ target.scrollIntoView({ behavior:'smooth', block:'start' }); }
+          qsa('[data-scroll]').forEach(b=>b.classList.toggle('active', b.dataset.scroll === id));
+        });
+      });
+      qsa('[data-open="drawer"]').forEach(btn=>btn.addEventListener('click', openDrawer));
+    }
+
+    function init(){
+      populateStatusSelect($('payStatus')); populateStatusSelect($('payStatusInline'));
+      hydrateInputs(); bindInputs(); render(); attachScrollNav();
+      $('addPayBtn').onclick = ()=>addPaymentFrom('');
+      $('addPayBtnInline').onclick = ()=>addPaymentFrom('Inline');
+      $('openDrawerTop').onclick = openDrawer;
+      $('openDrawerControl').onclick = openDrawer;
+      $('openPlansBtn').onclick = openDrawer;
+      $('closeDrawer').onclick = closeDrawer;
+      $('drawerBackdrop').onclick = closeDrawer;
+      $('demoBtn').onclick = loadDemo;
+      $('exportBtn').onclick = exportData;
+      $('clearBtn').onclick = clearData;
+      document.addEventListener('keydown', (e)=>{ if(e.key === 'Escape') closeDrawer(); });
+    }
+
+    init();
+    if(new URLSearchParams(location.search).get("demo") === "1"){ loadDemo(); }
+  </script>
 </body>
 </html>
