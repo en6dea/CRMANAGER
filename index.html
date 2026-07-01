@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
-<title>CRMANAGER — v19 Stage Colors</title>
+<title>CRMANAGER — v20 Analytics Ecosystem</title>
 <meta name="theme-color" content="#0f172a"/>
 <style>
 :root{
@@ -364,12 +364,236 @@ body:before{opacity:.35;background-size:54px 54px}
 @media(max-width:1180px){.stage-legend{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:680px){.stage-legend{grid-template-columns:1fr}}
 
+
+/* ===== v20 Analytics Ecosystem theme ===== */
+:root{
+  --displayFont: Georgia, "Times New Roman", serif;
+  --pageGlowA:rgba(107,125,255,.14);
+  --pageGlowB:rgba(196,165,255,.12);
+  --shellBorder:rgba(193,203,220,.55);
+  --shellShadow:0 28px 90px rgba(25,36,69,.08);
+  --cardShadow:0 14px 44px rgba(20,34,66,.045);
+}
+body{
+  background:
+    radial-gradient(circle at 14% 0%, var(--pageGlowA), transparent 28%),
+    radial-gradient(circle at 94% 2%, var(--pageGlowB), transparent 32%),
+    linear-gradient(180deg,#fcfdff 0%, #f7f9fd 56%, #f5f7fb 100%) !important;
+  color:#0f172a;
+}
+.app{max-width:1680px;padding:22px 22px 28px;gap:22px;align-items:start}
+.sidebar{
+  position:sticky;top:18px;
+  background:rgba(255,255,255,.92)!important;
+  backdrop-filter:blur(18px);
+  border:1px solid var(--shellBorder)!important;
+  box-shadow:var(--shellShadow)!important;
+  border-radius:30px!important;
+  padding:20px 18px 18px!important;
+}
+.brand{
+  padding:12px 12px 14px!important;
+  border-radius:22px!important;
+  background:linear-gradient(180deg,rgba(255,255,255,.96),rgba(248,250,255,.9));
+  border:1px solid rgba(220,227,238,.8);
+  box-shadow:0 10px 24px rgba(23,43,77,.03);
+}
+.logo{
+  width:52px!important;height:52px!important;border-radius:18px!important;
+  background:radial-gradient(circle at 35% 30%,#8bc4ff 0,#7b8fff 40%,#8f63ff 100%)!important;
+  color:#fff!important;
+  box-shadow:0 12px 30px rgba(98,97,255,.32);
+}
+.brand b{font-size:18px!important;letter-spacing:-.03em}
+.brand span{font-size:12px!important;color:#7f8aa3!important}
+.nav{gap:8px!important;margin-top:14px!important}
+.nav button{
+  justify-content:flex-start!important;
+  background:transparent!important;
+  border:1px solid transparent!important;
+  color:#334155!important;
+  border-radius:18px!important;
+  padding:14px 15px!important;
+  font-size:14px!important;font-weight:800!important;
+}
+.nav button.active{
+  background:linear-gradient(90deg,#6b7dff 0%, #a78bfa 100%)!important;
+  color:#fff!important;
+  box-shadow:0 14px 30px rgba(122,116,255,.22)!important;
+}
+.side-panel,.side-foot{
+  background:linear-gradient(180deg,#ffffff,#f8fbff)!important;
+  border:1px solid var(--shellBorder)!important;
+  box-shadow:0 10px 30px rgba(15,23,42,.03)!important;
+  border-radius:24px!important;
+}
+.main{
+  border-radius:34px;
+}
+.page{
+  background:rgba(255,255,255,.58)!important;
+  border:1px solid rgba(214,223,236,.72)!important;
+  backdrop-filter:blur(12px);
+  border-radius:34px!important;
+  padding:18px!important;
+  box-shadow:var(--shellShadow)!important;
+}
+.topbar{
+  background:linear-gradient(180deg,rgba(255,255,255,.8),rgba(252,253,255,.52))!important;
+  border:1px solid rgba(220,227,238,.8)!important;
+  box-shadow:0 8px 24px rgba(15,23,42,.03)!important;
+  border-radius:26px!important;
+  padding:18px 20px!important;
+}
+.topbar .title h1{
+  font-family:var(--displayFont)!important;
+  font-size:46px!important;
+  line-height:1!important;
+  font-weight:700!important;
+  letter-spacing:-.04em!important;
+  color:#1f2a44!important;
+}
+.topbar .title p{
+  font-size:14px!important;
+  color:#7a879f!important;
+  max-width:860px;
+}
+.top-actions .btn{
+  border-radius:18px!important;
+  min-height:46px;
+  box-shadow:none!important;
+}
+.top-actions .btn.primary{
+  background:linear-gradient(90deg,#667dff,#8b6fff)!important;
+}
+.eco-layout{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) 330px;
+  gap:22px;
+  align-items:start;
+}
+.lux-dashboard{
+  display:grid;
+  gap:18px;
+}
+.eco-rail{
+  display:grid;
+  gap:18px;
+  position:sticky;top:18px;
+}
+.eco-widget{
+  background:linear-gradient(180deg,rgba(255,255,255,.94),rgba(250,252,255,.88));
+  border:1px solid rgba(220,227,238,.86);
+  border-radius:28px;
+  padding:18px 18px 14px;
+  box-shadow:var(--cardShadow);
+}
+.eco-widget-head{
+  display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:12px;
+}
+.eco-widget-head h3{
+  margin:0;
+  font-size:22px;
+  line-height:1.1;
+  letter-spacing:-.03em;
+  color:#162033;
+  font-family:var(--head);
+}
+.eco-widget-head a{
+  font-size:12px;font-weight:800;color:#6b7dff;text-decoration:none;
+}
+.eco-widget-list{display:grid;gap:10px}
+.eco-item{
+  display:grid;gap:4px;
+  padding:12px 12px 11px;
+  border-radius:18px;
+  background:#fbfcff;
+  border:1px solid rgba(231,236,244,.98);
+}
+.eco-item-row{
+  display:flex;align-items:center;justify-content:space-between;gap:10px;
+}
+.eco-item b{font-size:14px;color:#172033;line-height:1.25}
+.eco-item span,.eco-item small{font-size:12px;color:#7d879b}
+.eco-badge{
+  display:inline-flex;align-items:center;justify-content:center;
+  padding:5px 8px;border-radius:999px;font-size:11px;font-weight:900;border:1px solid transparent;white-space:nowrap
+}
+.eco-badge.blue{background:#eef3ff;color:#4c61ff;border-color:#d9e2ff}
+.eco-badge.green{background:#ecfdf3;color:#17b26a;border-color:#d0fadf}
+.eco-badge.amber{background:#fff7ed;color:#d97706;border-color:#fed7aa}
+.eco-badge.red{background:#fef2f2;color:#dc2626;border-color:#fecaca}
+.eco-badge.violet{background:#f5f3ff;color:#7c3aed;border-color:#ddd6fe}
+.lux-dashboard .lux-gridBottom>.lux-card:nth-child(2){display:none}
+.lux-dashboard .lux-grid2,
+.lux-dashboard .lux-grid3,
+.lux-dashboard .lux-gridBottom{
+  gap:18px!important;
+}
+.lux-card{
+  background:linear-gradient(180deg,rgba(255,255,255,.96),rgba(251,252,255,.92))!important;
+  border:1px solid rgba(220,227,238,.84)!important;
+  box-shadow:var(--cardShadow)!important;
+  border-radius:30px!important;
+}
+.lux-pill{
+  background:linear-gradient(90deg,#eef2ff,#f5f3ff)!important;
+  color:#5b67f1!important;
+  border:1px solid #dde5ff!important;
+}
+.lux-title,.lux-section-title{
+  color:#1a2238!important;
+}
+.lux-main-card{
+  background:
+    radial-gradient(circle at 100% 0,rgba(129,140,248,.12),transparent 34%),
+    linear-gradient(180deg,rgba(255,255,255,.96),rgba(248,250,255,.92))!important;
+}
+.lux-big{font-family:var(--displayFont)!important;color:#1f2a44!important}
+.lux-amount{font-family:var(--displayFont)!important;color:#1f2a44!important}
+.lux-mini,.lux-kpi-item,.lux-stage,.lux-conversion .lux-row,.lux-focus-item,.lux-analytic,.vip-item,.doc-item,.touch-item,.template-item,.archive-item{
+  border-radius:22px!important;
+}
+.lux-kpi-strip{grid-template-columns:repeat(6,minmax(0,1fr))!important}
+.lux-kpi-item{
+  background:rgba(255,255,255,.86)!important;
+  border:1px solid rgba(222,228,238,.92)!important;
+}
+.lux-chart-grid .lux-bar{
+  background:linear-gradient(180deg,#7a87ff,#5b6fff)!important;
+}
+.lux-chart-grid .lux-plan-bar{
+  background:rgba(214,221,245,.9)!important;
+}
+.lux-donut{
+  box-shadow:inset 0 0 0 12px rgba(255,255,255,.96), 0 20px 40px rgba(103,112,255,.08)!important;
+}
+.deal-row,.vip-ledger-item,.doc-item,.archive-item,.touch-item,.template-item{
+  box-shadow:0 6px 18px rgba(15,23,42,.02);
+}
+.hero,.hero-card,.card,.focus-card,.drawer,.month-card{
+  border-radius:28px!important;
+}
+@media(max-width:1420px){
+  .topbar .title h1{font-size:42px!important}
+}
+@media(max-width:1320px){
+  .eco-layout{grid-template-columns:1fr}
+  .eco-rail{position:static}
+  .lux-dashboard .lux-gridBottom>.lux-card:nth-child(2){display:block}
+}
+@media(max-width:960px){
+  .page{padding:14px!important}
+  .topbar .title h1{font-size:34px!important}
+  .lux-kpi-strip{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+}
+
 </style>
 </head>
 <body>
 <div class="app">
 <aside class="sidebar">
-  <div class="brand"><div class="logo">₽</div><div><b>CRMANAGER</b><span>v19 · цветные этапы заделов</span></div></div>
+  <div class="brand"><div class="logo">◈</div><div><b>CRM/Manager</b><span>v20 · analytics ecosystem</span></div></div>
   <nav class="nav">
     <button class="active" data-view="dashboard">🏠 Дашборд</button>
     <button data-view="focus">🔥 Фокус дня</button>
@@ -381,22 +605,22 @@ body:before{opacity:.35;background-size:54px 54px}
     <button data-view="templates">💬 Шаблоны</button>
     <button data-view="settings">⚙️ Настройки</button>
   </nav>
-  <div class="side-panel"><h3>v19 Stage Control</h3><p>VIP-база перенесена из Excel: депозиты, операции, документы и заделы от хантера.</p></div>
-  <div class="side-panel"><h3>Документы VIP</h3><p>Храним ссылки, статусы и папки. Файлы лучше держать в Google Drive, AMO или папке клиента.</p></div>
+  <div class="side-panel"><h3>Analytics ecosystem</h3><p>Главный упор на обзор: KPI, динамика оплат, конверсия, VIP-клиенты, документы и архив в одной системе.</p></div>
+  <div class="side-panel"><h3>Папки и документы</h3><p>В приложении учтены разделы: Дашборд, Фокус дня, Заделы, VIP, Документы, Архив, Касания, Шаблоны и Настройки.</p></div>
   <div class="side-foot">Перед обновлением можно сделать экспорт. Данные хранятся локально в браузере.</div>
 </aside>
 
 <main class="main">
 <div class="page">
 <header class="topbar fade">
-  <div class="title"><h1 id="pageTitle">Дашборд</h1><p id="pageText">v19 · Заделы теперь помечаются цветом по этапам, чтобы сразу видеть прогрев, счета, просрочки и оплаты.</p></div>
+  <div class="title"><h1 id="pageTitle">Дашборд</h1><p id="pageText">v20 · Реализован вариант 3: премиальная аналитическая экосистема с акцентом на обзор, фокус, VIP и документы.</p></div>
   <div class="actions"><button class="btn primary" data-open>+ Добавить</button><button class="btn secondary" id="demoBtn">Демо</button><button class="btn secondary" id="themeBtn">Тема</button><button class="btn secondary" id="exportBtn">Экспорт</button><button class="btn danger" id="clearBtn">Очистить</button></div>
 </header>
 
 <div class="month-bar fade"><button class="icon-btn" id="prevMonth">‹</button><div class="month-center"><div><div class="month-name" id="monthName">—</div><div class="month-sub">факт — по дате оплаты, прогноз — по счетам выбранного месяца</div></div><button class="btn secondary" id="todayMonth">Текущий месяц</button></div><button class="icon-btn" id="nextMonth">›</button></div>
 
 <section class="view active" id="dashboard">
-  <div class="lux-dashboard fade">
+  <div class="eco-layout"><div class="lux-dashboard fade">
     <section class="lux-grid2">
       <div class="lux-card lux-main-card">
         <div class="lux-pill">Текущий месяц</div>
@@ -496,6 +720,27 @@ body:before{opacity:.35;background-size:54px 54px}
       </div>
     </section>
   </div>
+
+  </div>
+  <aside class="eco-rail">
+    <div class="eco-widget eco-widget-focus">
+      <div class="eco-widget-head"><h3>Фокус дня</h3><a href="#" onclick="setView('focus');return false;">Смотреть все</a></div>
+      <div class="eco-widget-list" id="ecoFocusList"></div>
+    </div>
+    <div class="eco-widget">
+      <div class="eco-widget-head"><h3>VIP клиенты</h3><a href="#" onclick="setView('vip');return false;">Смотреть всех</a></div>
+      <div class="eco-widget-list" id="ecoVipList"></div>
+    </div>
+    <div class="eco-widget">
+      <div class="eco-widget-head"><h3>Недавние документы</h3><a href="#" onclick="setView('docs');return false;">Открыть папку</a></div>
+      <div class="eco-widget-list" id="ecoDocsList"></div>
+    </div>
+    <div class="eco-widget">
+      <div class="eco-widget-head"><h3>Архив</h3><a href="#" onclick="setView('archive');return false;">Перейти в архив</a></div>
+      <div class="eco-widget-list" id="ecoArchiveList"></div>
+    </div>
+  </aside>
+</div>
   <div id="legacyDashboard"><section class="hero fade">
     <div class="hero-grid">
       <div><div class="eyebrow">⚡ Итог месяца</div><div class="salary-line"><div><div class="salary" id="salaryNow">0 ₽</div><div class="caption">зарплата по фактически оплаченным клиентам</div></div><div class="chip red" id="levelChip">План не выполнен · 0%</div></div><div class="hero-mini"><div class="mini"><span>Факт оплат</span><b id="factSales">0 ₽</b></div><div class="mini"><span>Оплачено клиентов</span><b id="paidClients">0</b></div><div class="mini"><span>Прогноз зарплаты</span><b id="salaryForecast">0 ₽</b></div></div></div>
@@ -923,7 +1168,7 @@ function invoiceDeals(){return state.deals.filter(d=>['Счёт выставле
 function activeDeals(){return state.deals.filter(d=>!['Оплачено','Отказ'].includes(d.stage))}
 function calc(amount){const p=plan();let level='План не выполнен',rate=0,bonus=0,cls='red';if(p.superPlan>0&&amount>=p.superPlan){level='Сверхплан';rate=+p.highRate;bonus=+p.bonus;cls='violet'}else if(p.highPlan>0&&amount>=p.highPlan){level='Повышенный';rate=+p.highRate;cls='green'}else if(p.ordinaryPlan>0&&amount>=p.ordinaryPlan){level='Обычный';rate=+p.ordinaryRate;cls='amber'}return{level,rate,bonus,cls,salary:amount*rate+bonus}}
 function nextNeed(amount){const p=plan();const arr=[['обычного плана',+p.ordinaryPlan],['повышенного плана',+p.highPlan],['сверхплана',+p.superPlan]].filter(x=>x[1]>amount&&x[1]>0).sort((a,b)=>a[1]-b[1]);return arr.length?{label:'до '+arr[0][0],need:arr[0][1]-amount}:{label:'все уровни закрыты',need:0}}
-function setView(v){state.view=v;document.querySelectorAll('.view').forEach(x=>x.classList.toggle('active',x.id===v));document.querySelectorAll('[data-view]').forEach(x=>x.classList.toggle('active',x.dataset.view===v));const titles={dashboard:['Дашборд','v19 · Заделы теперь помечаются цветом по этапам, чтобы сразу видеть прогрев, счета, просрочки и оплаты.'],focus:['Фокус дня','Автоматический список: кого сегодня дожимать, кому писать, где просрочка и какие VIP требуют контроля.'],deals:['Заделы','Рабочая таблица заделов с AMO-ссылками, стадиями, прогнозом и связью с зарплатой.'],vip:['VIP-клиенты','Карточки VIP, депозиты, условия, контроль и быстрый доступ к документам.'],docs:['Документы','Единое место для ссылок на договоры, счета, акты, платёжки и папки клиентов.'],archive:['Архив','Отказы, паузы и клиенты, к которым можно вернуться.'],touchpoints:['Касания','История коммуникаций: кто ответил, кто молчит, кто обещал оплатить и когда следующий контакт.'],templates:['Шаблоны','Готовые сообщения и ответы на возражения для дожима клиентов.'],settings:['Настройки','Планы, ставки, бонус, импорт и экспорт данных.']};$('pageTitle').textContent=titles[v][0];$('pageText').textContent=titles[v][1];save()}
+function setView(v){state.view=v;document.querySelectorAll('.view').forEach(x=>x.classList.toggle('active',x.id===v));document.querySelectorAll('[data-view]').forEach(x=>x.classList.toggle('active',x.dataset.view===v));const titles={dashboard:['Дашборд','v20 · Реализован вариант 3: премиальная аналитическая экосистема с акцентом на обзор, фокус, VIP и документы.'],focus:['Фокус дня','Автоматический список: кого сегодня дожимать, кому писать, где просрочка и какие VIP требуют контроля.'],deals:['Заделы','Рабочая таблица заделов с AMO-ссылками, стадиями, прогнозом и связью с зарплатой.'],vip:['VIP-клиенты','Карточки VIP, депозиты, условия, контроль и быстрый доступ к документам.'],docs:['Документы','Единое место для ссылок на договоры, счета, акты, платёжки и папки клиентов.'],archive:['Архив','Отказы, паузы и клиенты, к которым можно вернуться.'],touchpoints:['Касания','История коммуникаций: кто ответил, кто молчит, кто обещал оплатить и когда следующий контакт.'],templates:['Шаблоны','Готовые сообщения и ответы на возражения для дожима клиентов.'],settings:['Настройки','Планы, ставки, бонус, импорт и экспорт данных.']};$('pageTitle').textContent=titles[v][0];$('pageText').textContent=titles[v][1];save()}
 
 function percent(a,b){return b>0?Math.round(a/b*100):0}
 function groupByReason(arr){const map={};arr.forEach(a=>{const k=a.reason||'Другое';if(!map[k])map[k]={count:0,sum:0,returnable:0};map[k].count+=1;map[k].sum+=Number(a.amount||0);if(a.canReturn==='yes')map[k].returnable+=1});return Object.entries(map).map(([reason,v])=>({reason,...v})).sort((a,b)=>b.sum-a.sum)}
@@ -1077,6 +1322,54 @@ function renderMomentum(v){
 }
 
 
+
+function renderEcoRail(){
+  const focusItems=buildFocusItems().slice(0,3);
+  if($('ecoFocusList')){
+    $('ecoFocusList').innerHTML=focusItems.length ? focusItems.map(x=>{
+      const badge=x.pill==='over'?'red':x.pill==='wait'?'amber':'green';
+      const badgeText=x.pill==='over'?'Высокий':x.pill==='wait'?'Средний':'Низкий';
+      return `<div class="eco-item"><div class="eco-item-row"><b>${esc(x.title)}</b><span class="eco-badge ${badge}">${badgeText}</span></div><small>${esc(x.meta||x.tag||'')}</small></div>`;
+    }).join('') : `<div class="eco-item"><small>Пока нет задач для фокуса.</small></div>`;
+  }
+
+  if($('ecoVipList')){
+    const vipTop=[...state.vips]
+      .sort((a,b)=>(Number(b.deposit||0)+Number(b.totalDeposited||0))-(Number(a.deposit||0)+Number(a.totalDeposited||0)))
+      .slice(0,3);
+    $('ecoVipList').innerHTML=vipTop.length ? vipTop.map(v=>`
+      <div class="eco-item">
+        <div class="eco-item-row"><b>${esc(v.client||'VIP-клиент')}</b><span class="eco-badge violet">${money(v.deposit||0)}</span></div>
+        <small>${esc(v.nextAction||v.activity||'VIP в работе')}</small>
+      </div>
+    `).join('') : `<div class="eco-item"><small>VIP-клиентов пока нет.</small></div>`;
+  }
+
+  if($('ecoDocsList')){
+    const docs=[...state.docs].sort((a,b)=>String(b.date||'').localeCompare(String(a.date||''))).slice(0,4);
+    $('ecoDocsList').innerHTML=docs.length ? docs.map(d=>`
+      <div class="eco-item">
+        <div class="eco-item-row"><b>${esc(d.name||'Документ')}</b><span class="eco-badge blue">${esc(d.type||'Файл')}</span></div>
+        <small>${esc(d.date||'Без даты')}</small>
+      </div>
+    `).join('') : `<div class="eco-item"><small>Документы пока не добавлены.</small></div>`;
+  }
+
+  if($('ecoArchiveList')){
+    const rows = [
+      ['Завершённые сделки', state.deals.filter(d=>d.stage==='Оплачено').length, 'green'],
+      ['Отменённые / отказ', state.archive.length, 'red'],
+      ['Можно вернуть', state.archive.filter(a=>a.canReturn==='yes').length, 'amber'],
+    ];
+    $('ecoArchiveList').innerHTML=rows.map(r=>`
+      <div class="eco-item">
+        <div class="eco-item-row"><b>${r[0]}</b><span class="eco-badge ${r[2]}">${r[1]}</span></div>
+        <small>Сводка по базе и архиву</small>
+      </div>
+    `).join('');
+  }
+}
+
 function renderLuxuryDashboard(){
   const p=plan(), pd=paidDeals(), inv=invoiceDeals(), act=activeDeals();
   const fact=pd.reduce((s,x)=>s+Number(x.amount||0),0);
@@ -1136,6 +1429,7 @@ function renderLuxuryDashboard(){
   renderLuxuryTypes(allClients.length, paidClientCount, vipClients.length, archiveCan.length, act);
   renderLuxuryStages();
   renderLuxuryFocus();
+  renderEcoRail();
 }
 function renderLuxuryConversion(baseCount, activeClientCount, act, pd){
   const invoiceCount=state.deals.filter(d=>['Счёт выставлен','Ждём оплату','Просрочено','Оплачено'].includes(d.stage)).length;
