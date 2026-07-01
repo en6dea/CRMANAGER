@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
-<title>CRMANAGER — v21.4 Archive on Delete</title>
+<title>CRMANAGER — v21.5 VIP Light Layout</title>
 <meta name="theme-color" content="#0f172a"/>
 <style>
 :root{
@@ -365,7 +365,7 @@ body:before{opacity:.35;background-size:54px 54px}
 @media(max-width:680px){.stage-legend{grid-template-columns:1fr}}
 
 
-/* ===== v21.4 Archive on Delete theme ===== */
+/* ===== v21.5 VIP Light Layout theme ===== */
 :root{
   --displayFont: Georgia, "Times New Roman", serif;
   --pageGlowA:rgba(107,125,255,.14);
@@ -664,12 +664,55 @@ body,button,input,select,textarea{
   .lux-grid2,.lux-grid3,.lux-gridBottom{grid-template-columns:1fr!important}
 }
 
+
+/* ===== VIP light layout v21.5 ===== */
+.vip-summary-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin:18px 0}
+.vip-summary-card{background:linear-gradient(180deg,rgba(255,255,255,.98),rgba(248,250,255,.96));border:1px solid var(--line);border-radius:22px;padding:18px 18px 16px;box-shadow:0 12px 30px rgba(20,32,72,.04)}
+.vip-summary-card span{display:block;font-size:12px;color:var(--muted);margin-bottom:8px}
+.vip-summary-card b{display:block;font-size:28px;line-height:1.05;font-weight:500}
+.vip-summary-card small{display:block;margin-top:8px;color:var(--muted);font-size:12px}
+.vip-catalog-card{margin-bottom:18px}
+.vip-card-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.vip-card-tile{border:1px solid var(--line);border-radius:24px;background:linear-gradient(180deg,rgba(255,255,255,.98),rgba(248,250,255,.96));padding:18px;display:grid;gap:14px;min-height:244px;box-shadow:0 14px 36px rgba(26,38,82,.05)}
+.vip-card-tile.active{border-color:rgba(92,112,255,.45);box-shadow:0 18px 44px rgba(86,105,255,.10)}
+.vip-card-head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
+.vip-card-head h3{margin:0;font-size:18px;font-weight:500}
+.vip-card-head p{margin:5px 0 0;color:var(--muted);font-size:12px;line-height:1.45}
+.vip-card-stats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.vip-card-stat{background:var(--panel2);border:1px solid var(--line);border-radius:16px;padding:12px}
+.vip-card-stat span{display:block;font-size:11px;color:var(--muted);margin-bottom:6px}
+.vip-card-stat b{display:block;font-size:15px;font-weight:500}
+.vip-card-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:auto}
+.vip-pagination{display:flex;align-items:center;justify-content:flex-end;gap:12px;margin-top:16px}
+.vip-page-chip{padding:8px 12px;border-radius:999px;border:1px solid var(--line);background:var(--panel2);font-size:12px;color:var(--muted)}
+.vip-pane-tabs{display:flex;gap:10px;flex-wrap:wrap;margin:0 0 18px}
+.vip-pane-tab{border:1px solid var(--line);background:var(--panel2);border-radius:999px;padding:10px 14px;font-size:13px;color:var(--text);cursor:pointer}
+.vip-pane-tab.active{background:linear-gradient(135deg,#6075ff,#8e7dff);color:#fff;border-color:transparent;box-shadow:0 12px 28px rgba(96,117,255,.25)}
+.vip-pane{display:none;gap:16px}
+.vip-pane.active{display:grid}
+.vip-pane-grid2{display:grid;grid-template-columns:1.1fr .9fr;gap:16px}
+.vip-pane-grid2.equal{grid-template-columns:1fr 1fr}
+.vip-pane-grid4{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+.vip-pane-caption{margin:-6px 0 12px;color:var(--muted);font-size:12px}
+.vip-selected-line{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:14px}
+.vip-selected-line h3{margin:0;font-size:18px;font-weight:500}
+.vip-compact-note{font-size:12px;color:var(--muted)}
+@media(max-width:1180px){
+  .vip-card-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .vip-pane-grid2,.vip-pane-grid2.equal{grid-template-columns:1fr}
+  .vip-pane-grid4,.vip-summary-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(max-width:760px){
+  .vip-card-grid,.vip-summary-grid,.vip-pane-grid4{grid-template-columns:1fr}
+  .vip-pagination{justify-content:space-between}
+}
+
 </style>
 </head>
 <body>
 <div class="app">
 <aside class="sidebar">
-  <div class="brand"><div class="logo">◈</div><div><b>CRM/Manager</b><span>v21.4 · archive on delete</span></div></div>
+  <div class="brand"><div class="logo">◈</div><div><b>CRM/Manager</b><span>v21.5 · vip light layout</span></div></div>
   <nav class="nav">
     <button class="active" data-view="dashboard">🏠 Дашборд</button>
     <button data-view="focus">🔥 Фокус дня</button>
@@ -689,7 +732,7 @@ body,button,input,select,textarea{
 <main class="main">
 <div class="page">
 <header class="topbar fade">
-  <div class="title"><h1 id="pageTitle">Дашборд</h1><p id="pageText">v21.4 · При удалении задел переносится в архив с задачей вернуться через месяц.</p></div>
+  <div class="title"><h1 id="pageTitle">Дашборд</h1><p id="pageText">v21.5 · Папка VIP переработана: ровные карточки, скрытие тяжелых блоков по вкладкам и постраничный просмотр.</p></div>
   <div class="actions"><button class="btn primary" data-open>+ Добавить</button><button class="btn secondary" id="demoBtn">Демо</button><button class="btn secondary" id="themeBtn">Тема</button><button class="btn secondary" id="exportBtn">Экспорт</button><button class="btn danger" id="clearBtn">Очистить</button></div>
 </header>
 
@@ -958,6 +1001,7 @@ body,button,input,select,textarea{
   <div class="card"><div class="head"><div><h2>Заделы</h2><p>Рабочая таблица: каждый этап подсвечивается цветом. При удалении задел автоматически уходит в архив с задачей вернуться через месяц.</p></div><button class="btn primary" data-open data-mode="deal">+ Задел</button></div><div class="table-wrap"><table><thead><tr><th>Клиент</th><th>AMO</th><th>Услуга</th><th>Сумма</th><th>Стадия</th><th>Вероятность</th><th>Дата оплаты</th><th>В план</th><th></th></tr></thead><tbody id="dealsBody"></tbody></table></div><div class="empty" id="emptyDeals">Пока нет заделов.</div></div>
 </section>
 
+
 <section class="view" id="vip">
   <div class="vip-select-row">
     <select id="vipSelect"></select>
@@ -965,56 +1009,106 @@ body,button,input,select,textarea{
     <button class="btn secondary" data-open data-mode="doc">+ Документ</button>
   </div>
 
-  <section class="vip-dossier">
-    <div class="vip-profile">
-      <div class="vip-profile-top">
-        <div>
-          <div class="eyebrow">💎 VIP-досье</div>
-          <h2 id="vipDossierName">VIP не выбран</h2>
-          <p id="vipDossierText">Выбери VIP-клиента, чтобы увидеть документы, депозит, риски и следующий шаг.</p>
-          <div class="vip-actions" id="vipDossierActions"></div>
-        </div>
-        <div class="chip violet" id="vipDossierRisk">—</div>
-      </div>
-      <div class="vip-metrics">
-        <div class="vip-metric"><span>Остаток депозита</span><b id="vipDossierDeposit">0 ₽</b></div>
-        <div class="vip-metric"><span>Документы</span><b id="vipDossierDocs">0</b></div>
-        <div class="vip-metric"><span>Проблемы</span><b id="vipDossierProblems">0</b></div>
-      </div>
-    </div>
+  <section class="vip-summary-grid">
+    <div class="vip-summary-card"><span>VIP-клиентов</span><b id="vipSummaryCount">0</b><small>Общее количество клиентов в разделе VIP</small></div>
+    <div class="vip-summary-card"><span>Остаток депозитов</span><b id="vipSummaryBalance">0 ₽</b><small>Суммарный живой остаток по всей VIP-базе</small></div>
+    <div class="vip-summary-card"><span>На контроле</span><b id="vipSummaryControl">0</b><small>Высокий риск или дата контроля наступила</small></div>
+    <div class="vip-summary-card"><span>Проблемы с документами</span><b id="vipSummaryProblems">0</b><small>Только по документам со статусом «Нужно получить» / «Проблема»</small></div>
+  </section>
 
-    <div class="card">
-      <div class="head"><div><h2>Следующий контроль</h2><p>Что нужно сделать по выбранному VIP.</p></div></div>
-      <div class="list" id="vipNextList"></div>
-      <div class="empty" id="vipNextEmpty">Нет выбранного VIP или следующего шага.</div>
+  <section class="card vip-catalog-card">
+    <div class="head"><div><h2>VIP-клиенты</h2><p>Ровные карточки и постраничный просмотр — без перегруза на одном экране.</p></div></div>
+    <div class="vip-card-grid" id="vipCardGrid"></div>
+    <div class="empty" id="emptyVip">Пока нет VIP-клиентов.</div>
+    <div class="vip-pagination">
+      <button class="mini-btn link" id="vipPrevPage">← Назад</button>
+      <span class="vip-page-chip" id="vipPageInfo">1 / 1</span>
+      <button class="mini-btn link" id="vipNextPage">Вперёд →</button>
     </div>
   </section>
 
-  <section class="vip-import-metrics"><div class="vip-import-metric"><span>Внесено всего</span><b id="vipTotalDeposited">0 ₽</b></div><div class="vip-import-metric"><span>Списано на услуги</span><b id="vipTotalSpent">0 ₽</b></div><div class="vip-import-metric"><span>Остаток депозита</span><b id="vipTotalBalance">0 ₽</b></div><div class="vip-import-metric"><span>Услуг всего</span><b id="vipServiceCount">0</b></div></section>
+  <div class="vip-selected-line">
+    <div>
+      <h3 id="vipSelectedTitle">Выбранный VIP: —</h3>
+      <div class="vip-compact-note">Тяжёлые блоки скрыты по вкладкам: сначала карточки, затем нужный раздел по конкретному VIP.</div>
+    </div>
+    <div class="vip-pane-tabs">
+      <button class="vip-pane-tab" data-vip-pane="profile">Профиль</button>
+      <button class="vip-pane-tab" data-vip-pane="docs">Документы</button>
+      <button class="vip-pane-tab" data-vip-pane="operations">Операции</button>
+      <button class="vip-pane-tab" data-vip-pane="analytics">Аналитика</button>
+    </div>
+  </div>
 
-  <section class="grid"><div class="card"><div class="head"><div><h2>Движение депозита выбранного VIP</h2><p>Пополнения и списания из листа «Операции».</p></div></div><div class="vip-ledger" id="vipOperationsList"></div><div class="empty" id="vipOperationsEmpty">По выбранному VIP пока нет операций.</div></div><div class="card"><div class="head"><div><h2>Заделы VIP от хантера</h2><p>Отдельный блок из листа «Задел випов от хантера».</p></div></div><div class="vip-hunter-list" id="vipHunterLeads"></div><div class="empty" id="vipHunterEmpty">Заделов от хантера пока нет.</div></div></section>
+  <section class="vip-pane" data-vip-pane-content="profile">
+    <div class="vip-pane-grid2">
+      <div class="vip-profile">
+        <div class="vip-profile-top">
+          <div>
+            <div class="eyebrow">💎 VIP-досье</div>
+            <h2 id="vipDossierName">VIP не выбран</h2>
+            <p id="vipDossierText">Выбери VIP-клиента, чтобы увидеть документы, депозит, риски и следующий шаг.</p>
+            <div class="vip-actions" id="vipDossierActions"></div>
+          </div>
+          <div class="chip violet" id="vipDossierRisk">—</div>
+        </div>
+        <div class="vip-metrics">
+          <div class="vip-metric"><span>Остаток депозита</span><b id="vipDossierDeposit">0 ₽</b></div>
+          <div class="vip-metric"><span>Документы</span><b id="vipDossierDocs">0</b></div>
+          <div class="vip-metric"><span>Проблемы</span><b id="vipDossierProblems">0</b></div>
+        </div>
+      </div>
 
-  <section class="grid"><div class="card"><div class="head"><div><h2>Свод по импортированной VIP-базе</h2><p>Контрольные цифры из Excel-файла.</p></div></div><div class="data-list" id="vipImportSummary"></div></div><div class="card"><div class="head"><div><h2>Что добавлено в приложение</h2><p>Чего не хватало для полноценного переноса VIP-таблицы.</p></div></div><div class="data-list" id="vipImportChanges"></div></div></section>
+      <div class="card">
+        <div class="head"><div><h2>Следующий контроль</h2><p>Что нужно сделать по выбранному VIP.</p></div></div>
+        <div class="list" id="vipNextList"></div>
+        <div class="empty" id="vipNextEmpty">Нет выбранного VIP или следующего шага.</div>
+      </div>
+    </div>
 
-  <section class="grid">
+    <section class="vip-import-metrics">
+      <div class="vip-import-metric"><span>Внесено всего</span><b id="vipTotalDeposited">0 ₽</b></div>
+      <div class="vip-import-metric"><span>Списано на услуги</span><b id="vipTotalSpent">0 ₽</b></div>
+      <div class="vip-import-metric"><span>Остаток депозита</span><b id="vipTotalBalance">0 ₽</b></div>
+      <div class="vip-import-metric"><span>Услуг всего</span><b id="vipServiceCount">0</b></div>
+    </section>
+  </section>
+
+  <section class="vip-pane" data-vip-pane-content="docs">
     <div class="card">
       <div class="head"><div><h2>Документы выбранного VIP</h2><p>Договоры, счета, акты, платёжки, папки и проблемные документы.</p></div></div>
       <div class="doc-grid" id="vipDocsGrid"></div>
       <div class="empty" id="vipDocsEmpty">По выбранному VIP пока нет документов.</div>
     </div>
+  </section>
 
-    <div class="card">
-      <div class="head"><div><h2>VIP-клиенты</h2><p>Все VIP-клиенты с быстрыми ссылками на AMO и папки.</p></div></div>
-      <div class="list" id="vipList"></div>
-      <div class="empty" id="emptyVip">Пока нет VIP-клиентов.</div>
+  <section class="vip-pane" data-vip-pane-content="operations">
+    <div class="vip-pane-grid2 equal">
+      <div class="card">
+        <div class="head"><div><h2>Движение депозита выбранного VIP</h2><p>Пополнения и списания из листа «Операции».</p></div></div>
+        <div class="vip-ledger" id="vipOperationsList"></div>
+        <div class="empty" id="vipOperationsEmpty">По выбранному VIP пока нет операций.</div>
+      </div>
+      <div class="card">
+        <div class="head"><div><h2>Заделы VIP от хантера</h2><p>Отдельный блок из листа «Задел випов от хантера».</p></div></div>
+        <div class="vip-hunter-list" id="vipHunterLeads"></div>
+        <div class="empty" id="vipHunterEmpty">Заделов от хантера пока нет.</div>
+      </div>
     </div>
   </section>
 
-  <section class="grid">
-    <div class="card"><div class="head"><div><h2>VIP на контроле</h2><p>Клиенты с риском или просроченной датой контроля.</p></div></div><div class="list" id="vipControlList"></div><div class="empty" id="emptyVipControl">Нет VIP на срочный контроль.</div></div>
-    <div class="card"><div class="head"><div><h2>Депозиты VIP</h2><p>Суммарный остаток и клиенты с крупными остатками.</p></div></div><div class="list" id="vipDepositList"></div><div class="empty" id="emptyVipDeposits">Нет данных по депозитам.</div></div>
+  <section class="vip-pane" data-vip-pane-content="analytics">
+    <div class="vip-pane-grid2 equal">
+      <div class="card"><div class="head"><div><h2>VIP на контроле</h2><p>Клиенты с риском или просроченной датой контроля.</p></div></div><div class="list" id="vipControlList"></div><div class="empty" id="emptyVipControl">Нет VIP на срочный контроль.</div></div>
+      <div class="card"><div class="head"><div><h2>Депозиты VIP</h2><p>Суммарный остаток и клиенты с крупными остатками.</p></div></div><div class="list" id="vipDepositList"></div><div class="empty" id="emptyVipDeposits">Нет данных по депозитам.</div></div>
+    </div>
+    <div class="vip-pane-grid2 equal">
+      <div class="card"><div class="head"><div><h2>Свод по импортированной VIP-базе</h2><p>Контрольные цифры из Excel-файла.</p></div></div><div class="data-list" id="vipImportSummary"></div></div>
+      <div class="card"><div class="head"><div><h2>Что добавлено в приложение</h2><p>Чего не хватало для полноценного переноса VIP-таблицы.</p></div></div><div class="data-list" id="vipImportChanges"></div></div>
+    </div>
   </section>
 </section>
+
 
 <section class="view" id="docs">
   <div class="card"><div class="head"><div><h2>Документы</h2><p>Ссылки на договоры, счета, акты, платёжки и папки клиентов.</p></div><button class="btn primary" data-open data-mode="doc">+ Документ</button></div><div class="table-wrap"><table><thead><tr><th>Клиент</th><th>Тип</th><th>Название</th><th>Ссылка</th><th>Статус</th><th>Дата</th><th>Комментарий</th><th></th></tr></thead><tbody id="docsBody"></tbody></table></div><div class="empty" id="emptyDocs">Пока нет документов.</div></div>
@@ -1229,7 +1323,7 @@ const RUB=new Intl.NumberFormat('ru-RU',{style:'currency',currency:'RUB',maximum
 const dealStages=['Задел','В работе','Оффер','Счёт выставлен','Ждём оплату','Просрочено','Оплачено','Пауза','Отказ'];
 const stageProb={'Задел':20,'В работе':35,'Оффер':55,'Счёт выставлен':75,'Ждём оплату':90,'Просрочено':70,'Оплачено':100,'Пауза':25,'Отказ':0};
 const defaults={ordinaryPlan:1000000,highPlan:1600000,superPlan:2200000,ordinaryRate:.05,highRate:.06,bonus:30000};
-const defaultState={currentMonth:new Date().toISOString().slice(0,7),theme:'light',plans:{},deals:[],vips:[],docs:[],archive:[],vipOperations:[],vipLeads:[],vipImportVersion:'',touchpoints:[],doneFocus:{},focusFilter:'all',selectedVip:'',view:'dashboard'};
+const defaultState={currentMonth:new Date().toISOString().slice(0,7),theme:'light',plans:{},deals:[],vips:[],docs:[],archive:[],vipOperations:[],vipLeads:[],vipImportVersion:'',touchpoints:[],doneFocus:{},focusFilter:'all',selectedVip:'',view:'dashboard',vipPage:1,vipPane:'profile'};
 let state=load();
 function $(id){return document.getElementById(id)}function money(v){return RUB.format(Number(v||0))}
 function load(){try{const fresh=localStorage.getItem('salaryRoomV7');if(fresh)return {...defaultState,...JSON.parse(fresh)};const old=localStorage.getItem('salaryRoomV6')||localStorage.getItem('salaryRoomV5')||localStorage.getItem('salaryRoomV4')||localStorage.getItem('salaryRoomV3');if(old){const o=JSON.parse(old);return{...defaultState,...o,vips:o.vips||o.vip||[],docs:o.docs||[],archive:o.archive||[],view:'dashboard'}}return {...defaultState}}catch(e){return {...defaultState}}}
@@ -1244,7 +1338,7 @@ function invoiceDeals(){return state.deals.filter(d=>['Счёт выставле
 function activeDeals(){return state.deals.filter(d=>!['Оплачено','Отказ'].includes(d.stage))}
 function calc(amount){const p=plan();let level='План не выполнен',rate=0,bonus=0,cls='red';if(p.superPlan>0&&amount>=p.superPlan){level='Сверхплан';rate=+p.highRate;bonus=+p.bonus;cls='violet'}else if(p.highPlan>0&&amount>=p.highPlan){level='Повышенный';rate=+p.highRate;cls='green'}else if(p.ordinaryPlan>0&&amount>=p.ordinaryPlan){level='Обычный';rate=+p.ordinaryRate;cls='amber'}return{level,rate,bonus,cls,salary:amount*rate+bonus}}
 function nextNeed(amount){const p=plan();const arr=[['обычного плана',+p.ordinaryPlan],['повышенного плана',+p.highPlan],['сверхплана',+p.superPlan]].filter(x=>x[1]>amount&&x[1]>0).sort((a,b)=>a[1]-b[1]);return arr.length?{label:'до '+arr[0][0],need:arr[0][1]-amount}:{label:'все уровни закрыты',need:0}}
-function setView(v){state.view=v;document.querySelectorAll('.view').forEach(x=>x.classList.toggle('active',x.id===v));document.querySelectorAll('[data-view]').forEach(x=>x.classList.toggle('active',x.dataset.view===v));const titles={dashboard:['Дашборд','v21.4 · При удалении задел переносится в архив с задачей вернуться через месяц.'],focus:['Фокус дня','Автоматический список: кого сегодня дожимать, кому писать, где просрочка и какие VIP требуют контроля.'],deals:['Заделы','Рабочая таблица заделов с AMO-ссылками, стадиями, прогнозом и связью с зарплатой.'],vip:['VIP-клиенты','Карточки VIP, депозиты, условия, контроль и быстрый доступ к документам.'],docs:['Документы','Единое место для ссылок на договоры, счета, акты, платёжки и папки клиентов.'],archive:['Архив','Отказы, паузы и клиенты, к которым можно вернуться.'],touchpoints:['Касания','История коммуникаций: кто ответил, кто молчит, кто обещал оплатить и когда следующий контакт.'],templates:['Шаблоны','Готовые сообщения и ответы на возражения для дожима клиентов.'],settings:['Настройки','Планы, ставки, бонус, импорт и экспорт данных.']};$('pageTitle').textContent=titles[v][0];$('pageText').textContent=titles[v][1];save()}
+function setView(v){state.view=v;document.querySelectorAll('.view').forEach(x=>x.classList.toggle('active',x.id===v));document.querySelectorAll('[data-view]').forEach(x=>x.classList.toggle('active',x.dataset.view===v));const titles={dashboard:['Дашборд','v21.5 · Папка VIP переработана: ровные карточки, скрытие тяжелых блоков по вкладкам и постраничный просмотр.'],focus:['Фокус дня','Автоматический список: кого сегодня дожимать, кому писать, где просрочка и какие VIP требуют контроля.'],deals:['Заделы','Рабочая таблица заделов с AMO-ссылками, стадиями, прогнозом и связью с зарплатой.'],vip:['VIP-клиенты','Карточки VIP, депозиты, условия, контроль и быстрый доступ к документам.'],docs:['Документы','Единое место для ссылок на договоры, счета, акты, платёжки и папки клиентов.'],archive:['Архив','Отказы, паузы и клиенты, к которым можно вернуться.'],touchpoints:['Касания','История коммуникаций: кто ответил, кто молчит, кто обещал оплатить и когда следующий контакт.'],templates:['Шаблоны','Готовые сообщения и ответы на возражения для дожима клиентов.'],settings:['Настройки','Планы, ставки, бонус, импорт и экспорт данных.']};$('pageTitle').textContent=titles[v][0];$('pageText').textContent=titles[v][1];save()}
 
 function percent(a,b){return b>0?Math.round(a/b*100):0}
 function groupByReason(arr){const map={};arr.forEach(a=>{const k=a.reason||'Другое';if(!map[k])map[k]={count:0,sum:0,returnable:0};map[k].count+=1;map[k].sum+=Number(a.amount||0);if(a.canReturn==='yes')map[k].returnable+=1});return Object.entries(map).map(([reason,v])=>({reason,...v})).sort((a,b)=>b.sum-a.sum)}
@@ -1595,6 +1689,9 @@ function fillVipClientSelects(){
 function openVipDirect(client, updateHash=true){
   if(!client)return;
   state.selectedVip=client;
+  state.vipPane='profile';
+  const idx=state.vips.findIndex(v=>v.client===client);
+  if(idx>=0)state.vipPage=Math.max(1,Math.ceil((idx+1)/6));
   setView('vip');
   renderVip();
   if(updateHash) history.replaceState(null,'','#vip='+encodeURIComponent(client));
@@ -1865,24 +1962,88 @@ function renderDeals(){
   document.querySelectorAll('[data-del-deal]').forEach(b=>b.onclick=()=>{archiveDealFromDelete(+b.dataset.delDeal)})
 }
 
+
+function ensureVipUiState(){
+  if(!state.vipPane)state.vipPane='profile';
+  if(!state.vipPage||state.vipPage<1)state.vipPage=1;
+}
+function vipDocsFor(client){return state.docs.filter(d=>d.client===client)}
+function vipProblemsFor(client){return vipDocsFor(client).filter(d=>['Нужно получить','Проблема'].includes(d.status))}
+function vipOpsFor(client){return (state.vipOperations||[]).filter(o=>o.client===client)}
+function setVipPane(pane){state.vipPane=pane;renderVipTabs();renderVipPaneVisibility();save()}
+function renderVipTabs(){
+  document.querySelectorAll('[data-vip-pane]').forEach(btn=>{
+    btn.classList.toggle('active',btn.dataset.vipPane===state.vipPane);
+    btn.onclick=()=>{state.vipPane=btn.dataset.vipPane;renderVipTabs();renderVipPaneVisibility();save()}
+  });
+}
+function renderVipPaneVisibility(){
+  document.querySelectorAll('[data-vip-pane-content]').forEach(block=>block.classList.toggle('active',block.dataset.vipPaneContent===state.vipPane));
+}
+function renderVipSummary(){
+  const totalBalance=state.vips.reduce((s,v)=>s+Number(v.deposit||0),0);
+  const controlCount=state.vips.filter(v=>v.risk==='Высокий'||(v.controlDate&&v.controlDate<=today())).length;
+  const problemCount=state.vips.reduce((s,v)=>s+vipProblemsFor(v.client).length,0);
+  $('vipSummaryCount').textContent=state.vips.length;
+  $('vipSummaryBalance').textContent=money(totalBalance);
+  $('vipSummaryControl').textContent=controlCount;
+  $('vipSummaryProblems').textContent=problemCount;
+  $('vipSelectedTitle').textContent='Выбранный VIP: '+(state.selectedVip||'—');
+}
+function renderVipCards(){
+  const grid=$('vipCardGrid');grid.innerHTML='';
+  const pageSize=6,total=Math.max(1,Math.ceil(state.vips.length/pageSize));
+  if(state.vipPage>total)state.vipPage=total;
+  const start=(state.vipPage-1)*pageSize;
+  const items=state.vips.slice(start,start+pageSize);
+  $('emptyVip').style.display=state.vips.length?'none':'block';
+  $('vipPageInfo').textContent=`${state.vipPage} / ${total}`;
+  $('vipPrevPage').disabled=state.vipPage<=1;
+  $('vipNextPage').disabled=state.vipPage>=total;
+  $('vipPrevPage').onclick=()=>{if(state.vipPage>1){state.vipPage--;renderVip();save()}};
+  $('vipNextPage').onclick=()=>{if(state.vipPage<total){state.vipPage++;renderVip();save()}};
+  items.forEach(v=>{
+    const docs=vipDocsFor(v.client);
+    const problems=vipProblemsFor(v.client).length;
+    const ops=vipOpsFor(v.client).length;
+    const article=document.createElement('article');
+    article.className='vip-card-tile'+(v.client===state.selectedVip?' active':'');
+    article.innerHTML=`<div class="vip-card-head"><div><h3>${esc(v.client)}</h3><p>${esc(v.activity||'Активность не указана')} · ${esc(v.nextAction||'Следующий шаг не указан')}</p></div><span class="pill ${v.risk==='Высокий'?'over':v.risk==='Средний'?'wait':'pay'}">${esc(v.risk||'Низкий')}</span></div><div class="vip-card-stats"><div class="vip-card-stat"><span>Остаток</span><b>${money(v.deposit||0)}</b></div><div class="vip-card-stat"><span>Услуг</span><b>${esc(v.serviceCount||0)}</b></div><div class="vip-card-stat"><span>Документов</span><b>${docs.length}</b></div><div class="vip-card-stat"><span>Операций</span><b>${ops}</b></div></div><div class="vip-card-actions">${v.amo?`<a class="mini-btn link" target="_blank" href="${esc(v.amo)}">AMO</a>`:''}${v.folder?`<a class="mini-btn link" target="_blank" href="${esc(v.folder)}">Папка</a>`:''}<button class="mini-btn link" data-select-vip-card="${esc(v.client)}" data-open-vip-pane="profile">Профиль</button><button class="mini-btn link" data-select-vip-card="${esc(v.client)}" data-open-vip-pane="docs">Документы</button><button class="mini-btn link" data-edit-vip="${esc(v.client)}">Ред.</button>${problems?`<span class="pill over">${problems} проблем</span>`:''}</div>`;
+    grid.appendChild(article);
+  });
+  document.querySelectorAll('[data-select-vip-card]').forEach(btn=>btn.onclick=()=>{
+    state.selectedVip=btn.dataset.selectVipCard;
+    state.vipPane=btn.dataset.openVipPane||'profile';
+    renderVip();save();
+  });
+  bindVipEditButtons();
+}
 function renderVip(){
+  ensureVipUiState();
   if(state.vips.length&&!state.selectedVip)state.selectedVip=state.vips[0].client;
   const select=$('vipSelect');
   select.innerHTML=state.vips.length?state.vips.map(v=>`<option ${v.client===state.selectedVip?'selected':''}>${esc(v.client)}</option>`).join(''):'<option>VIP не выбран</option>';
-  select.onchange=()=>{state.selectedVip=select.value;renderVipDossier();save()};
-  const list=$('vipList'),control=$('vipControlList'),deposits=$('vipDepositList');
-  list.innerHTML='';control.innerHTML='';deposits.innerHTML='';
-  $('emptyVip').style.display=state.vips.length?'none':'block';
+  select.onchange=()=>{state.selectedVip=select.value;state.vipPane='profile';state.vipPage=Math.max(1,Math.ceil((state.vips.findIndex(v=>v.client===state.selectedVip)+1)/6));renderVip();save()};
+  const control=$('vipControlList'),deposits=$('vipDepositList');
+  control.innerHTML='';deposits.innerHTML='';
   const ctrl=state.vips.filter(v=>v.risk==='Высокий'||(v.controlDate&&v.controlDate<=today()));
   $('emptyVipControl').style.display=ctrl.length?'none':'block';
   const dep=state.vips.filter(v=>Number(v.deposit)>0).sort((a,b)=>b.deposit-a.deposit);
   $('emptyVipDeposits').style.display=dep.length?'none':'block';
-  state.vips.forEach((v,i)=>list.appendChild(vipItem(v,i,true)));
   ctrl.forEach(v=>control.appendChild(vipItem(v,state.vips.indexOf(v),false)));
   dep.slice(0,6).forEach(v=>deposits.appendChild(vipItem(v,state.vips.indexOf(v),false)));
-  renderVipDossier();renderVipOperationsForSelected();renderVipHunterLeads();renderVipImportSummary();renderVipImportStatus();
+  renderVipSummary();
+  renderVipCards();
+  renderVipTabs();
+  renderVipPaneVisibility();
+  renderVipDossier();
+  renderVipOperationsForSelected();
+  renderVipHunterLeads();
+  renderVipImportSummary();
+  renderVipImportStatus();
 }
 function renderVipDossier(){
+
   const v=state.vips.find(x=>x.client===state.selectedVip);
   const docs=state.docs.filter(d=>v&&d.client===v.client);
   const problems=docs.filter(d=>['Нужно получить','Проблема'].includes(d.status));
@@ -1915,7 +2076,7 @@ function vipItem(v,i,del){
   const docs=state.docs.filter(d=>d.client===v.client),problems=docs.filter(d=>['Нужно получить','Проблема'].includes(d.status)).length;
   const div=document.createElement('div');div.className='list-item';
   div.innerHTML=`<div><h3>${esc(v.client)}</h3><p>${esc(v.nextAction||'следующий шаг не указан')} · ${esc(v.activity||'активность не указана')} · услуг: ${esc(v.serviceCount||0)} · документов: ${docs.length}</p></div><div class="list-side"><span class="pill ${v.risk==='Высокий'?'over':v.risk==='Средний'?'wait':'pay'}">${v.risk}</span><b>${money(v.deposit||0)}</b>${problems?`<span class="pill over">${problems} проблем</span>`:''}${v.amo?`<a class="mini-btn link" target="_blank" href="${esc(v.amo)}">AMO</a>`:''}${v.folder?`<a class="mini-btn link" target="_blank" href="${esc(v.folder)}">Папка</a>`:''}<button class="mini-btn link" data-select-vip="${esc(v.client)}">Досье</button><button class="mini-btn link" data-edit-vip="${esc(v.client)}">Ред.</button><button class="mini-btn link" data-vip-op="${esc(v.client)}" data-op-mode="Пополнение">+ депозит</button><button class="mini-btn link" data-vip-op="${esc(v.client)}" data-op-mode="Списание на услугу">− услуга</button>${del?`<button class="mini-btn del" data-del-vip="${i}">В архив</button>`:''}</div>`;
-  setTimeout(()=>{document.querySelectorAll('[data-del-vip]').forEach(b=>b.onclick=()=>{state.vips.splice(+b.dataset.delVip,1);if(!state.vips.find(v=>v.client===state.selectedVip))state.selectedVip=state.vips[0]?.client||'';render()});document.querySelectorAll('[data-select-vip]').forEach(b=>b.onclick=()=>{openVipDirect(b.dataset.selectVip)});bindVipEditButtons()},0);
+  setTimeout(()=>{document.querySelectorAll('[data-del-vip]').forEach(b=>b.onclick=()=>{state.vips.splice(+b.dataset.delVip,1);if(!state.vips.find(v=>v.client===state.selectedVip))state.selectedVip=state.vips[0]?.client||'';render()});document.querySelectorAll('[data-select-vip]').forEach(b=>b.onclick=()=>{state.vipPane='profile';openVipDirect(b.dataset.selectVip)});bindVipEditButtons()},0);
   return div
 }
 function renderDocs(){const body=$('docsBody');body.innerHTML='';$('emptyDocs').style.display=state.docs.length?'none':'block';state.docs.forEach((d,i)=>{const tr=document.createElement('tr');tr.innerHTML=`<td>${esc(d.client)}</td><td>${esc(d.type)}</td><td>${esc(d.name)}</td><td>${d.link?`<a class="mini-btn link" target="_blank" href="${esc(d.link)}">Открыть</a>`:'—'}</td><td><span class="pill ${d.status==='Готово'?'pay':d.status==='Проблема'?'over':'wait'}">${d.status}</span></td><td>${esc(d.date||'')}</td><td>${esc((d.priority?d.priority+' · ':'')+(d.comment||''))}</td><td><button class="mini-btn del" data-del-doc="${i}">В архив</button></td>`;body.appendChild(tr)});document.querySelectorAll('[data-del-doc]').forEach(b=>b.onclick=()=>{state.docs.splice(+b.dataset.delDoc,1);render()})}
