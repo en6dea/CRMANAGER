@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
-<title>CRMANAGER — v20 Analytics Ecosystem</title>
+<title>CRMANAGER — v21.1 Refined Layout</title>
 <meta name="theme-color" content="#0f172a"/>
 <style>
 :root{
@@ -365,7 +365,7 @@ body:before{opacity:.35;background-size:54px 54px}
 @media(max-width:680px){.stage-legend{grid-template-columns:1fr}}
 
 
-/* ===== v20 Analytics Ecosystem theme ===== */
+/* ===== v21.1 Refined Layout theme ===== */
 :root{
   --displayFont: Georgia, "Times New Roman", serif;
   --pageGlowA:rgba(107,125,255,.14);
@@ -588,12 +588,87 @@ body{
   .lux-kpi-strip{grid-template-columns:repeat(2,minmax(0,1fr))!important}
 }
 
+
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600&family=Cormorant+Garamond:wght@400;500&display=swap');
+
+/* ===== v21 refined width + typography ===== */
+:root{
+  --font:"Manrope",-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
+  --head:"Manrope",-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
+  --displayFont:"Cormorant Garamond", Georgia, serif;
+}
+body,button,input,select,textarea{
+  font-family:var(--font)!important;
+  font-weight:400!important;
+  letter-spacing:-.01em;
+}
+.brand b,.nav button,.btn,.mini-btn,.lux-section-title,.lux-title,.eco-widget-head h3,.card h2,.focus-card h3,.side-panel h3,.topbar .title p strong{
+  font-weight:500!important;
+}
+.topbar .title h1,.lux-big,.lux-amount{
+  font-family:var(--displayFont)!important;
+  font-weight:500!important;
+  letter-spacing:-.035em!important;
+}
+.lux-mini b,.lux-kpi-text b,.vip-card-stat b,.eco-item b,.lux-analytic b,.lux-donut-center b,.lux-value{
+  font-weight:500!important;
+}
+.app{
+  max-width:1660px!important;
+  grid-template-columns:286px minmax(0,1fr)!important;
+}
+.sidebar{width:286px!important}
+.page{
+  max-width:1340px!important;
+  margin:0 auto!important;
+  width:100%!important;
+}
+.eco-layout{
+  grid-template-columns:minmax(0,1fr) 308px!important;
+  gap:18px!important;
+}
+.lux-grid2{grid-template-columns:1.08fr .92fr!important}
+.lux-grid3{grid-template-columns:repeat(3,minmax(0,1fr))!important}
+.lux-gridBottom{grid-template-columns:1fr 1fr!important}
+.lux-bottom-analytics{grid-template-columns:repeat(3,minmax(0,1fr))!important}
+.topbar{
+  display:grid!important;
+  grid-template-columns:minmax(0,1fr) auto!important;
+  align-items:center!important;
+}
+.top-actions{display:flex!important;gap:10px!important;align-items:center!important;flex-wrap:wrap}
+.top-actions .btn,.mini-btn,.nav button{
+  font-weight:500!important;
+}
+.form-grid label, .lux-sub, .stage-legend-item, .eco-item small, .eco-item span{
+  font-weight:400!important;
+}
+#dealEditHint{
+  margin-top:10px;
+  font-size:12px;
+  color:#7b8798;
+}
+@media(max-width:1340px){
+  .page{max-width:100%!important}
+  .eco-layout{grid-template-columns:1fr!important}
+}
+@media(max-width:1000px){
+  .app{grid-template-columns:1fr!important}
+  .sidebar{width:auto!important}
+  .topbar .title h1{font-size:34px!important}
+  .lux-bottom-analytics{grid-template-columns:1fr 1fr!important}
+}
+@media(max-width:720px){
+  .lux-bottom-analytics{grid-template-columns:1fr!important}
+  .lux-grid2,.lux-grid3,.lux-gridBottom{grid-template-columns:1fr!important}
+}
+
 </style>
 </head>
 <body>
 <div class="app">
 <aside class="sidebar">
-  <div class="brand"><div class="logo">◈</div><div><b>CRM/Manager</b><span>v20 · analytics ecosystem</span></div></div>
+  <div class="brand"><div class="logo">◈</div><div><b>CRM/Manager</b><span>v21.1 · refined layout</span></div></div>
   <nav class="nav">
     <button class="active" data-view="dashboard">🏠 Дашборд</button>
     <button data-view="focus">🔥 Фокус дня</button>
@@ -605,15 +680,15 @@ body{
     <button data-view="templates">💬 Шаблоны</button>
     <button data-view="settings">⚙️ Настройки</button>
   </nav>
-  <div class="side-panel"><h3>Analytics ecosystem</h3><p>Главный упор на обзор: KPI, динамика оплат, конверсия, VIP-клиенты, документы и архив в одной системе.</p></div>
-  <div class="side-panel"><h3>Папки и документы</h3><p>В приложении учтены разделы: Дашборд, Фокус дня, Заделы, VIP, Документы, Архив, Касания, Шаблоны и Настройки.</p></div>
+  <div class="side-panel"><h3>Analytics ecosystem</h3><p>Главный упор на обзор: KPI, динамика оплат, конверсия, VIP-клиенты, документы и архив в одной системе. Теперь заделы можно редактировать.</p></div>
+  <div class="side-panel"><h3>Папки и документы</h3><p>В приложении учтены разделы: Дашборд, Фокус дня, Заделы, VIP, Документы, Архив, Касания, Шаблоны и Настройки. Прогноз по сумме убран из заделов.</p></div>
   <div class="side-foot">Перед обновлением можно сделать экспорт. Данные хранятся локально в браузере.</div>
 </aside>
 
 <main class="main">
 <div class="page">
 <header class="topbar fade">
-  <div class="title"><h1 id="pageTitle">Дашборд</h1><p id="pageText">v20 · Реализован вариант 3: премиальная аналитическая экосистема с акцентом на обзор, фокус, VIP и документы.</p></div>
+  <div class="title"><h1 id="pageTitle">Дашборд</h1><p id="pageText">v21.1 · Исправлено редактирование заделов, убран прогноз по сумме, выровнена ширина и уточнена типографика.</p></div>
   <div class="actions"><button class="btn primary" data-open>+ Добавить</button><button class="btn secondary" id="demoBtn">Демо</button><button class="btn secondary" id="themeBtn">Тема</button><button class="btn secondary" id="exportBtn">Экспорт</button><button class="btn danger" id="clearBtn">Очистить</button></div>
 </header>
 
@@ -641,11 +716,11 @@ body{
       <div class="lux-card lux-forecast-card">
         <div class="lux-forecast-top">
           <div>
-            <div class="lux-title">Прогноз по счетам</div>
+            <div class="lux-title">Счета в работе</div>
             <div class="lux-amount" id="luxForecast">0 ₽</div>
-            <div class="lux-sub">На основе активной базы и конверсии</div>
+            <div class="lux-sub">Без прогноза по сумме — только живая рабочая база</div>
           </div>
-          <div class="lux-green" id="luxForecastDelta">0% к плану</div>
+          <div class="lux-green" id="luxForecastDelta">0 счетов в работе</div>
         </div>
         <div class="lux-line-area">
           <svg viewBox="0 0 600 160" preserveAspectRatio="none" aria-hidden="true">
@@ -660,9 +735,9 @@ body{
           </svg>
         </div>
         <div class="lux-bottom-stats">
-          <div><span>Факт</span><b id="luxForecastFact">0 ₽</b></div>
-          <div><span>Прогноз</span><b id="luxForecastOnly">0 ₽</b></div>
-          <div><span>Потенциал</span><b id="luxPotential">0 ₽</b></div>
+          <div><span>Счета</span><b id="luxForecastFact">0</b></div>
+          <div><span>Просрочки</span><b id="luxForecastOnly">0</b></div>
+          <div><span>VIP под контролем</span><b id="luxPotential">0</b></div>
         </div>
       </div>
     </section>
@@ -879,7 +954,7 @@ body{
 
 <section class="view" id="deals">
   <div class="stage-legend" id="stageLegend"></div>
-  <div class="card"><div class="head"><div><h2>Заделы</h2><p>Рабочая таблица: теперь каждый этап подсвечивается цветом — от нового лида до оплаты или просрочки.</p></div><button class="btn primary" data-open data-mode="deal">+ Задел</button></div><div class="table-wrap"><table><thead><tr><th>Клиент</th><th>AMO</th><th>Услуга</th><th>Сумма</th><th>Стадия</th><th>Вероятность</th><th>Прогноз</th><th>Дата оплаты</th><th>В план</th><th></th></tr></thead><tbody id="dealsBody"></tbody></table></div><div class="empty" id="emptyDeals">Пока нет заделов.</div></div>
+  <div class="card"><div class="head"><div><h2>Заделы</h2><p>Рабочая таблица: теперь каждый этап подсвечивается цветом — от нового лида до оплаты или просрочки.</p></div><button class="btn primary" data-open data-mode="deal">+ Задел</button></div><div class="table-wrap"><table><thead><tr><th>Клиент</th><th>AMO</th><th>Услуга</th><th>Сумма</th><th>Стадия</th><th>Вероятность</th><th>Дата оплаты</th><th>В план</th><th></th></tr></thead><tbody id="dealsBody"></tbody></table></div><div class="empty" id="emptyDeals">Пока нет заделов.</div></div>
 </section>
 
 <section class="view" id="vip">
@@ -1062,7 +1137,7 @@ body{
   <div class="mode-tabs"><button class="btn primary" data-tab="dealForm">Задел</button><button class="btn secondary" data-tab="vipForm">VIP</button><button class="btn secondary" data-tab="vipEditForm">Редактировать VIP</button><button class="btn secondary" data-tab="vipOperationForm">Операция VIP</button><button class="btn secondary" data-tab="docForm">Документ</button><button class="btn secondary" data-tab="archiveForm">Архив</button><button class="btn secondary" data-tab="touchForm">Касание</button></div>
 
   <div class="drawer-stack" id="dealForm">
-    <div class="card"><div class="head"><div><h2>Добавить задел</h2></div></div><div class="form-grid"><div><label>Клиент</label><input id="dealClient" placeholder="ООО Вектор"></div><div><label>AMO-ссылка</label><input id="dealAmo" placeholder="https://..."></div><div><label>Услуга</label><input id="dealService" placeholder="Товарный знак / договор"></div><div><label>Сумма</label><input id="dealAmount" type="number"></div><div><label>Стадия</label><select id="dealStage"></select></div><div><label>Дата счёта</label><input id="dealInvoiceDate" type="date"></div><div><label>Дата оплаты</label><input id="dealPayDate" type="date"></div><div><label>Входит в план</label><select id="dealInclude"><option value="yes">Да</option><option value="no">Нет</option></select></div><div><label>Следующий шаг</label><input id="dealNextAction" placeholder="Напомнить / отправить"></div><div><label>Дата шага</label><input id="dealNextDate" type="date"></div><div><label>Комментарий</label><input id="dealComment"></div></div><div class="inline-actions"><button class="btn primary" id="addDeal">Сохранить задел</button></div></div>
+    <div class="card"><div class="head"><div><h2 id="dealFormTitle">Добавить / редактировать задел</h2></div></div><input type="hidden" id="dealEditId"><div class="form-grid"><div><label>Клиент</label><input id="dealClient" placeholder="ООО Вектор"></div><div><label>AMO-ссылка</label><input id="dealAmo" placeholder="https://..."></div><div><label>Услуга</label><input id="dealService" placeholder="Товарный знак / договор"></div><div><label>Сумма</label><input id="dealAmount" type="number"></div><div><label>Стадия</label><select id="dealStage"></select></div><div><label>Дата счёта</label><input id="dealInvoiceDate" type="date"></div><div><label>Дата оплаты</label><input id="dealPayDate" type="date"></div><div><label>Входит в план</label><select id="dealInclude"><option value="yes">Да</option><option value="no">Нет</option></select></div><div><label>Следующий шаг</label><input id="dealNextAction" placeholder="Напомнить / отправить"></div><div><label>Дата шага</label><input id="dealNextDate" type="date"></div><div><label>Комментарий</label><input id="dealComment"></div></div><div id="dealEditHint">Можно создать новый задел или открыть существующий и отредактировать его.</div><div class="inline-actions"><button class="btn primary" id="addDeal">Сохранить задел</button></div></div>
   </div>
 
   <div class="drawer-stack hidden" id="vipForm">
@@ -1168,7 +1243,7 @@ function invoiceDeals(){return state.deals.filter(d=>['Счёт выставле
 function activeDeals(){return state.deals.filter(d=>!['Оплачено','Отказ'].includes(d.stage))}
 function calc(amount){const p=plan();let level='План не выполнен',rate=0,bonus=0,cls='red';if(p.superPlan>0&&amount>=p.superPlan){level='Сверхплан';rate=+p.highRate;bonus=+p.bonus;cls='violet'}else if(p.highPlan>0&&amount>=p.highPlan){level='Повышенный';rate=+p.highRate;cls='green'}else if(p.ordinaryPlan>0&&amount>=p.ordinaryPlan){level='Обычный';rate=+p.ordinaryRate;cls='amber'}return{level,rate,bonus,cls,salary:amount*rate+bonus}}
 function nextNeed(amount){const p=plan();const arr=[['обычного плана',+p.ordinaryPlan],['повышенного плана',+p.highPlan],['сверхплана',+p.superPlan]].filter(x=>x[1]>amount&&x[1]>0).sort((a,b)=>a[1]-b[1]);return arr.length?{label:'до '+arr[0][0],need:arr[0][1]-amount}:{label:'все уровни закрыты',need:0}}
-function setView(v){state.view=v;document.querySelectorAll('.view').forEach(x=>x.classList.toggle('active',x.id===v));document.querySelectorAll('[data-view]').forEach(x=>x.classList.toggle('active',x.dataset.view===v));const titles={dashboard:['Дашборд','v20 · Реализован вариант 3: премиальная аналитическая экосистема с акцентом на обзор, фокус, VIP и документы.'],focus:['Фокус дня','Автоматический список: кого сегодня дожимать, кому писать, где просрочка и какие VIP требуют контроля.'],deals:['Заделы','Рабочая таблица заделов с AMO-ссылками, стадиями, прогнозом и связью с зарплатой.'],vip:['VIP-клиенты','Карточки VIP, депозиты, условия, контроль и быстрый доступ к документам.'],docs:['Документы','Единое место для ссылок на договоры, счета, акты, платёжки и папки клиентов.'],archive:['Архив','Отказы, паузы и клиенты, к которым можно вернуться.'],touchpoints:['Касания','История коммуникаций: кто ответил, кто молчит, кто обещал оплатить и когда следующий контакт.'],templates:['Шаблоны','Готовые сообщения и ответы на возражения для дожима клиентов.'],settings:['Настройки','Планы, ставки, бонус, импорт и экспорт данных.']};$('pageTitle').textContent=titles[v][0];$('pageText').textContent=titles[v][1];save()}
+function setView(v){state.view=v;document.querySelectorAll('.view').forEach(x=>x.classList.toggle('active',x.id===v));document.querySelectorAll('[data-view]').forEach(x=>x.classList.toggle('active',x.dataset.view===v));const titles={dashboard:['Дашборд','v21.1 · Исправлено редактирование заделов, убран прогноз по сумме, выровнена ширина и уточнена типографика.'],focus:['Фокус дня','Автоматический список: кого сегодня дожимать, кому писать, где просрочка и какие VIP требуют контроля.'],deals:['Заделы','Рабочая таблица заделов с AMO-ссылками, стадиями, прогнозом и связью с зарплатой.'],vip:['VIP-клиенты','Карточки VIP, депозиты, условия, контроль и быстрый доступ к документам.'],docs:['Документы','Единое место для ссылок на договоры, счета, акты, платёжки и папки клиентов.'],archive:['Архив','Отказы, паузы и клиенты, к которым можно вернуться.'],touchpoints:['Касания','История коммуникаций: кто ответил, кто молчит, кто обещал оплатить и когда следующий контакт.'],templates:['Шаблоны','Готовые сообщения и ответы на возражения для дожима клиентов.'],settings:['Настройки','Планы, ставки, бонус, импорт и экспорт данных.']};$('pageTitle').textContent=titles[v][0];$('pageText').textContent=titles[v][1];save()}
 
 function percent(a,b){return b>0?Math.round(a/b*100):0}
 function groupByReason(arr){const map={};arr.forEach(a=>{const k=a.reason||'Другое';if(!map[k])map[k]={count:0,sum:0,returnable:0};map[k].count+=1;map[k].sum+=Number(a.amount||0);if(a.canReturn==='yes')map[k].returnable+=1});return Object.entries(map).map(([reason,v])=>({reason,...v})).sort((a,b)=>b.sum-a.sum)}
@@ -1380,9 +1455,9 @@ function renderLuxuryDashboard(){
   const avgCheck=paidClientCount?fact/paidClientCount:0;
   const planBase=Number(p.ordinaryPlan||0);
   const planPct=planBase?Math.min(100,Math.round(fact/planBase*100)):0;
-  const forecast=fact+invSum;
-  const forecastPct=planBase?Math.round(forecast/planBase*100)-100:0;
-  const potential=Math.max(0,forecast-fact);
+  const workAccounts=invSum;
+  const workAccountsCount=inv.length;
+  const forecastPct=planBase?Math.round((fact+invSum)/planBase*100)-100:0;
   const promiseSum=state.touchpoints.filter(t=>touchInMonth(t)&&t.result==='Обещал оплатить').reduce((s,t)=>s+Number(t.amount||0),0);
   const touchesMonth=state.touchpoints.filter(touchInMonth).length;
   const touchesToday=state.touchpoints.filter(t=>t.date===today()).length;
@@ -1391,6 +1466,7 @@ function renderLuxuryDashboard(){
   const docsProblems=state.docs.filter(d=>['Нужно получить','Проблема'].includes(d.status)).length;
   const silentMoney=state.touchpoints.filter(t=>touchInMonth(t)&&t.result==='Молчит').reduce((s,t)=>s+Number(t.amount||0),0);
   const overdueDeals=state.deals.filter(d=>d.stage==='Просрочено');
+  const overdueCount=overdueDeals.length;
   const riskIndex=Math.min(100,overdueDeals.length*20+docsProblems*10+(silentMoney>0?15:0)+state.vips.filter(v=>v.risk==='Высокий').length*20);
   const riskLabel=riskIndex>=60?'Высокий':riskIndex>=30?'Средний':'Низкий';
   const allClients=[...new Set([...state.deals.map(x=>x.client),...state.vips.map(x=>x.client),...state.archive.map(x=>x.client)].filter(Boolean))];
@@ -1410,7 +1486,7 @@ function renderLuxuryDashboard(){
     $('luxFact').textContent=money(fact); $('luxPlanText').textContent=`План ${money(planBase)}`;
     $('luxPlanPct').textContent=planPct+'%'; $('luxPlanBar').style.width=planPct+'%';
     $('luxPaidClients').textContent=paidClientCount; $('luxVipClients').textContent=vipClients.length; $('luxPlanStatus').textContent=planPct+'%'; $('luxAvgCheck').textContent=money(avgCheck);
-    $('luxForecast').textContent=money(forecast); $('luxForecastDelta').textContent=(forecastPct>=0?`▲ ${forecastPct}% к плану`:`${forecastPct}% к плану`); $('luxForecastFact').textContent=money(fact); $('luxForecastOnly').textContent=money(forecast); $('luxPotential').textContent='+'+money(potential);
+    $('luxForecast').textContent=money(workAccounts); $('luxForecastDelta').textContent=workAccountsCount+` счет${workAccountsCount===1?'':'а'} в работе`; $('luxForecastFact').textContent=String(workAccountsCount); $('luxForecastOnly').textContent=String(overdueCount); $('luxPotential').textContent=String(state.vips.filter(v=>v.controlDate||v.nextAction).length);
     $('luxActiveClients').textContent=activeClientCount; $('luxActiveClientsSub').textContent=money(act.reduce((s,d)=>s+Number(d.amount||0),0));
     $('luxPushMoney').textContent=money(invSum+promiseSum); $('luxPushMoneySub').textContent=(inv.length+state.touchpoints.filter(t=>touchInMonth(t)&&t.result==='Обещал оплатить').length)+' сделок';
     $('luxVipWork').textContent=state.vips.length; $('luxVipWorkSub').textContent=money(state.vips.reduce((s,v)=>s+Number(v.deposit||0),0));
@@ -1746,16 +1822,18 @@ function renderDeals(){
   const body=$('dealsBody');body.innerHTML='';
   $('emptyDeals').style.display=state.deals.length?'none':'block';
   state.deals.forEach((d,i)=>{
-    const prob=stageProb[d.stage]||0,forecast=Number(d.amount||0)*prob/100,cls=stageClass(d.stage);
+    const prob=stageProb[d.stage]||0,cls=stageClass(d.stage);
     const tr=document.createElement('tr');tr.className=`deal-row ${cls}`;
     const sub=d.nextAction||d.comment||d.service||'';
-    tr.innerHTML=`<td class="deal-client-cell"><b>${esc(d.client)}</b><span>${esc(sub)}</span></td><td>${d.amo?`<a class="mini-btn link" target="_blank" href="${esc(d.amo)}">AMO</a>`:'—'}</td><td>${esc(d.service||'')}</td><td><b>${money(d.amount)}</b></td><td><select class="stage-select ${cls}" data-stage="${i}">${dealStages.map(s=>`<option ${s===d.stage?'selected':''}>${s}</option>`).join('')}</select></td><td>${prob}%</td><td>${money(forecast)}</td><td><input type="date" value="${esc(d.payDate||'')}" data-paydate="${i}"></td><td>${d.include==='yes'?'Да':'Нет'}</td><td><button class="mini-btn del" data-del-deal="${i}">Удалить</button></td>`;
+    tr.innerHTML=`<td class="deal-client-cell"><b>${esc(d.client)}</b><span>${esc(sub)}</span></td><td>${d.amo?`<a class="mini-btn link" target="_blank" href="${esc(d.amo)}">AMO</a>`:'—'}</td><td>${esc(d.service||'')}</td><td><b>${money(d.amount)}</b></td><td><select class="stage-select ${cls}" data-stage="${i}">${dealStages.map(s=>`<option ${s===d.stage?'selected':''}>${s}</option>`).join('')}</select></td><td>${prob}%</td><td><input type="date" value="${esc(d.payDate||'')}" data-paydate="${i}"></td><td>${d.include==='yes'?'Да':'Нет'}</td><td><div style="display:flex;gap:8px"><button class="mini-btn" data-edit-deal="${i}">Ред.</button><button class="mini-btn del" data-del-deal="${i}">Удалить</button></div></td>`;
     body.appendChild(tr)
   });
   document.querySelectorAll('[data-stage]').forEach(s=>s.onchange=()=>{const d=state.deals[+s.dataset.stage];d.stage=s.value;if(d.stage==='Оплачено'&&!d.payDate)d.payDate=today();if(d.stage==='Отказ')autoArchive(d);render()});
   document.querySelectorAll('[data-paydate]').forEach(inp=>inp.onchange=()=>{state.deals[+inp.dataset.paydate].payDate=inp.value;render()});
+  document.querySelectorAll('[data-edit-deal]').forEach(b=>b.onclick=()=>openDealEdit(+b.dataset.editDeal));
   document.querySelectorAll('[data-del-deal]').forEach(b=>b.onclick=()=>{state.deals.splice(+b.dataset.delDeal,1);render()})
 }
+
 function renderVip(){
   if(state.vips.length&&!state.selectedVip)state.selectedVip=state.vips[0].client;
   const select=$('vipSelect');
@@ -1855,16 +1933,73 @@ function fillSelects(){$('dealStage').innerHTML=dealStages.map(s=>`<option>${s}<
 function hydrateDates(){['dealInvoiceDate','vipControlDate','docDate','touchDate','opVipDate'].forEach(id=>$(id).value=today())}
 function hydratePlans(){const p=plan();['ordinaryPlan','highPlan','superPlan','bonus','ordinaryRate','highRate'].forEach(id=>$(id).value=p[id])}
 function bindPlans(){['ordinaryPlan','highPlan','superPlan','bonus','ordinaryRate','highRate'].forEach(id=>$(id).addEventListener('input',()=>{plan()[id]=Number($(id).value);render()}))}
-function openDrawer(mode){$('drawer').classList.add('open');$('drawerBg').classList.add('open');if(mode)showTab(mode+'Form')}function closeDrawer(){$('drawer').classList.remove('open');$('drawerBg').classList.remove('open')}
+
+function resetDealForm(){
+  $('dealEditId').value='';
+  $('dealFormTitle').textContent='Добавить задел';
+  $('addDeal').textContent='Сохранить задел';
+  ['dealClient','dealAmo','dealService','dealAmount','dealPayDate','dealNextAction','dealNextDate','dealComment'].forEach(id=>$(id).value='');
+  $('dealInvoiceDate').value=today();
+  $('dealInclude').value='yes';
+  if($('dealStage').options.length){$('dealStage').value='В работе'}
+}
+function openDealEdit(index){
+  const d=state.deals[index];
+  if(!d)return;
+  $('dealEditId').value=String(index);
+  $('dealFormTitle').textContent='Редактировать задел';
+  $('addDeal').textContent='Сохранить изменения';
+  $('dealClient').value=d.client||'';
+  $('dealAmo').value=d.amo||'';
+  $('dealService').value=d.service||'';
+  $('dealAmount').value=Number(d.amount||0);
+  $('dealStage').value=d.stage||'В работе';
+  $('dealInvoiceDate').value=d.invoiceDate||today();
+  $('dealPayDate').value=d.payDate||'';
+  $('dealInclude').value=d.include||'yes';
+  $('dealNextAction').value=d.nextAction||'';
+  $('dealNextDate').value=d.nextDate||'';
+  $('dealComment').value=d.comment||'';
+  openDrawer('deal');
+}
+function saveDeal(){
+  const client=$('dealClient').value.trim(),amount=Number($('dealAmount').value);
+  if(!client||!amount){alert('Заполни клиента и сумму задела.');return}
+  const dealData={
+    id:$('dealEditId').value!=='' ? state.deals[+$('dealEditId').value]?.id || Date.now() : Date.now(),
+    client,
+    amo:$('dealAmo').value.trim(),
+    service:$('dealService').value.trim(),
+    amount,
+    stage:$('dealStage').value,
+    invoiceDate:$('dealInvoiceDate').value,
+    payDate:$('dealStage').value==='Оплачено'&&!$('dealPayDate').value?today():$('dealPayDate').value,
+    include:$('dealInclude').value,
+    nextAction:$('dealNextAction').value.trim(),
+    nextDate:$('dealNextDate').value,
+    comment:$('dealComment').value.trim()
+  };
+  const editId=$('dealEditId').value;
+  if(editId!==''){
+    state.deals[+editId]={...state.deals[+editId],...dealData};
+  }else{
+    state.deals.unshift(dealData);
+  }
+  resetDealForm();
+  closeDrawer();
+  render();
+}
+
+function openDrawer(mode){$('drawer').classList.add('open');$('drawerBg').classList.add('open');if(mode==='deal' && $('dealEditId').value==='')resetDealForm();if(mode)showTab(mode+'Form')}function closeDrawer(){$('drawer').classList.remove('open');$('drawerBg').classList.remove('open')}
 function showTab(id){['dealForm','vipForm','vipEditForm','vipOperationForm','docForm','archiveForm','touchForm'].forEach(x=>$(x).classList.toggle('hidden',x!==id));document.querySelectorAll('[data-tab]').forEach(b=>b.className='btn '+(b.dataset.tab===id?'primary':'secondary'))}
-function addDeal(){const client=$('dealClient').value.trim(),amount=Number($('dealAmount').value);if(!client||!amount){alert('Заполни клиента и сумму задела.');return}state.deals.unshift({id:Date.now(),client,amo:$('dealAmo').value.trim(),service:$('dealService').value.trim(),amount,stage:$('dealStage').value,invoiceDate:$('dealInvoiceDate').value,payDate:$('dealStage').value==='Оплачено'&&!$('dealPayDate').value?today():$('dealPayDate').value,include:$('dealInclude').value,nextAction:$('dealNextAction').value.trim(),nextDate:$('dealNextDate').value,comment:$('dealComment').value.trim()});['dealClient','dealAmo','dealService','dealAmount','dealPayDate','dealNextAction','dealNextDate','dealComment'].forEach(id=>$(id).value='');closeDrawer();render()}
+function addDeal(){saveDeal()}
 function addVip(){const client=$('vipClient').value.trim();if(!client){alert('Заполни клиента.');return}state.vips.unshift({client,amo:$('vipAmo').value.trim(),folder:$('vipFolder').value.trim(),deposit:Number($('vipDeposit').value||0),nextAction:$('vipNextAction').value.trim(),controlDate:$('vipControlDate').value,risk:$('vipRisk').value,terms:$('vipTerms').value.trim(),comment:$('vipComment').value.trim()});['vipClient','vipAmo','vipFolder','vipDeposit','vipNextAction','vipTerms','vipComment'].forEach(id=>$(id).value='');closeDrawer();render()}
 function addDoc(){const client=$('docClient').value.trim();if(!client){alert('Заполни клиента.');return}state.docs.unshift({client,type:$('docType').value,name:$('docName').value.trim(),link:$('docLink').value.trim(),status:$('docStatus').value,priority:$('docPriority').value,date:$('docDate').value,comment:$('docComment').value.trim()});['docClient','docName','docLink','docComment'].forEach(id=>$(id).value='');closeDrawer();render()}
 function addArchive(){const client=$('archClient').value.trim();if(!client){alert('Заполни клиента.');return}state.archive.unshift({id:Date.now(),client,amount:Number($('archAmount').value||0),reason:$('archReason').value,canReturn:$('archReturn').value,returnDate:$('archReturnDate').value,hook:$('archHook').value.trim(),amo:$('archAmo').value.trim(),comment:$('archComment').value.trim()});['archClient','archAmount','archReturnDate','archHook','archAmo','archComment'].forEach(id=>$(id).value='');closeDrawer();render()}
 function loadDemo(){const m=state.currentMonth;state.plans[m]={...defaults};state.deals=[{id:1,client:'ООО Вектор',amo:'https://example.com',service:'Товарный знак',amount:420000,stage:'Оплачено',invoiceDate:`${m}-02`,payDate:`${m}-04`,include:'yes',nextAction:'Получить акт',nextDate:`${m}-05`,comment:'оплата прошла'},{id:2,client:'ГК Альфа',amo:'https://example.com',service:'Депозит',amount:520000,stage:'Счёт выставлен',invoiceDate:`${m}-15`,payDate:'',include:'yes',nextAction:'Напомнить про оплату',nextDate:`${m}-18`,comment:'ждём оплату'},{id:3,client:'VIP Бренд',amo:'https://example.com',service:'Пополнение',amount:300000,stage:'Ждём оплату',invoiceDate:`${m}-18`,payDate:'',include:'yes',nextAction:'Запросить платёжку',nextDate:`${m}-20`,comment:'обещали оплатить'},{id:4,client:'ООО Линия',amo:'https://example.com',service:'Договор',amount:190000,stage:'Просрочено',invoiceDate:`${m}-10`,payDate:'',include:'yes',nextAction:'Позвонить',nextDate:`${m}-12`,comment:'напомнить'},{id:5,client:'ИП Орлова',amo:'',service:'Консультация',amount:280000,stage:'Оффер',invoiceDate:'',payDate:'',include:'yes',nextAction:'Отправить аргументы',nextDate:`${m}-23`,comment:'готовим предложение'}];state.vips=[{client:'VIP Бренд',amo:'https://example.com',folder:'https://drive.google.com',deposit:650000,nextAction:'Запросить платёжку',controlDate:`${m}-20`,risk:'Высокий',terms:'Особые условия оплаты',comment:'ключевой клиент'},{client:'ГК Альфа',amo:'https://example.com',folder:'https://drive.google.com',deposit:250000,nextAction:'Проверить документы',controlDate:`${m}-28`,risk:'Средний',terms:'Работа по депозиту',comment:''}];state.docs=[{client:'VIP Бренд',type:'Платёжка',name:'Платёжное поручение июнь',link:'https://drive.google.com',status:'Нужно получить',priority:'Критично',date:`${m}-20`,comment:'ждём от клиента'},{client:'VIP Бренд',type:'Счёт',name:'Счёт на пополнение',link:'https://drive.google.com',status:'Готово',priority:'Важная',date:`${m}-18`,comment:'выставлен клиенту'},{client:'VIP Бренд',type:'Договор',name:'Основной договор',link:'https://drive.google.com',status:'На проверке',priority:'Важная',date:`${m}-16`,comment:'проверить подпись'},{client:'ГК Альфа',type:'Договор',name:'Договор 2026',link:'https://drive.google.com',status:'Готово',priority:'Обычная',date:`${m}-10`,comment:''}];state.selectedVip='VIP Бренд';state.touchpoints=[{id:201,date:`${m}-19`,client:'ГК Альфа',type:'Сообщение',result:'Обещал оплатить',amount:520000,nextDate:`${m}-21`,nextAction:'Напомнить про оплату',amo:'https://example.com',comment:'обещали оплатить после согласования'},{id:202,date:`${m}-18`,client:'VIP Бренд',type:'Звонок',result:'Попросил документы',amount:300000,nextDate:`${m}-20`,nextAction:'Отправить платёжку и договор',amo:'https://example.com',comment:'ждут документы'},{id:203,date:`${m}-17`,client:'ООО Линия',type:'Сообщение',result:'Молчит',amount:190000,nextDate:`${m}-19`,nextAction:'Позвонить',amo:'https://example.com',comment:'нет ответа'}];state.archive=[{id:101,client:'ООО Стартап',amount:180000,reason:'Думает',canReturn:'yes',returnDate:`${m}-25`,hook:'вернуться с новым оффером и рассрочкой',amo:'https://example.com',comment:'вернуться с новым оффером'},{id:102,client:'ИП Север',amount:260000,reason:'Дорого',canReturn:'yes',returnDate:`${m}-21`,hook:'предложить облегчённый пакет',amo:'https://example.com',comment:'нужен мягкий заход'},{id:103,client:'ООО Тест',amount:120000,reason:'Молчит',canReturn:'yes',returnDate:'',hook:'коротко уточнить актуальность',amo:'',comment:'нет ответа'}];render()}
 function exportData(){const blob=new Blob([JSON.stringify(state,null,2)],{type:'application/json'}),a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='crmanager-v7-data.json';a.click();URL.revokeObjectURL(a.href)}
 function importData(file){const r=new FileReader();r.onload=()=>{try{state={...defaultState,...JSON.parse(r.result)};if(!state.doneFocus)state.doneFocus={};render()}catch(e){alert('Не удалось импортировать файл')}};r.readAsText(file)}
-document.addEventListener('DOMContentLoaded',()=>{readVipHash();fillSelects();hydrateDates();hydratePlans();bindPlans();fillVipClientSelects();document.querySelectorAll('[data-view]').forEach(b=>b.onclick=()=>setView(b.dataset.view));document.querySelectorAll('[data-open]').forEach(b=>b.onclick=()=>openDrawer(b.dataset.mode));document.querySelectorAll('[data-tab]').forEach(b=>b.onclick=()=>showTab(b.dataset.tab));document.querySelectorAll('[data-focus-filter]').forEach(b=>b.onclick=()=>{state.focusFilter=b.dataset.focusFilter;renderFocusPage();save()});$('closeDrawer').onclick=closeDrawer;$('drawerBg').onclick=closeDrawer;$('addDeal').onclick=addDeal;$('addVip').onclick=addVip;$('addDoc').onclick=addDoc;$('addArchive').onclick=addArchive;$('addTouch').onclick=addTouch;$('saveVipEdit').onclick=saveVipEdit;$('saveVipOperation').onclick=saveVipOperation;$('opModeDeposit').onclick=()=>setVipOperationMode('Пополнение');$('opModeService').onclick=()=>setVipOperationMode('Списание на услугу');$('demoBtn').onclick=loadDemo;$('exportBtn').onclick=exportData;$('clearBtn').onclick=()=>{if(confirm('Очистить данные?')){state={...defaultState,currentMonth:state.currentMonth,theme:state.theme};render()}};$('copyReturnMessage').onclick=()=>{navigator.clipboard&&navigator.clipboard.writeText($('returnMessage').textContent||'')};$('refreshTemplate').onclick=renderGeneratedTemplate;$('copyGeneratedTemplate').onclick=()=>copyToClipboard($('templateOutput').textContent||'');['tplClient','tplContext','tplTone','tplScenario'].forEach(id=>$(id).addEventListener('input',renderGeneratedTemplate));$('themeBtn').onclick=()=>{state.theme=state.theme==='dark'?'light':'dark';render()};$('prevMonth').onclick=()=>{state.currentMonth=addMonths(state.currentMonth,-1);render()};$('nextMonth').onclick=()=>{state.currentMonth=addMonths(state.currentMonth,1);render()};$('todayMonth').onclick=()=>{state.currentMonth=new Date().toISOString().slice(0,7);render()};$('importFile').onchange=e=>{if(e.target.files[0])importData(e.target.files[0])};$('importVipBaseBtn').onclick=()=>mergeVipImportData(false);if(state.vipImportVersion!==VIP_IMPORT_VERSION)mergeVipImportData(true);render();window.addEventListener('hashchange',()=>{readVipHash();if(state.view==='vip')render()});if(new URLSearchParams(location.search).get('demo')==='1')loadDemo()});
+document.addEventListener('DOMContentLoaded',()=>{readVipHash();fillSelects();hydrateDates();hydratePlans();bindPlans();fillVipClientSelects();resetDealForm();document.querySelectorAll('[data-view]').forEach(b=>b.onclick=()=>setView(b.dataset.view));document.querySelectorAll('[data-open]').forEach(b=>b.onclick=()=>openDrawer(b.dataset.mode));document.querySelectorAll('[data-tab]').forEach(b=>b.onclick=()=>showTab(b.dataset.tab));document.querySelectorAll('[data-focus-filter]').forEach(b=>b.onclick=()=>{state.focusFilter=b.dataset.focusFilter;renderFocusPage();save()});$('closeDrawer').onclick=closeDrawer;$('drawerBg').onclick=closeDrawer;$('addDeal').onclick=addDeal;$('addVip').onclick=addVip;$('addDoc').onclick=addDoc;$('addArchive').onclick=addArchive;$('addTouch').onclick=addTouch;$('saveVipEdit').onclick=saveVipEdit;$('saveVipOperation').onclick=saveVipOperation;$('opModeDeposit').onclick=()=>setVipOperationMode('Пополнение');$('opModeService').onclick=()=>setVipOperationMode('Списание на услугу');$('demoBtn').onclick=loadDemo;$('exportBtn').onclick=exportData;$('clearBtn').onclick=()=>{if(confirm('Очистить данные?')){state={...defaultState,currentMonth:state.currentMonth,theme:state.theme};render()}};$('copyReturnMessage').onclick=()=>{navigator.clipboard&&navigator.clipboard.writeText($('returnMessage').textContent||'')};$('refreshTemplate').onclick=renderGeneratedTemplate;$('copyGeneratedTemplate').onclick=()=>copyToClipboard($('templateOutput').textContent||'');['tplClient','tplContext','tplTone','tplScenario'].forEach(id=>$(id).addEventListener('input',renderGeneratedTemplate));$('themeBtn').onclick=()=>{state.theme=state.theme==='dark'?'light':'dark';render()};$('prevMonth').onclick=()=>{state.currentMonth=addMonths(state.currentMonth,-1);render()};$('nextMonth').onclick=()=>{state.currentMonth=addMonths(state.currentMonth,1);render()};$('todayMonth').onclick=()=>{state.currentMonth=new Date().toISOString().slice(0,7);render()};$('importFile').onchange=e=>{if(e.target.files[0])importData(e.target.files[0])};$('importVipBaseBtn').onclick=()=>mergeVipImportData(false);if(state.vipImportVersion!==VIP_IMPORT_VERSION)mergeVipImportData(true);render();window.addEventListener('hashchange',()=>{readVipHash();if(state.view==='vip')render()});if(new URLSearchParams(location.search).get('demo')==='1')loadDemo()});
 </script>
 </body>
 </html>
