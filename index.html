@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
-<title>CRMANAGER — v17 VIP Import</title>
+<title>CRMANAGER — v18 VIP Editing</title>
 <meta name="theme-color" content="#0f172a"/>
 <style>
 :root{
@@ -310,12 +310,29 @@ body:before{opacity:.35;background-size:54px 54px}
 /* v17 VIP import UI */
 .vip-import-metrics{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-bottom:18px}.vip-import-metric{background:#fff;border:1px solid #edf1f7;border-radius:22px;padding:16px;box-shadow:var(--shadow)}.vip-import-metric span{display:block;font-size:12px;color:#7b8798;font-weight:800;margin-bottom:7px}.vip-import-metric b{font-family:var(--head);font-size:25px;letter-spacing:-.05em;color:#111827}.vip-ledger{display:grid;gap:10px;max-height:430px;overflow:auto;padding-right:4px}.vip-ledger-item{display:grid;grid-template-columns:92px 1fr auto;gap:12px;align-items:start;background:#fff;border:1px solid #edf1f7;border-radius:18px;padding:12px}.vip-ledger-item h3{margin:0 0 4px;font-size:14px;color:#111827}.vip-ledger-item p{margin:0;font-size:12px;color:#7b8798;line-height:1.4}.vip-ledger-date{font-size:12px;font-weight:800;color:#7b8798}.vip-ledger-sum{text-align:right;font-weight:900;color:#111827}.vip-hunter-list{display:grid;gap:10px}.vip-hunter-card{background:#fff;border:1px solid #edf1f7;border-radius:20px;padding:14px;box-shadow:0 10px 28px rgba(15,23,42,.035)}.vip-hunter-card h3{margin:0 0 7px;font-size:15px;color:#111827}.vip-hunter-card p{margin:0 0 8px;font-size:12px;color:#7b8798;line-height:1.45}.vip-hunter-meta{display:flex;gap:8px;flex-wrap:wrap}.import-card{background:linear-gradient(135deg,#ffffff,#f7faff)!important}.import-status{margin-top:12px;padding:12px;border-radius:16px;background:#f6f9ff;border:1px solid #e8eefb;color:#475467;font-size:13px;line-height:1.45}@media(max-width:980px){.vip-import-metrics{grid-template-columns:1fr 1fr}.vip-ledger-item{grid-template-columns:1fr}.vip-ledger-sum{text-align:left}}
 
+
+/* v18 VIP editing and dedicated VIP page */
+.vip-quick-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+.vip-deep-link{display:inline-flex;gap:8px;align-items:center;border:1px solid #edf1f7;background:#fff;border-radius:14px;padding:9px 11px;font-size:12px;font-weight:800;color:#475467}
+.vip-form-note{font-size:12px;color:#7b8798;line-height:1.45;margin-top:10px}
+.operation-type-switch{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px}
+.operation-type-switch button{border:1px solid #edf1f7;background:#fff;border-radius:16px;padding:12px;font-weight:900;color:#475467}
+.operation-type-switch button.active{background:#eef4ff;border-color:#cfe0ff;color:#2f67ff}
+.vip-edit-badge{display:inline-flex;align-items:center;gap:6px;padding:7px 10px;border-radius:999px;background:#f6f9ff;color:#2f67ff;border:1px solid #e8eefb;font-size:12px;font-weight:800}
+.vip-card-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:14px 0}
+.vip-card-stat{background:#fff;border:1px solid #edf1f7;border-radius:18px;padding:14px}
+.vip-card-stat span{display:block;font-size:12px;color:#7b8798;font-weight:800;margin-bottom:7px}
+.vip-card-stat b{font-family:var(--head);font-size:22px;color:#111827;letter-spacing:-.04em}
+.vip-link-row{display:flex;gap:8px;flex-wrap:wrap}
+.vip-audit-line{font-size:12px;color:#7b8798;margin-top:8px}
+@media(max-width:980px){.vip-card-grid{grid-template-columns:1fr}.operation-type-switch{grid-template-columns:1fr}}
+
 </style>
 </head>
 <body>
 <div class="app">
 <aside class="sidebar">
-  <div class="brand"><div class="logo">₽</div><div><b>CRMANAGER</b><span>v17 · VIP база импортирована</span></div></div>
+  <div class="brand"><div class="logo">₽</div><div><b>CRMANAGER</b><span>v18 · VIP карточка и редактирование</span></div></div>
   <nav class="nav">
     <button class="active" data-view="dashboard">🏠 Дашборд</button>
     <button data-view="focus">🔥 Фокус дня</button>
@@ -327,7 +344,7 @@ body:before{opacity:.35;background-size:54px 54px}
     <button data-view="templates">💬 Шаблоны</button>
     <button data-view="settings">⚙️ Настройки</button>
   </nav>
-  <div class="side-panel"><h3>v17 VIP Import</h3><p>VIP-база перенесена из Excel: депозиты, операции, документы и заделы от хантера.</p></div>
+  <div class="side-panel"><h3>v18 VIP Control</h3><p>VIP-база перенесена из Excel: депозиты, операции, документы и заделы от хантера.</p></div>
   <div class="side-panel"><h3>Документы VIP</h3><p>Храним ссылки, статусы и папки. Файлы лучше держать в Google Drive, AMO или папке клиента.</p></div>
   <div class="side-foot">Перед обновлением можно сделать экспорт. Данные хранятся локально в браузере.</div>
 </aside>
@@ -335,7 +352,7 @@ body:before{opacity:.35;background-size:54px 54px}
 <main class="main">
 <div class="page">
 <header class="topbar fade">
-  <div class="title"><h1 id="pageTitle">Дашборд</h1><p id="pageText">v17 · VIP-база перенесена из Excel: депозиты, операции, документы и заделы от хантера.</p></div>
+  <div class="title"><h1 id="pageTitle">Дашборд</h1><p id="pageText">v18 · Полная карточка VIP: редактирование, документы, пополнение депозита и оказание услуги.</p></div>
   <div class="actions"><button class="btn primary" data-open>+ Добавить</button><button class="btn secondary" id="demoBtn">Демо</button><button class="btn secondary" id="themeBtn">Тема</button><button class="btn secondary" id="exportBtn">Экспорт</button><button class="btn danger" id="clearBtn">Очистить</button></div>
 </header>
 
@@ -759,7 +776,7 @@ body:before{opacity:.35;background-size:54px 54px}
 <div class="drawer-bg" id="drawerBg"></div>
 <aside class="drawer" id="drawer">
   <div class="drawer-head"><div><h2>Быстрый центр</h2><p>Добавление задела, VIP, документа или архива.</p></div><button class="btn secondary" id="closeDrawer">Закрыть</button></div>
-  <div class="mode-tabs"><button class="btn primary" data-tab="dealForm">Задел</button><button class="btn secondary" data-tab="vipForm">VIP</button><button class="btn secondary" data-tab="docForm">Документ</button><button class="btn secondary" data-tab="archiveForm">Архив</button><button class="btn secondary" data-tab="touchForm">Касание</button></div>
+  <div class="mode-tabs"><button class="btn primary" data-tab="dealForm">Задел</button><button class="btn secondary" data-tab="vipForm">VIP</button><button class="btn secondary" data-tab="vipEditForm">Редактировать VIP</button><button class="btn secondary" data-tab="vipOperationForm">Операция VIP</button><button class="btn secondary" data-tab="docForm">Документ</button><button class="btn secondary" data-tab="archiveForm">Архив</button><button class="btn secondary" data-tab="touchForm">Касание</button></div>
 
   <div class="drawer-stack" id="dealForm">
     <div class="card"><div class="head"><div><h2>Добавить задел</h2></div></div><div class="form-grid"><div><label>Клиент</label><input id="dealClient" placeholder="ООО Вектор"></div><div><label>AMO-ссылка</label><input id="dealAmo" placeholder="https://..."></div><div><label>Услуга</label><input id="dealService" placeholder="Товарный знак / договор"></div><div><label>Сумма</label><input id="dealAmount" type="number"></div><div><label>Стадия</label><select id="dealStage"></select></div><div><label>Дата счёта</label><input id="dealInvoiceDate" type="date"></div><div><label>Дата оплаты</label><input id="dealPayDate" type="date"></div><div><label>Входит в план</label><select id="dealInclude"><option value="yes">Да</option><option value="no">Нет</option></select></div><div><label>Следующий шаг</label><input id="dealNextAction" placeholder="Напомнить / отправить"></div><div><label>Дата шага</label><input id="dealNextDate" type="date"></div><div><label>Комментарий</label><input id="dealComment"></div></div><div class="inline-actions"><button class="btn primary" id="addDeal">Сохранить задел</button></div></div>
@@ -794,6 +811,54 @@ body:before{opacity:.35;background-size:54px 54px}
     </div>
   </div>
 
+
+  <div class="drawer-stack hidden" id="vipEditForm">
+    <div class="card">
+      <div class="head"><div><h2>Редактировать VIP</h2><p>Обнови карточку клиента, ссылки, остаток и следующий шаг.</p></div></div>
+      <input type="hidden" id="editVipOriginalClient">
+      <div class="form-grid">
+        <div><label>Клиент</label><input id="editVipClient"></div>
+        <div><label>Активность</label><select id="editVipActivity"><option>Активный</option><option>Средняя активность</option><option>Неактивный</option><option>Новый VIP</option></select></div>
+        <div><label>Риск</label><select id="editVipRisk"><option>Низкий</option><option>Средний</option><option>Высокий</option></select></div>
+        <div><label>Дата контроля</label><input id="editVipControlDate" type="date"></div>
+        <div><label>Следующий шаг</label><input id="editVipNextAction"></div>
+        <div><label>AMO-ссылка</label><input id="editVipAmo"></div>
+        <div><label>Папка документов</label><input id="editVipFolder"></div>
+        <div><label>Внесено всего</label><input id="editVipTotalDeposited" type="number"></div>
+        <div><label>Списано на услуги</label><input id="editVipTotalSpent" type="number"></div>
+        <div><label>Остаток депозита</label><input id="editVipDeposit" type="number"></div>
+        <div><label>Услуг всего</label><input id="editVipServiceCount" type="number"></div>
+        <div><label>Условия работы</label><input id="editVipTerms"></div>
+        <div><label>Комментарий</label><input id="editVipComment"></div>
+      </div>
+      <div class="vip-form-note">Если изменить название клиента, связанные документы и операции тоже будут переименованы.</div>
+      <div class="inline-actions"><button class="btn primary" id="saveVipEdit">Сохранить VIP</button></div>
+    </div>
+  </div>
+
+  <div class="drawer-stack hidden" id="vipOperationForm">
+    <div class="card">
+      <div class="head"><div><h2>Операция по VIP</h2><p>Пополнение депозита или списание на оказанную услугу.</p></div></div>
+      <input type="hidden" id="vipOperationMode" value="Пополнение">
+      <div class="operation-type-switch">
+        <button id="opModeDeposit" type="button" class="active">+ Пополнение депозита</button>
+        <button id="opModeService" type="button">− Оказание услуги</button>
+      </div>
+      <div class="form-grid">
+        <div><label>Клиент</label><select id="opVipClient"></select></div>
+        <div><label>Дата операции</label><input id="opVipDate" type="date"></div>
+        <div><label>Сумма</label><input id="opVipAmount" type="number"></div>
+        <div><label>Услуга</label><input id="opVipService" placeholder="Пополнение / услуга"></div>
+        <div><label>№ договора / приложения</label><input id="opVipContractNumber"></div>
+        <div><label>Ссылка на договор / приложение</label><input id="opVipContractLink"></div>
+        <div><label>Ссылка на платёжку</label><input id="opVipPaymentLink"></div>
+        <div><label>Комментарий</label><input id="opVipComment"></div>
+      </div>
+      <div class="vip-form-note" id="opVipHint">Пополнение увеличит остаток депозита и сумму «внесено всего».</div>
+      <div class="inline-actions"><button class="btn primary" id="saveVipOperation">Сохранить операцию</button></div>
+    </div>
+  </div>
+
 </aside>
 
 <script>
@@ -820,7 +885,7 @@ function invoiceDeals(){return state.deals.filter(d=>['Счёт выставле
 function activeDeals(){return state.deals.filter(d=>!['Оплачено','Отказ'].includes(d.stage))}
 function calc(amount){const p=plan();let level='План не выполнен',rate=0,bonus=0,cls='red';if(p.superPlan>0&&amount>=p.superPlan){level='Сверхплан';rate=+p.highRate;bonus=+p.bonus;cls='violet'}else if(p.highPlan>0&&amount>=p.highPlan){level='Повышенный';rate=+p.highRate;cls='green'}else if(p.ordinaryPlan>0&&amount>=p.ordinaryPlan){level='Обычный';rate=+p.ordinaryRate;cls='amber'}return{level,rate,bonus,cls,salary:amount*rate+bonus}}
 function nextNeed(amount){const p=plan();const arr=[['обычного плана',+p.ordinaryPlan],['повышенного плана',+p.highPlan],['сверхплана',+p.superPlan]].filter(x=>x[1]>amount&&x[1]>0).sort((a,b)=>a[1]-b[1]);return arr.length?{label:'до '+arr[0][0],need:arr[0][1]-amount}:{label:'все уровни закрыты',need:0}}
-function setView(v){state.view=v;document.querySelectorAll('.view').forEach(x=>x.classList.toggle('active',x.id===v));document.querySelectorAll('[data-view]').forEach(x=>x.classList.toggle('active',x.dataset.view===v));const titles={dashboard:['Дашборд','v17 · VIP-база перенесена из Excel: депозиты, операции, документы и заделы от хантера.'],focus:['Фокус дня','Автоматический список: кого сегодня дожимать, кому писать, где просрочка и какие VIP требуют контроля.'],deals:['Заделы','Рабочая таблица заделов с AMO-ссылками, стадиями, прогнозом и связью с зарплатой.'],vip:['VIP-клиенты','Карточки VIP, депозиты, условия, контроль и быстрый доступ к документам.'],docs:['Документы','Единое место для ссылок на договоры, счета, акты, платёжки и папки клиентов.'],archive:['Архив','Отказы, паузы и клиенты, к которым можно вернуться.'],touchpoints:['Касания','История коммуникаций: кто ответил, кто молчит, кто обещал оплатить и когда следующий контакт.'],templates:['Шаблоны','Готовые сообщения и ответы на возражения для дожима клиентов.'],settings:['Настройки','Планы, ставки, бонус, импорт и экспорт данных.']};$('pageTitle').textContent=titles[v][0];$('pageText').textContent=titles[v][1];save()}
+function setView(v){state.view=v;document.querySelectorAll('.view').forEach(x=>x.classList.toggle('active',x.id===v));document.querySelectorAll('[data-view]').forEach(x=>x.classList.toggle('active',x.dataset.view===v));const titles={dashboard:['Дашборд','v18 · Полная карточка VIP: редактирование, документы, пополнение депозита и оказание услуги.'],focus:['Фокус дня','Автоматический список: кого сегодня дожимать, кому писать, где просрочка и какие VIP требуют контроля.'],deals:['Заделы','Рабочая таблица заделов с AMO-ссылками, стадиями, прогнозом и связью с зарплатой.'],vip:['VIP-клиенты','Карточки VIP, депозиты, условия, контроль и быстрый доступ к документам.'],docs:['Документы','Единое место для ссылок на договоры, счета, акты, платёжки и папки клиентов.'],archive:['Архив','Отказы, паузы и клиенты, к которым можно вернуться.'],touchpoints:['Касания','История коммуникаций: кто ответил, кто молчит, кто обещал оплатить и когда следующий контакт.'],templates:['Шаблоны','Готовые сообщения и ответы на возражения для дожима клиентов.'],settings:['Настройки','Планы, ставки, бонус, импорт и экспорт данных.']};$('pageTitle').textContent=titles[v][0];$('pageText').textContent=titles[v][1];save()}
 
 function percent(a,b){return b>0?Math.round(a/b*100):0}
 function groupByReason(arr){const map={};arr.forEach(a=>{const k=a.reason||'Другое';if(!map[k])map[k]={count:0,sum:0,returnable:0};map[k].count+=1;map[k].sum+=Number(a.amount||0);if(a.canReturn==='yes')map[k].returnable+=1});return Object.entries(map).map(([reason,v])=>({reason,...v})).sort((a,b)=>b.sum-a.sum)}
@@ -1113,7 +1178,147 @@ function renderVipFinancials(v){if(!$('vipTotalDeposited'))return;$('vipTotalDep
 function renderVipOperationsForSelected(){if(!$('vipOperationsList'))return;const v=state.vips.find(x=>x.client===state.selectedVip);const ops=(state.vipOperations||[]).filter(o=>v&&o.client===v.client).sort((a,b)=>(b.date||'').localeCompare(a.date||''));const list=$('vipOperationsList');list.innerHTML='';$('vipOperationsEmpty').style.display=ops.length?'none':'block';ops.forEach(o=>{const div=document.createElement('div');div.className='vip-ledger-item';const sign=o.operationType==='Пополнение'?'+':'−';const cls=o.operationType==='Пополнение'?'pay':'work';div.innerHTML=`<div class="vip-ledger-date">${esc(o.date||'—')}</div><div><h3>${esc(o.operationType)} · ${esc(o.service||'—')}</h3><p>${esc(o.contractNumber||'—')}</p><p>${esc(o.comment||'')}</p><div class="vip-actions">${o.contractLink?`<a class="mini-btn link" target="_blank" href="${esc(o.contractLink)}">Договор</a>`:''}${o.paymentLink?`<a class="mini-btn link" target="_blank" href="${esc(o.paymentLink)}">Платёжка</a>`:''}${o.commentLink?`<a class="mini-btn link" target="_blank" href="${esc(o.commentLink)}">Ссылка</a>`:''}</div></div><div class="vip-ledger-sum"><span class="pill ${cls}">${sign} ${money(o.amount||0)}</span></div>`;list.appendChild(div)})}
 function renderVipHunterLeads(){if(!$('vipHunterLeads'))return;const leads=state.vipLeads||[];$('vipHunterEmpty').style.display=leads.length?'none':'block';$('vipHunterLeads').innerHTML=leads.map(l=>`<div class="vip-hunter-card"><h3>${esc(l.title)}</h3><p>${esc(l.activityDescription||'')}</p><p><b>Реквизиты:</b> ${esc(l.requisites||'—')}</p><div class="vip-hunter-meta"><span class="pill pay">Внесено ${money(l.depositedToHunter||0)}</span><span class="pill ${Number(l.balance||0)>0?'wait':'pay'}">Остаток ${money(l.balance||0)}</span><span class="pill work">${esc(l.workMonth||'месяц не указан')}</span></div></div>`).join('')}
 
-function render(){const p=plan(),pd=paidDeals(),inv=invoiceDeals(),act=activeDeals();const fact=pd.reduce((s,x)=>s+Number(x.amount||0),0),invSum=inv.reduce((s,x)=>s+Number(x.amount||0),0),activeSum=act.reduce((s,x)=>s+Number(x.amount||0),0),weighted=state.deals.filter(d=>!['Оплачено','Отказ'].includes(d.stage)).reduce((s,d)=>s+Number(d.amount||0)*(stageProb[d.stage]||0)/100,0),paidClientCount=new Set(pd.map(x=>x.client)).size,cur=calc(fact),future=calc(fact+invSum),next=nextNeed(fact),docsProblem=state.docs.filter(d=>['Нужно получить','Проблема'].includes(d.status)).length,vipControl=state.vips.filter(v=>v.risk==='Высокий'||(v.controlDate&&v.controlDate<=today())).length,returns=state.archive.filter(a=>a.canReturn==='yes').length;document.documentElement.dataset.theme=state.theme||'light';$('monthName').textContent=monthName(state.currentMonth);$('salaryNow').textContent=money(cur.salary);$('factSales').textContent=money(fact);$('paidClients').textContent=paidClientCount;$('salaryForecast').textContent=money(future.salary);$('invoiceForecast').textContent=money(fact+invSum);$('salaryFormula').textContent=`Факт ${money(fact)} + счета ${money(invSum)} = прогноз ${money(fact+invSum)}`;$('levelChip').className='chip '+cur.cls;$('levelChip').textContent=`${cur.level} · ${Math.round(cur.rate*100)}%`;$('activeDealsCount').textContent=act.length;$('activeDealsSum').textContent=money(activeSum)+' в работе';$('invoiceCount').textContent=inv.length;$('invoiceSum').textContent=money(invSum)+' к оплате';$('vipControlCount').textContent=vipControl;$('vipDocsProblems').textContent=docsProblem+' проблем с документами';$('nextNeed').textContent=money(next.need);$('nextLabel').textContent=next.label;$('returnCount').textContent=returns;$('avgCheck').textContent=money(paidClientCount?fact/paidClientCount:0);$('mainInsight').innerHTML=buildInsight(vipControl,docsProblem,invSum,next.need,future.salary);renderChart(fact,invSum,weighted,p.superPlan);renderDashboardAnalytics(pd);renderSecondBrainAnalytics();renderProAnalytics();renderTemplates();renderTouchpoints();renderFocus(inv,vipControl);renderDeals();renderVip();renderDocs();renderArchive();renderFocusPage();renderLuxuryDashboard();renderVipImportStatus();renderVipImportSummary();hydratePlans();setView(state.view||'dashboard');save()}
+
+function fillVipClientSelects(){
+  const opts=(state.vips||[]).map(v=>`<option value="${esc(v.client)}">${esc(v.client)}</option>`).join('');
+  if($('opVipClient'))$('opVipClient').innerHTML=opts || '<option value="">VIP не выбран</option>';
+}
+function openVipDirect(client, updateHash=true){
+  if(!client)return;
+  state.selectedVip=client;
+  setView('vip');
+  renderVip();
+  if(updateHash) history.replaceState(null,'','#vip='+encodeURIComponent(client));
+}
+function readVipHash(){
+  const h=decodeURIComponent(location.hash||'');
+  if(h.startsWith('#vip=')){
+    const client=h.replace('#vip=','').trim();
+    if(client){state.selectedVip=client;state.view='vip';}
+  }
+}
+function openVipEdit(client){
+  const v=state.vips.find(x=>x.client===client) || state.vips.find(x=>x.client===state.selectedVip);
+  if(!v){alert('VIP не выбран.');return}
+  $('editVipOriginalClient').value=v.client||'';
+  $('editVipClient').value=v.client||'';
+  $('editVipActivity').value=v.activity||'Активный';
+  $('editVipRisk').value=v.risk||'Низкий';
+  $('editVipControlDate').value=v.controlDate||'';
+  $('editVipNextAction').value=v.nextAction||'';
+  $('editVipAmo').value=v.amo||'';
+  $('editVipFolder').value=v.folder||'';
+  $('editVipTotalDeposited').value=Number(v.totalDeposited||0);
+  $('editVipTotalSpent').value=Number(v.totalSpent||0);
+  $('editVipDeposit').value=Number(v.deposit||0);
+  $('editVipServiceCount').value=Number(v.serviceCount||0);
+  $('editVipTerms').value=v.terms||'';
+  $('editVipComment').value=v.comment||'';
+  openDrawer('vipEdit');
+}
+function saveVipEdit(){
+  const oldClient=$('editVipOriginalClient').value.trim();
+  const newClient=$('editVipClient').value.trim();
+  if(!oldClient||!newClient){alert('Укажи клиента.');return}
+  const v=state.vips.find(x=>x.client===oldClient);
+  if(!v){alert('VIP не найден.');return}
+  Object.assign(v,{
+    client:newClient,
+    activity:$('editVipActivity').value,
+    risk:$('editVipRisk').value,
+    controlDate:$('editVipControlDate').value,
+    nextAction:$('editVipNextAction').value.trim(),
+    amo:$('editVipAmo').value.trim(),
+    folder:$('editVipFolder').value.trim(),
+    totalDeposited:Number($('editVipTotalDeposited').value||0),
+    totalSpent:Number($('editVipTotalSpent').value||0),
+    deposit:Number($('editVipDeposit').value||0),
+    serviceCount:Number($('editVipServiceCount').value||0),
+    terms:$('editVipTerms').value.trim(),
+    comment:$('editVipComment').value.trim(),
+    updatedAt:new Date().toISOString()
+  });
+  if(oldClient!==newClient){
+    ['docs','vipOperations','touchpoints'].forEach(k=>(state[k]||[]).forEach(x=>{if(x.client===oldClient)x.client=newClient}));
+    (state.deals||[]).forEach(x=>{if(x.client===oldClient)x.client=newClient});
+    (state.archive||[]).forEach(x=>{if(x.client===oldClient)x.client=newClient});
+  }
+  state.selectedVip=newClient;
+  closeDrawer();render();openVipDirect(newClient);
+}
+function setVipOperationMode(mode){
+  $('vipOperationMode').value=mode;
+  $('opModeDeposit').classList.toggle('active',mode==='Пополнение');
+  $('opModeService').classList.toggle('active',mode!=='Пополнение');
+  $('opVipHint').textContent=mode==='Пополнение'?'Пополнение увеличит остаток депозита и сумму «внесено всего».':'Оказание услуги уменьшит остаток депозита, увеличит «списано на услуги» и количество услуг.';
+  if(!$('opVipService').value)$('opVipService').value=mode==='Пополнение'?'Пополнение депозита':'Оказанная услуга';
+}
+function openVipOperation(client, mode='Пополнение'){
+  fillVipClientSelects();
+  $('opVipClient').value=client||state.selectedVip||state.vips[0]?.client||'';
+  $('opVipDate').value=today();
+  $('opVipAmount').value='';
+  $('opVipService').value=mode==='Пополнение'?'Пополнение депозита':'Оказанная услуга';
+  $('opVipContractNumber').value='';
+  $('opVipContractLink').value='';
+  $('opVipPaymentLink').value='';
+  $('opVipComment').value='';
+  setVipOperationMode(mode);
+  openDrawer('vipOperation');
+}
+function saveVipOperation(){
+  const client=$('opVipClient').value;
+  const v=state.vips.find(x=>x.client===client);
+  const amount=Number($('opVipAmount').value||0);
+  if(!v){alert('VIP не найден.');return}
+  if(!amount){alert('Укажи сумму операции.');return}
+  const mode=$('vipOperationMode').value;
+  const op={
+    id:'manual_'+Date.now(),
+    date:$('opVipDate').value||today(),
+    client,
+    operationType:mode,
+    service:$('opVipService').value.trim(),
+    amount,
+    contractNumber:$('opVipContractNumber').value.trim(),
+    contractRaw:$('opVipContractLink').value.trim(),
+    contractLink:$('opVipContractLink').value.trim(),
+    paymentRaw:$('opVipPaymentLink').value.trim(),
+    paymentLink:$('opVipPaymentLink').value.trim(),
+    comment:$('opVipComment').value.trim(),
+    source:'manual'
+  };
+  if(!Array.isArray(state.vipOperations))state.vipOperations=[];
+  state.vipOperations.unshift(op);
+  if(mode==='Пополнение'){
+    v.deposit=Number(v.deposit||0)+amount;
+    v.totalDeposited=Number(v.totalDeposited||0)+amount;
+  }else{
+    v.deposit=Number(v.deposit||0)-amount;
+    v.totalSpent=Number(v.totalSpent||0)+amount;
+    v.serviceCount=Number(v.serviceCount||0)+1;
+  }
+  if(op.contractLink){
+    state.docs.unshift({id:'manual_doc_'+Date.now(),client,type:'Договор/приложение',name:`${op.service||mode} · ${op.contractNumber||op.date}`,link:op.contractLink,status:'Готово',priority:'Важная',date:op.date,comment:'Добавлено из операции VIP',sourceId:op.id+'_contract',source:'manual'});
+  }
+  if(op.paymentLink){
+    state.docs.unshift({id:'manual_pay_'+Date.now(),client,type:'Платёжка',name:`Платёжка · ${op.service||mode} · ${op.date}`,link:op.paymentLink,status:'Готово',priority:'Важная',date:op.date,comment:'Добавлено из операции VIP',sourceId:op.id+'_payment',source:'manual'});
+  }
+  v.updatedAt=new Date().toISOString();
+  state.selectedVip=client;
+  closeDrawer();render();openVipDirect(client);
+}
+function bindVipEditButtons(){
+  document.querySelectorAll('[data-edit-vip]').forEach(b=>b.onclick=()=>openVipEdit(b.dataset.editVip));
+  document.querySelectorAll('[data-vip-op]').forEach(b=>b.onclick=()=>openVipOperation(b.dataset.vipOp,b.dataset.opMode||'Пополнение'));
+  document.querySelectorAll('[data-copy-vip-link]').forEach(b=>b.onclick=()=>{
+    const link=location.origin+location.pathname+'#vip='+encodeURIComponent(b.dataset.copyVipLink);
+    if(navigator.clipboard)navigator.clipboard.writeText(link);
+    alert('Ссылка на VIP скопирована.');
+  });
+}
+
+function render(){const p=plan(),pd=paidDeals(),inv=invoiceDeals(),act=activeDeals();const fact=pd.reduce((s,x)=>s+Number(x.amount||0),0),invSum=inv.reduce((s,x)=>s+Number(x.amount||0),0),activeSum=act.reduce((s,x)=>s+Number(x.amount||0),0),weighted=state.deals.filter(d=>!['Оплачено','Отказ'].includes(d.stage)).reduce((s,d)=>s+Number(d.amount||0)*(stageProb[d.stage]||0)/100,0),paidClientCount=new Set(pd.map(x=>x.client)).size,cur=calc(fact),future=calc(fact+invSum),next=nextNeed(fact),docsProblem=state.docs.filter(d=>['Нужно получить','Проблема'].includes(d.status)).length,vipControl=state.vips.filter(v=>v.risk==='Высокий'||(v.controlDate&&v.controlDate<=today())).length,returns=state.archive.filter(a=>a.canReturn==='yes').length;document.documentElement.dataset.theme=state.theme||'light';$('monthName').textContent=monthName(state.currentMonth);$('salaryNow').textContent=money(cur.salary);$('factSales').textContent=money(fact);$('paidClients').textContent=paidClientCount;$('salaryForecast').textContent=money(future.salary);$('invoiceForecast').textContent=money(fact+invSum);$('salaryFormula').textContent=`Факт ${money(fact)} + счета ${money(invSum)} = прогноз ${money(fact+invSum)}`;$('levelChip').className='chip '+cur.cls;$('levelChip').textContent=`${cur.level} · ${Math.round(cur.rate*100)}%`;$('activeDealsCount').textContent=act.length;$('activeDealsSum').textContent=money(activeSum)+' в работе';$('invoiceCount').textContent=inv.length;$('invoiceSum').textContent=money(invSum)+' к оплате';$('vipControlCount').textContent=vipControl;$('vipDocsProblems').textContent=docsProblem+' проблем с документами';$('nextNeed').textContent=money(next.need);$('nextLabel').textContent=next.label;$('returnCount').textContent=returns;$('avgCheck').textContent=money(paidClientCount?fact/paidClientCount:0);$('mainInsight').innerHTML=buildInsight(vipControl,docsProblem,invSum,next.need,future.salary);renderChart(fact,invSum,weighted,p.superPlan);renderDashboardAnalytics(pd);renderSecondBrainAnalytics();renderProAnalytics();renderTemplates();renderTouchpoints();renderFocus(inv,vipControl);renderDeals();renderVip();renderDocs();renderArchive();renderFocusPage();renderLuxuryDashboard();renderVipImportStatus();renderVipImportSummary();fillVipClientSelects();bindVipEditButtons();hydratePlans();setView(state.view||'dashboard');save()}
 function buildInsight(vipControl,docsProblem,invSum,need,forecastSalary){if(vipControl>0)return `Есть <b>${vipControl}</b> VIP на контроле. Начни с них, чтобы не потерять ключевых клиентов.`;if(docsProblem>0)return `Есть <b>${docsProblem}</b> проблем по документам. Лучше закрыть их до дожима оплаты.`;if(invSum>0)return `На счетах <b>${money(invSum)}</b>. Если они закроются, прогноз зарплаты будет <b>${money(forecastSalary)}</b>.`;return `До следующего уровня осталось <b>${money(need)}</b>. Добавь счета и заделы, чтобы система показала фокус.`}
 function renderChart(fact,invoice,weighted,plan){const data=[['Факт',fact],['Счета',invoice],['Вероятно',weighted],['План',plan]];const max=Math.max(...data.map(x=>x[1]),1);$('monthChart').innerHTML=data.map(x=>`<div class="bar-col"><div class="bar-stack"><div class="bar-fill" style="height:${Math.max(4,x[1]/max*100)}%"></div></div><span>${x[0]}</span><span>${money(x[1])}</span></div>`).join('')}
 
@@ -1203,7 +1408,7 @@ function renderVipDossier(){
   $('vipDossierDeposit').textContent=money(v.deposit||0);renderVipFinancials(v);
   $('vipDossierDocs').textContent=docs.length;
   $('vipDossierProblems').textContent=problems.length;
-  $('vipDossierActions').innerHTML=`${v.amo?`<a class="mini-btn link" target="_blank" href="${esc(v.amo)}">Открыть AMO</a>`:''}${v.folder?`<a class="mini-btn link" target="_blank" href="${esc(v.folder)}">Папка документов</a>`:''}<button class="mini-btn link" data-open-doc-for="${esc(v.client)}">+ документ</button>`;
+  $('vipDossierActions').innerHTML=`${v.amo?`<a class="mini-btn link" target="_blank" href="${esc(v.amo)}">Открыть AMO</a>`:''}${v.folder?`<a class="mini-btn link" target="_blank" href="${esc(v.folder)}">Папка документов</a>`:''}<button class="mini-btn link" data-edit-vip="${esc(v.client)}">Редактировать</button><button class="mini-btn link" data-vip-op="${esc(v.client)}" data-op-mode="Пополнение">+ депозит</button><button class="mini-btn link" data-vip-op="${esc(v.client)}" data-op-mode="Списание на услугу">− услуга</button><button class="mini-btn link" data-open-doc-for="${esc(v.client)}">+ документ</button><button class="mini-btn link" data-copy-vip-link="${esc(v.client)}">Ссылка на VIP</button>`;
   const next=$('vipNextList');next.innerHTML='';
   if(v.nextAction||v.controlDate||v.risk){
     const div=document.createElement('div');div.className='list-item';
@@ -1216,13 +1421,13 @@ function renderVipDossier(){
     card.innerHTML=`<h3>${esc(d.type)} · ${esc(d.name||'без названия')}</h3><p>${esc(d.comment||'')}</p><div class="doc-status-line"><span class="pill ${d.status==='Готово'?'pay':d.status==='Проблема'?'over':'wait'}">${esc(d.status)}</span><span class="pill ${d.priority==='Критично'?'over':d.priority==='Важная'?'wait':'work'}">${esc(d.priority||'Обычная')}</span></div><div class="vip-actions">${d.link?`<a class="mini-btn link" target="_blank" href="${esc(d.link)}">Открыть</a>`:''}</div>`;
     grid.appendChild(card);
   });
-  document.querySelectorAll('[data-open-doc-for]').forEach(b=>b.onclick=()=>{openDrawer('doc');$('docClient').value=b.dataset.openDocFor});renderVipOperationsForSelected();renderVipHunterLeads();renderVipImportSummary();renderVipImportStatus();
+  document.querySelectorAll('[data-open-doc-for]').forEach(b=>b.onclick=()=>{openDrawer('doc');$('docClient').value=b.dataset.openDocFor});bindVipEditButtons();renderVipOperationsForSelected();renderVipHunterLeads();renderVipImportSummary();renderVipImportStatus();
 }
 function vipItem(v,i,del){
   const docs=state.docs.filter(d=>d.client===v.client),problems=docs.filter(d=>['Нужно получить','Проблема'].includes(d.status)).length;
   const div=document.createElement('div');div.className='list-item';
-  div.innerHTML=`<div><h3>${esc(v.client)}</h3><p>${esc(v.nextAction||'следующий шаг не указан')} · ${esc(v.activity||'активность не указана')} · услуг: ${esc(v.serviceCount||0)} · документов: ${docs.length}</p></div><div class="list-side"><span class="pill ${v.risk==='Высокий'?'over':v.risk==='Средний'?'wait':'pay'}">${v.risk}</span><b>${money(v.deposit||0)}</b>${problems?`<span class="pill over">${problems} проблем</span>`:''}${v.amo?`<a class="mini-btn link" target="_blank" href="${esc(v.amo)}">AMO</a>`:''}${v.folder?`<a class="mini-btn link" target="_blank" href="${esc(v.folder)}">Папка</a>`:''}<button class="mini-btn link" data-select-vip="${esc(v.client)}">Досье</button>${del?`<button class="mini-btn del" data-del-vip="${i}">Удалить</button>`:''}</div>`;
-  setTimeout(()=>{document.querySelectorAll('[data-del-vip]').forEach(b=>b.onclick=()=>{state.vips.splice(+b.dataset.delVip,1);if(!state.vips.find(v=>v.client===state.selectedVip))state.selectedVip=state.vips[0]?.client||'';render()});document.querySelectorAll('[data-select-vip]').forEach(b=>b.onclick=()=>{state.selectedVip=b.dataset.selectVip;setView('vip');renderVipDossier();save()})},0);
+  div.innerHTML=`<div><h3>${esc(v.client)}</h3><p>${esc(v.nextAction||'следующий шаг не указан')} · ${esc(v.activity||'активность не указана')} · услуг: ${esc(v.serviceCount||0)} · документов: ${docs.length}</p></div><div class="list-side"><span class="pill ${v.risk==='Высокий'?'over':v.risk==='Средний'?'wait':'pay'}">${v.risk}</span><b>${money(v.deposit||0)}</b>${problems?`<span class="pill over">${problems} проблем</span>`:''}${v.amo?`<a class="mini-btn link" target="_blank" href="${esc(v.amo)}">AMO</a>`:''}${v.folder?`<a class="mini-btn link" target="_blank" href="${esc(v.folder)}">Папка</a>`:''}<button class="mini-btn link" data-select-vip="${esc(v.client)}">Досье</button><button class="mini-btn link" data-edit-vip="${esc(v.client)}">Ред.</button><button class="mini-btn link" data-vip-op="${esc(v.client)}" data-op-mode="Пополнение">+ депозит</button><button class="mini-btn link" data-vip-op="${esc(v.client)}" data-op-mode="Списание на услугу">− услуга</button>${del?`<button class="mini-btn del" data-del-vip="${i}">Удалить</button>`:''}</div>`;
+  setTimeout(()=>{document.querySelectorAll('[data-del-vip]').forEach(b=>b.onclick=()=>{state.vips.splice(+b.dataset.delVip,1);if(!state.vips.find(v=>v.client===state.selectedVip))state.selectedVip=state.vips[0]?.client||'';render()});document.querySelectorAll('[data-select-vip]').forEach(b=>b.onclick=()=>{openVipDirect(b.dataset.selectVip)});bindVipEditButtons()},0);
   return div
 }
 function renderDocs(){const body=$('docsBody');body.innerHTML='';$('emptyDocs').style.display=state.docs.length?'none':'block';state.docs.forEach((d,i)=>{const tr=document.createElement('tr');tr.innerHTML=`<td>${esc(d.client)}</td><td>${esc(d.type)}</td><td>${esc(d.name)}</td><td>${d.link?`<a class="mini-btn link" target="_blank" href="${esc(d.link)}">Открыть</a>`:'—'}</td><td><span class="pill ${d.status==='Готово'?'pay':d.status==='Проблема'?'over':'wait'}">${d.status}</span></td><td>${esc(d.date||'')}</td><td>${esc((d.priority?d.priority+' · ':'')+(d.comment||''))}</td><td><button class="mini-btn del" data-del-doc="${i}">Удалить</button></td>`;body.appendChild(tr)});document.querySelectorAll('[data-del-doc]').forEach(b=>b.onclick=()=>{state.docs.splice(+b.dataset.delDoc,1);render()})}
@@ -1268,11 +1473,11 @@ function renderArchive(){
 }
 function esc(s){return String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]))}
 function fillSelects(){$('dealStage').innerHTML=dealStages.map(s=>`<option>${s}</option>`).join('')}
-function hydrateDates(){['dealInvoiceDate','vipControlDate','docDate','touchDate'].forEach(id=>$(id).value=today())}
+function hydrateDates(){['dealInvoiceDate','vipControlDate','docDate','touchDate','opVipDate'].forEach(id=>$(id).value=today())}
 function hydratePlans(){const p=plan();['ordinaryPlan','highPlan','superPlan','bonus','ordinaryRate','highRate'].forEach(id=>$(id).value=p[id])}
 function bindPlans(){['ordinaryPlan','highPlan','superPlan','bonus','ordinaryRate','highRate'].forEach(id=>$(id).addEventListener('input',()=>{plan()[id]=Number($(id).value);render()}))}
 function openDrawer(mode){$('drawer').classList.add('open');$('drawerBg').classList.add('open');if(mode)showTab(mode+'Form')}function closeDrawer(){$('drawer').classList.remove('open');$('drawerBg').classList.remove('open')}
-function showTab(id){['dealForm','vipForm','docForm','archiveForm','touchForm'].forEach(x=>$(x).classList.toggle('hidden',x!==id));document.querySelectorAll('[data-tab]').forEach(b=>b.className='btn '+(b.dataset.tab===id?'primary':'secondary'))}
+function showTab(id){['dealForm','vipForm','vipEditForm','vipOperationForm','docForm','archiveForm','touchForm'].forEach(x=>$(x).classList.toggle('hidden',x!==id));document.querySelectorAll('[data-tab]').forEach(b=>b.className='btn '+(b.dataset.tab===id?'primary':'secondary'))}
 function addDeal(){const client=$('dealClient').value.trim(),amount=Number($('dealAmount').value);if(!client||!amount){alert('Заполни клиента и сумму задела.');return}state.deals.unshift({id:Date.now(),client,amo:$('dealAmo').value.trim(),service:$('dealService').value.trim(),amount,stage:$('dealStage').value,invoiceDate:$('dealInvoiceDate').value,payDate:$('dealStage').value==='Оплачено'&&!$('dealPayDate').value?today():$('dealPayDate').value,include:$('dealInclude').value,nextAction:$('dealNextAction').value.trim(),nextDate:$('dealNextDate').value,comment:$('dealComment').value.trim()});['dealClient','dealAmo','dealService','dealAmount','dealPayDate','dealNextAction','dealNextDate','dealComment'].forEach(id=>$(id).value='');closeDrawer();render()}
 function addVip(){const client=$('vipClient').value.trim();if(!client){alert('Заполни клиента.');return}state.vips.unshift({client,amo:$('vipAmo').value.trim(),folder:$('vipFolder').value.trim(),deposit:Number($('vipDeposit').value||0),nextAction:$('vipNextAction').value.trim(),controlDate:$('vipControlDate').value,risk:$('vipRisk').value,terms:$('vipTerms').value.trim(),comment:$('vipComment').value.trim()});['vipClient','vipAmo','vipFolder','vipDeposit','vipNextAction','vipTerms','vipComment'].forEach(id=>$(id).value='');closeDrawer();render()}
 function addDoc(){const client=$('docClient').value.trim();if(!client){alert('Заполни клиента.');return}state.docs.unshift({client,type:$('docType').value,name:$('docName').value.trim(),link:$('docLink').value.trim(),status:$('docStatus').value,priority:$('docPriority').value,date:$('docDate').value,comment:$('docComment').value.trim()});['docClient','docName','docLink','docComment'].forEach(id=>$(id).value='');closeDrawer();render()}
@@ -1280,7 +1485,7 @@ function addArchive(){const client=$('archClient').value.trim();if(!client){aler
 function loadDemo(){const m=state.currentMonth;state.plans[m]={...defaults};state.deals=[{id:1,client:'ООО Вектор',amo:'https://example.com',service:'Товарный знак',amount:420000,stage:'Оплачено',invoiceDate:`${m}-02`,payDate:`${m}-04`,include:'yes',nextAction:'Получить акт',nextDate:`${m}-05`,comment:'оплата прошла'},{id:2,client:'ГК Альфа',amo:'https://example.com',service:'Депозит',amount:520000,stage:'Счёт выставлен',invoiceDate:`${m}-15`,payDate:'',include:'yes',nextAction:'Напомнить про оплату',nextDate:`${m}-18`,comment:'ждём оплату'},{id:3,client:'VIP Бренд',amo:'https://example.com',service:'Пополнение',amount:300000,stage:'Ждём оплату',invoiceDate:`${m}-18`,payDate:'',include:'yes',nextAction:'Запросить платёжку',nextDate:`${m}-20`,comment:'обещали оплатить'},{id:4,client:'ООО Линия',amo:'https://example.com',service:'Договор',amount:190000,stage:'Просрочено',invoiceDate:`${m}-10`,payDate:'',include:'yes',nextAction:'Позвонить',nextDate:`${m}-12`,comment:'напомнить'},{id:5,client:'ИП Орлова',amo:'',service:'Консультация',amount:280000,stage:'Оффер',invoiceDate:'',payDate:'',include:'yes',nextAction:'Отправить аргументы',nextDate:`${m}-23`,comment:'готовим предложение'}];state.vips=[{client:'VIP Бренд',amo:'https://example.com',folder:'https://drive.google.com',deposit:650000,nextAction:'Запросить платёжку',controlDate:`${m}-20`,risk:'Высокий',terms:'Особые условия оплаты',comment:'ключевой клиент'},{client:'ГК Альфа',amo:'https://example.com',folder:'https://drive.google.com',deposit:250000,nextAction:'Проверить документы',controlDate:`${m}-28`,risk:'Средний',terms:'Работа по депозиту',comment:''}];state.docs=[{client:'VIP Бренд',type:'Платёжка',name:'Платёжное поручение июнь',link:'https://drive.google.com',status:'Нужно получить',priority:'Критично',date:`${m}-20`,comment:'ждём от клиента'},{client:'VIP Бренд',type:'Счёт',name:'Счёт на пополнение',link:'https://drive.google.com',status:'Готово',priority:'Важная',date:`${m}-18`,comment:'выставлен клиенту'},{client:'VIP Бренд',type:'Договор',name:'Основной договор',link:'https://drive.google.com',status:'На проверке',priority:'Важная',date:`${m}-16`,comment:'проверить подпись'},{client:'ГК Альфа',type:'Договор',name:'Договор 2026',link:'https://drive.google.com',status:'Готово',priority:'Обычная',date:`${m}-10`,comment:''}];state.selectedVip='VIP Бренд';state.touchpoints=[{id:201,date:`${m}-19`,client:'ГК Альфа',type:'Сообщение',result:'Обещал оплатить',amount:520000,nextDate:`${m}-21`,nextAction:'Напомнить про оплату',amo:'https://example.com',comment:'обещали оплатить после согласования'},{id:202,date:`${m}-18`,client:'VIP Бренд',type:'Звонок',result:'Попросил документы',amount:300000,nextDate:`${m}-20`,nextAction:'Отправить платёжку и договор',amo:'https://example.com',comment:'ждут документы'},{id:203,date:`${m}-17`,client:'ООО Линия',type:'Сообщение',result:'Молчит',amount:190000,nextDate:`${m}-19`,nextAction:'Позвонить',amo:'https://example.com',comment:'нет ответа'}];state.archive=[{id:101,client:'ООО Стартап',amount:180000,reason:'Думает',canReturn:'yes',returnDate:`${m}-25`,hook:'вернуться с новым оффером и рассрочкой',amo:'https://example.com',comment:'вернуться с новым оффером'},{id:102,client:'ИП Север',amount:260000,reason:'Дорого',canReturn:'yes',returnDate:`${m}-21`,hook:'предложить облегчённый пакет',amo:'https://example.com',comment:'нужен мягкий заход'},{id:103,client:'ООО Тест',amount:120000,reason:'Молчит',canReturn:'yes',returnDate:'',hook:'коротко уточнить актуальность',amo:'',comment:'нет ответа'}];render()}
 function exportData(){const blob=new Blob([JSON.stringify(state,null,2)],{type:'application/json'}),a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='crmanager-v7-data.json';a.click();URL.revokeObjectURL(a.href)}
 function importData(file){const r=new FileReader();r.onload=()=>{try{state={...defaultState,...JSON.parse(r.result)};if(!state.doneFocus)state.doneFocus={};render()}catch(e){alert('Не удалось импортировать файл')}};r.readAsText(file)}
-document.addEventListener('DOMContentLoaded',()=>{fillSelects();hydrateDates();hydratePlans();bindPlans();document.querySelectorAll('[data-view]').forEach(b=>b.onclick=()=>setView(b.dataset.view));document.querySelectorAll('[data-open]').forEach(b=>b.onclick=()=>openDrawer(b.dataset.mode));document.querySelectorAll('[data-tab]').forEach(b=>b.onclick=()=>showTab(b.dataset.tab));document.querySelectorAll('[data-focus-filter]').forEach(b=>b.onclick=()=>{state.focusFilter=b.dataset.focusFilter;renderFocusPage();save()});$('closeDrawer').onclick=closeDrawer;$('drawerBg').onclick=closeDrawer;$('addDeal').onclick=addDeal;$('addVip').onclick=addVip;$('addDoc').onclick=addDoc;$('addArchive').onclick=addArchive;$('addTouch').onclick=addTouch;$('demoBtn').onclick=loadDemo;$('exportBtn').onclick=exportData;$('clearBtn').onclick=()=>{if(confirm('Очистить данные?')){state={...defaultState,currentMonth:state.currentMonth,theme:state.theme};render()}};$('copyReturnMessage').onclick=()=>{navigator.clipboard&&navigator.clipboard.writeText($('returnMessage').textContent||'')};$('refreshTemplate').onclick=renderGeneratedTemplate;$('copyGeneratedTemplate').onclick=()=>copyToClipboard($('templateOutput').textContent||'');['tplClient','tplContext','tplTone','tplScenario'].forEach(id=>$(id).addEventListener('input',renderGeneratedTemplate));$('themeBtn').onclick=()=>{state.theme=state.theme==='dark'?'light':'dark';render()};$('prevMonth').onclick=()=>{state.currentMonth=addMonths(state.currentMonth,-1);render()};$('nextMonth').onclick=()=>{state.currentMonth=addMonths(state.currentMonth,1);render()};$('todayMonth').onclick=()=>{state.currentMonth=new Date().toISOString().slice(0,7);render()};$('importFile').onchange=e=>{if(e.target.files[0])importData(e.target.files[0])};$('importVipBaseBtn').onclick=()=>mergeVipImportData(false);if(state.vipImportVersion!==VIP_IMPORT_VERSION)mergeVipImportData(true);render();if(new URLSearchParams(location.search).get('demo')==='1')loadDemo()});
+document.addEventListener('DOMContentLoaded',()=>{readVipHash();fillSelects();hydrateDates();hydratePlans();bindPlans();fillVipClientSelects();document.querySelectorAll('[data-view]').forEach(b=>b.onclick=()=>setView(b.dataset.view));document.querySelectorAll('[data-open]').forEach(b=>b.onclick=()=>openDrawer(b.dataset.mode));document.querySelectorAll('[data-tab]').forEach(b=>b.onclick=()=>showTab(b.dataset.tab));document.querySelectorAll('[data-focus-filter]').forEach(b=>b.onclick=()=>{state.focusFilter=b.dataset.focusFilter;renderFocusPage();save()});$('closeDrawer').onclick=closeDrawer;$('drawerBg').onclick=closeDrawer;$('addDeal').onclick=addDeal;$('addVip').onclick=addVip;$('addDoc').onclick=addDoc;$('addArchive').onclick=addArchive;$('addTouch').onclick=addTouch;$('saveVipEdit').onclick=saveVipEdit;$('saveVipOperation').onclick=saveVipOperation;$('opModeDeposit').onclick=()=>setVipOperationMode('Пополнение');$('opModeService').onclick=()=>setVipOperationMode('Списание на услугу');$('demoBtn').onclick=loadDemo;$('exportBtn').onclick=exportData;$('clearBtn').onclick=()=>{if(confirm('Очистить данные?')){state={...defaultState,currentMonth:state.currentMonth,theme:state.theme};render()}};$('copyReturnMessage').onclick=()=>{navigator.clipboard&&navigator.clipboard.writeText($('returnMessage').textContent||'')};$('refreshTemplate').onclick=renderGeneratedTemplate;$('copyGeneratedTemplate').onclick=()=>copyToClipboard($('templateOutput').textContent||'');['tplClient','tplContext','tplTone','tplScenario'].forEach(id=>$(id).addEventListener('input',renderGeneratedTemplate));$('themeBtn').onclick=()=>{state.theme=state.theme==='dark'?'light':'dark';render()};$('prevMonth').onclick=()=>{state.currentMonth=addMonths(state.currentMonth,-1);render()};$('nextMonth').onclick=()=>{state.currentMonth=addMonths(state.currentMonth,1);render()};$('todayMonth').onclick=()=>{state.currentMonth=new Date().toISOString().slice(0,7);render()};$('importFile').onchange=e=>{if(e.target.files[0])importData(e.target.files[0])};$('importVipBaseBtn').onclick=()=>mergeVipImportData(false);if(state.vipImportVersion!==VIP_IMPORT_VERSION)mergeVipImportData(true);render();window.addEventListener('hashchange',()=>{readVipHash();if(state.view==='vip')render()});if(new URLSearchParams(location.search).get('demo')==='1')loadDemo()});
 </script>
 </body>
 </html>
