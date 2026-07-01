@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
-<title>CRMANAGER — v21.1 Refined Layout</title>
+<title>CRMANAGER — v21.3 Full Width</title>
 <meta name="theme-color" content="#0f172a"/>
 <style>
 :root{
@@ -365,7 +365,7 @@ body:before{opacity:.35;background-size:54px 54px}
 @media(max-width:680px){.stage-legend{grid-template-columns:1fr}}
 
 
-/* ===== v21.1 Refined Layout theme ===== */
+/* ===== v21.3 Full Width theme ===== */
 :root{
   --displayFont: Georgia, "Times New Roman", serif;
   --pageGlowA:rgba(107,125,255,.14);
@@ -614,13 +614,14 @@ body,button,input,select,textarea{
   font-weight:500!important;
 }
 .app{
-  max-width:1660px!important;
+  width:100%!important;
+  max-width:none!important;
   grid-template-columns:286px minmax(0,1fr)!important;
 }
 .sidebar{width:286px!important}
 .page{
-  max-width:1340px!important;
-  margin:0 auto!important;
+  max-width:none!important;
+  margin:0!important;
   width:100%!important;
 }
 .eco-layout{
@@ -649,7 +650,7 @@ body,button,input,select,textarea{
   color:#7b8798;
 }
 @media(max-width:1340px){
-  .page{max-width:100%!important}
+  .page{max-width:none!important;width:100%!important}
   .eco-layout{grid-template-columns:1fr!important}
 }
 @media(max-width:1000px){
@@ -668,7 +669,7 @@ body,button,input,select,textarea{
 <body>
 <div class="app">
 <aside class="sidebar">
-  <div class="brand"><div class="logo">◈</div><div><b>CRM/Manager</b><span>v21.1 · refined layout</span></div></div>
+  <div class="brand"><div class="logo">◈</div><div><b>CRM/Manager</b><span>v21.3 · full width</span></div></div>
   <nav class="nav">
     <button class="active" data-view="dashboard">🏠 Дашборд</button>
     <button data-view="focus">🔥 Фокус дня</button>
@@ -688,7 +689,7 @@ body,button,input,select,textarea{
 <main class="main">
 <div class="page">
 <header class="topbar fade">
-  <div class="title"><h1 id="pageTitle">Дашборд</h1><p id="pageText">v21.1 · Исправлено редактирование заделов, убран прогноз по сумме, выровнена ширина и уточнена типографика.</p></div>
+  <div class="title"><h1 id="pageTitle">Дашборд</h1><p id="pageText">v21.3 · Основная рабочая область растянута на всю доступную ширину экрана. Остальные удачные правки сохранены.</p></div>
   <div class="actions"><button class="btn primary" data-open>+ Добавить</button><button class="btn secondary" id="demoBtn">Демо</button><button class="btn secondary" id="themeBtn">Тема</button><button class="btn secondary" id="exportBtn">Экспорт</button><button class="btn danger" id="clearBtn">Очистить</button></div>
 </header>
 
@@ -1243,7 +1244,7 @@ function invoiceDeals(){return state.deals.filter(d=>['Счёт выставле
 function activeDeals(){return state.deals.filter(d=>!['Оплачено','Отказ'].includes(d.stage))}
 function calc(amount){const p=plan();let level='План не выполнен',rate=0,bonus=0,cls='red';if(p.superPlan>0&&amount>=p.superPlan){level='Сверхплан';rate=+p.highRate;bonus=+p.bonus;cls='violet'}else if(p.highPlan>0&&amount>=p.highPlan){level='Повышенный';rate=+p.highRate;cls='green'}else if(p.ordinaryPlan>0&&amount>=p.ordinaryPlan){level='Обычный';rate=+p.ordinaryRate;cls='amber'}return{level,rate,bonus,cls,salary:amount*rate+bonus}}
 function nextNeed(amount){const p=plan();const arr=[['обычного плана',+p.ordinaryPlan],['повышенного плана',+p.highPlan],['сверхплана',+p.superPlan]].filter(x=>x[1]>amount&&x[1]>0).sort((a,b)=>a[1]-b[1]);return arr.length?{label:'до '+arr[0][0],need:arr[0][1]-amount}:{label:'все уровни закрыты',need:0}}
-function setView(v){state.view=v;document.querySelectorAll('.view').forEach(x=>x.classList.toggle('active',x.id===v));document.querySelectorAll('[data-view]').forEach(x=>x.classList.toggle('active',x.dataset.view===v));const titles={dashboard:['Дашборд','v21.1 · Исправлено редактирование заделов, убран прогноз по сумме, выровнена ширина и уточнена типографика.'],focus:['Фокус дня','Автоматический список: кого сегодня дожимать, кому писать, где просрочка и какие VIP требуют контроля.'],deals:['Заделы','Рабочая таблица заделов с AMO-ссылками, стадиями, прогнозом и связью с зарплатой.'],vip:['VIP-клиенты','Карточки VIP, депозиты, условия, контроль и быстрый доступ к документам.'],docs:['Документы','Единое место для ссылок на договоры, счета, акты, платёжки и папки клиентов.'],archive:['Архив','Отказы, паузы и клиенты, к которым можно вернуться.'],touchpoints:['Касания','История коммуникаций: кто ответил, кто молчит, кто обещал оплатить и когда следующий контакт.'],templates:['Шаблоны','Готовые сообщения и ответы на возражения для дожима клиентов.'],settings:['Настройки','Планы, ставки, бонус, импорт и экспорт данных.']};$('pageTitle').textContent=titles[v][0];$('pageText').textContent=titles[v][1];save()}
+function setView(v){state.view=v;document.querySelectorAll('.view').forEach(x=>x.classList.toggle('active',x.id===v));document.querySelectorAll('[data-view]').forEach(x=>x.classList.toggle('active',x.dataset.view===v));const titles={dashboard:['Дашборд','v21.3 · Основная рабочая область растянута на всю доступную ширину экрана. Остальные удачные правки сохранены.'],focus:['Фокус дня','Автоматический список: кого сегодня дожимать, кому писать, где просрочка и какие VIP требуют контроля.'],deals:['Заделы','Рабочая таблица заделов с AMO-ссылками, стадиями, прогнозом и связью с зарплатой.'],vip:['VIP-клиенты','Карточки VIP, депозиты, условия, контроль и быстрый доступ к документам.'],docs:['Документы','Единое место для ссылок на договоры, счета, акты, платёжки и папки клиентов.'],archive:['Архив','Отказы, паузы и клиенты, к которым можно вернуться.'],touchpoints:['Касания','История коммуникаций: кто ответил, кто молчит, кто обещал оплатить и когда следующий контакт.'],templates:['Шаблоны','Готовые сообщения и ответы на возражения для дожима клиентов.'],settings:['Настройки','Планы, ставки, бонус, импорт и экспорт данных.']};$('pageTitle').textContent=titles[v][0];$('pageText').textContent=titles[v][1];save()}
 
 function percent(a,b){return b>0?Math.round(a/b*100):0}
 function groupByReason(arr){const map={};arr.forEach(a=>{const k=a.reason||'Другое';if(!map[k])map[k]={count:0,sum:0,returnable:0};map[k].count+=1;map[k].sum+=Number(a.amount||0);if(a.canReturn==='yes')map[k].returnable+=1});return Object.entries(map).map(([reason,v])=>({reason,...v})).sort((a,b)=>b.sum-a.sum)}
