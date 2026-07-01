@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
-<title>CRMANAGER — v21.3 Full Width</title>
+<title>CRMANAGER — v21.4 Archive on Delete</title>
 <meta name="theme-color" content="#0f172a"/>
 <style>
 :root{
@@ -365,7 +365,7 @@ body:before{opacity:.35;background-size:54px 54px}
 @media(max-width:680px){.stage-legend{grid-template-columns:1fr}}
 
 
-/* ===== v21.3 Full Width theme ===== */
+/* ===== v21.4 Archive on Delete theme ===== */
 :root{
   --displayFont: Georgia, "Times New Roman", serif;
   --pageGlowA:rgba(107,125,255,.14);
@@ -669,7 +669,7 @@ body,button,input,select,textarea{
 <body>
 <div class="app">
 <aside class="sidebar">
-  <div class="brand"><div class="logo">◈</div><div><b>CRM/Manager</b><span>v21.3 · full width</span></div></div>
+  <div class="brand"><div class="logo">◈</div><div><b>CRM/Manager</b><span>v21.4 · archive on delete</span></div></div>
   <nav class="nav">
     <button class="active" data-view="dashboard">🏠 Дашборд</button>
     <button data-view="focus">🔥 Фокус дня</button>
@@ -689,7 +689,7 @@ body,button,input,select,textarea{
 <main class="main">
 <div class="page">
 <header class="topbar fade">
-  <div class="title"><h1 id="pageTitle">Дашборд</h1><p id="pageText">v21.3 · Основная рабочая область растянута на всю доступную ширину экрана. Остальные удачные правки сохранены.</p></div>
+  <div class="title"><h1 id="pageTitle">Дашборд</h1><p id="pageText">v21.4 · При удалении задел переносится в архив с задачей вернуться через месяц.</p></div>
   <div class="actions"><button class="btn primary" data-open>+ Добавить</button><button class="btn secondary" id="demoBtn">Демо</button><button class="btn secondary" id="themeBtn">Тема</button><button class="btn secondary" id="exportBtn">Экспорт</button><button class="btn danger" id="clearBtn">Очистить</button></div>
 </header>
 
@@ -955,7 +955,7 @@ body,button,input,select,textarea{
 
 <section class="view" id="deals">
   <div class="stage-legend" id="stageLegend"></div>
-  <div class="card"><div class="head"><div><h2>Заделы</h2><p>Рабочая таблица: теперь каждый этап подсвечивается цветом — от нового лида до оплаты или просрочки.</p></div><button class="btn primary" data-open data-mode="deal">+ Задел</button></div><div class="table-wrap"><table><thead><tr><th>Клиент</th><th>AMO</th><th>Услуга</th><th>Сумма</th><th>Стадия</th><th>Вероятность</th><th>Дата оплаты</th><th>В план</th><th></th></tr></thead><tbody id="dealsBody"></tbody></table></div><div class="empty" id="emptyDeals">Пока нет заделов.</div></div>
+  <div class="card"><div class="head"><div><h2>Заделы</h2><p>Рабочая таблица: каждый этап подсвечивается цветом. При удалении задел автоматически уходит в архив с задачей вернуться через месяц.</p></div><button class="btn primary" data-open data-mode="deal">+ Задел</button></div><div class="table-wrap"><table><thead><tr><th>Клиент</th><th>AMO</th><th>Услуга</th><th>Сумма</th><th>Стадия</th><th>Вероятность</th><th>Дата оплаты</th><th>В план</th><th></th></tr></thead><tbody id="dealsBody"></tbody></table></div><div class="empty" id="emptyDeals">Пока нет заделов.</div></div>
 </section>
 
 <section class="view" id="vip">
@@ -1244,7 +1244,7 @@ function invoiceDeals(){return state.deals.filter(d=>['Счёт выставле
 function activeDeals(){return state.deals.filter(d=>!['Оплачено','Отказ'].includes(d.stage))}
 function calc(amount){const p=plan();let level='План не выполнен',rate=0,bonus=0,cls='red';if(p.superPlan>0&&amount>=p.superPlan){level='Сверхплан';rate=+p.highRate;bonus=+p.bonus;cls='violet'}else if(p.highPlan>0&&amount>=p.highPlan){level='Повышенный';rate=+p.highRate;cls='green'}else if(p.ordinaryPlan>0&&amount>=p.ordinaryPlan){level='Обычный';rate=+p.ordinaryRate;cls='amber'}return{level,rate,bonus,cls,salary:amount*rate+bonus}}
 function nextNeed(amount){const p=plan();const arr=[['обычного плана',+p.ordinaryPlan],['повышенного плана',+p.highPlan],['сверхплана',+p.superPlan]].filter(x=>x[1]>amount&&x[1]>0).sort((a,b)=>a[1]-b[1]);return arr.length?{label:'до '+arr[0][0],need:arr[0][1]-amount}:{label:'все уровни закрыты',need:0}}
-function setView(v){state.view=v;document.querySelectorAll('.view').forEach(x=>x.classList.toggle('active',x.id===v));document.querySelectorAll('[data-view]').forEach(x=>x.classList.toggle('active',x.dataset.view===v));const titles={dashboard:['Дашборд','v21.3 · Основная рабочая область растянута на всю доступную ширину экрана. Остальные удачные правки сохранены.'],focus:['Фокус дня','Автоматический список: кого сегодня дожимать, кому писать, где просрочка и какие VIP требуют контроля.'],deals:['Заделы','Рабочая таблица заделов с AMO-ссылками, стадиями, прогнозом и связью с зарплатой.'],vip:['VIP-клиенты','Карточки VIP, депозиты, условия, контроль и быстрый доступ к документам.'],docs:['Документы','Единое место для ссылок на договоры, счета, акты, платёжки и папки клиентов.'],archive:['Архив','Отказы, паузы и клиенты, к которым можно вернуться.'],touchpoints:['Касания','История коммуникаций: кто ответил, кто молчит, кто обещал оплатить и когда следующий контакт.'],templates:['Шаблоны','Готовые сообщения и ответы на возражения для дожима клиентов.'],settings:['Настройки','Планы, ставки, бонус, импорт и экспорт данных.']};$('pageTitle').textContent=titles[v][0];$('pageText').textContent=titles[v][1];save()}
+function setView(v){state.view=v;document.querySelectorAll('.view').forEach(x=>x.classList.toggle('active',x.id===v));document.querySelectorAll('[data-view]').forEach(x=>x.classList.toggle('active',x.dataset.view===v));const titles={dashboard:['Дашборд','v21.4 · При удалении задел переносится в архив с задачей вернуться через месяц.'],focus:['Фокус дня','Автоматический список: кого сегодня дожимать, кому писать, где просрочка и какие VIP требуют контроля.'],deals:['Заделы','Рабочая таблица заделов с AMO-ссылками, стадиями, прогнозом и связью с зарплатой.'],vip:['VIP-клиенты','Карточки VIP, депозиты, условия, контроль и быстрый доступ к документам.'],docs:['Документы','Единое место для ссылок на договоры, счета, акты, платёжки и папки клиентов.'],archive:['Архив','Отказы, паузы и клиенты, к которым можно вернуться.'],touchpoints:['Касания','История коммуникаций: кто ответил, кто молчит, кто обещал оплатить и когда следующий контакт.'],templates:['Шаблоны','Готовые сообщения и ответы на возражения для дожима клиентов.'],settings:['Настройки','Планы, ставки, бонус, импорт и экспорт данных.']};$('pageTitle').textContent=titles[v][0];$('pageText').textContent=titles[v][1];save()}
 
 function percent(a,b){return b>0?Math.round(a/b*100):0}
 function groupByReason(arr){const map={};arr.forEach(a=>{const k=a.reason||'Другое';if(!map[k])map[k]={count:0,sum:0,returnable:0};map[k].count+=1;map[k].sum+=Number(a.amount||0);if(a.canReturn==='yes')map[k].returnable+=1});return Object.entries(map).map(([reason,v])=>({reason,...v})).sort((a,b)=>b.sum-a.sum)}
@@ -1307,7 +1307,7 @@ function renderTouchpoints(){
   $('touchMonthCount').textContent=monthTouches.length;$('touchPromiseCount').textContent=promises.length;$('touchPromiseSum').textContent=money(promises.reduce((s,t)=>s+Number(t.amount||0),0));$('touchSilentCount').textContent=silent.length;
   renderTouchNext();renderClientPulse();
   const body=$('touchBody');body.innerHTML='';$('emptyTouch').style.display=state.touchpoints.length?'none':'block';
-  state.touchpoints.forEach((t,i)=>{const tr=document.createElement('tr');tr.innerHTML=`<td>${esc(t.date||'')}</td><td>${esc(t.client)}</td><td>${esc(t.type)}</td><td><span class="pill ${t.result==='Обещал оплатить'?'pay':t.result==='Молчит'||t.result==='Отказ'?'over':'work'}">${esc(t.result)}</span></td><td><b>${money(t.amount||0)}</b></td><td>${esc(t.nextDate||'')}</td><td>${esc(t.nextAction||'')}</td><td>${t.amo?`<a class="mini-btn link" target="_blank" href="${esc(t.amo)}">AMO</a>`:'—'}</td><td>${esc(t.comment||'')}</td><td><button class="mini-btn del" data-del-touch="${i}">Удалить</button></td>`;body.appendChild(tr)});
+  state.touchpoints.forEach((t,i)=>{const tr=document.createElement('tr');tr.innerHTML=`<td>${esc(t.date||'')}</td><td>${esc(t.client)}</td><td>${esc(t.type)}</td><td><span class="pill ${t.result==='Обещал оплатить'?'pay':t.result==='Молчит'||t.result==='Отказ'?'over':'work'}">${esc(t.result)}</span></td><td><b>${money(t.amount||0)}</b></td><td>${esc(t.nextDate||'')}</td><td>${esc(t.nextAction||'')}</td><td>${t.amo?`<a class="mini-btn link" target="_blank" href="${esc(t.amo)}">AMO</a>`:'—'}</td><td>${esc(t.comment||'')}</td><td><button class="mini-btn del" data-del-touch="${i}">В архив</button></td>`;body.appendChild(tr)});
   document.querySelectorAll('[data-del-touch]').forEach(b=>b.onclick=()=>{state.touchpoints.splice(+b.dataset.delTouch,1);render()});
 }
 function renderTouchNext(){const due=state.touchpoints.filter(t=>t.nextDate&&daysDiff(t.nextDate)<=3).sort((a,b)=>(a.nextDate||'').localeCompare(b.nextDate||''));const list=$('touchNextList');list.innerHTML='';$('touchNextEmpty').style.display=due.length?'none':'block';due.slice(0,10).forEach(t=>{const div=document.createElement('div');div.className='touch-card';div.innerHTML=`<div class="touch-main"><h3>${esc(t.client)}</h3><p>${esc(t.nextAction||'следующий шаг не указан')}</p><p>Последний результат: ${esc(t.result)} · следующий контакт: ${esc(t.nextDate)}</p></div><div class="touch-side"><b>${money(t.amount||0)}</b><span class="pill ${daysDiff(t.nextDate)<=0?'over':'wait'}">${daysDiff(t.nextDate)<=0?'сегодня/просрочено':'скоро'}</span>${t.amo?`<a class="mini-btn link" target="_blank" href="${esc(t.amo)}">AMO</a>`:''}</div>`;list.appendChild(div)})}
@@ -1818,6 +1818,36 @@ function renderStageLegend(){
 }
 
 function renderFocus(inv){const focus=[...inv.map(d=>({title:d.client,meta:(d.stage+' · '+(d.nextAction||'следующий шаг не указан')),sum:d.amount,type:d.stage==='Просрочено'?'over':'wait'})),...state.vips.filter(v=>v.risk==='Высокий'||(v.controlDate&&v.controlDate<=today())).map(v=>({title:v.client,meta:'VIP · '+(v.nextAction||'контроль'),sum:v.deposit||0,type:'violetP'})),...state.archive.filter(a=>a.canReturn==='yes').map(a=>({title:a.client,meta:'Архив · '+a.reason,sum:a.amount||0,type:'work'}))].sort((a,b)=>b.sum-a.sum).slice(0,7);$('focusList').innerHTML='';$('focusEmpty').style.display=focus.length?'none':'block';focus.forEach(f=>{const div=document.createElement('div');div.className='list-item';div.innerHTML=`<div><h3>${esc(f.title)}</h3><p>${esc(f.meta)}</p></div><div class="list-side"><span class="pill ${f.type}">${money(f.sum)}</span></div>`;$('focusList').appendChild(div)})}
+
+function addMonthsIso(base,months){
+  const d=new Date(base||today());
+  d.setMonth(d.getMonth()+months);
+  return d.toISOString().slice(0,10);
+}
+function archiveDealFromDelete(index){
+  const d=state.deals[index];
+  if(!d)return;
+  const returnDate=addMonthsIso(today(),1);
+  const archived={
+    id:Date.now(),
+    client:d.client||'Без названия',
+    amount:Number(d.amount||0),
+    reason:'Удалён из заделов',
+    canReturn:'yes',
+    returnDate,
+    returnHook:d.nextAction||'Вернуться к клиенту через месяц',
+    source:'deal_deleted',
+    sourceDealId:d.id||'',
+    service:d.service||'',
+    amo:d.amo||'',
+    comment:`Автоматически перенесён в архив при удалении задела ${today()}. Этап был: ${d.stage||'—'}. ${d.comment?('Комментарий: '+d.comment):''}`.trim()
+  };
+  if(!Array.isArray(state.archive))state.archive=[];
+  state.archive.unshift(archived);
+  state.deals.splice(index,1);
+  render();
+}
+
 function renderDeals(){
   renderStageLegend();
   const body=$('dealsBody');body.innerHTML='';
@@ -1826,13 +1856,13 @@ function renderDeals(){
     const prob=stageProb[d.stage]||0,cls=stageClass(d.stage);
     const tr=document.createElement('tr');tr.className=`deal-row ${cls}`;
     const sub=d.nextAction||d.comment||d.service||'';
-    tr.innerHTML=`<td class="deal-client-cell"><b>${esc(d.client)}</b><span>${esc(sub)}</span></td><td>${d.amo?`<a class="mini-btn link" target="_blank" href="${esc(d.amo)}">AMO</a>`:'—'}</td><td>${esc(d.service||'')}</td><td><b>${money(d.amount)}</b></td><td><select class="stage-select ${cls}" data-stage="${i}">${dealStages.map(s=>`<option ${s===d.stage?'selected':''}>${s}</option>`).join('')}</select></td><td>${prob}%</td><td><input type="date" value="${esc(d.payDate||'')}" data-paydate="${i}"></td><td>${d.include==='yes'?'Да':'Нет'}</td><td><div style="display:flex;gap:8px"><button class="mini-btn" data-edit-deal="${i}">Ред.</button><button class="mini-btn del" data-del-deal="${i}">Удалить</button></div></td>`;
+    tr.innerHTML=`<td class="deal-client-cell"><b>${esc(d.client)}</b><span>${esc(sub)}</span></td><td>${d.amo?`<a class="mini-btn link" target="_blank" href="${esc(d.amo)}">AMO</a>`:'—'}</td><td>${esc(d.service||'')}</td><td><b>${money(d.amount)}</b></td><td><select class="stage-select ${cls}" data-stage="${i}">${dealStages.map(s=>`<option ${s===d.stage?'selected':''}>${s}</option>`).join('')}</select></td><td>${prob}%</td><td><input type="date" value="${esc(d.payDate||'')}" data-paydate="${i}"></td><td>${d.include==='yes'?'Да':'Нет'}</td><td><div style="display:flex;gap:8px"><button class="mini-btn" data-edit-deal="${i}">Ред.</button><button class="mini-btn del" data-del-deal="${i}">В архив</button></div></td>`;
     body.appendChild(tr)
   });
   document.querySelectorAll('[data-stage]').forEach(s=>s.onchange=()=>{const d=state.deals[+s.dataset.stage];d.stage=s.value;if(d.stage==='Оплачено'&&!d.payDate)d.payDate=today();if(d.stage==='Отказ')autoArchive(d);render()});
   document.querySelectorAll('[data-paydate]').forEach(inp=>inp.onchange=()=>{state.deals[+inp.dataset.paydate].payDate=inp.value;render()});
   document.querySelectorAll('[data-edit-deal]').forEach(b=>b.onclick=()=>openDealEdit(+b.dataset.editDeal));
-  document.querySelectorAll('[data-del-deal]').forEach(b=>b.onclick=()=>{state.deals.splice(+b.dataset.delDeal,1);render()})
+  document.querySelectorAll('[data-del-deal]').forEach(b=>b.onclick=()=>{archiveDealFromDelete(+b.dataset.delDeal)})
 }
 
 function renderVip(){
@@ -1884,11 +1914,11 @@ function renderVipDossier(){
 function vipItem(v,i,del){
   const docs=state.docs.filter(d=>d.client===v.client),problems=docs.filter(d=>['Нужно получить','Проблема'].includes(d.status)).length;
   const div=document.createElement('div');div.className='list-item';
-  div.innerHTML=`<div><h3>${esc(v.client)}</h3><p>${esc(v.nextAction||'следующий шаг не указан')} · ${esc(v.activity||'активность не указана')} · услуг: ${esc(v.serviceCount||0)} · документов: ${docs.length}</p></div><div class="list-side"><span class="pill ${v.risk==='Высокий'?'over':v.risk==='Средний'?'wait':'pay'}">${v.risk}</span><b>${money(v.deposit||0)}</b>${problems?`<span class="pill over">${problems} проблем</span>`:''}${v.amo?`<a class="mini-btn link" target="_blank" href="${esc(v.amo)}">AMO</a>`:''}${v.folder?`<a class="mini-btn link" target="_blank" href="${esc(v.folder)}">Папка</a>`:''}<button class="mini-btn link" data-select-vip="${esc(v.client)}">Досье</button><button class="mini-btn link" data-edit-vip="${esc(v.client)}">Ред.</button><button class="mini-btn link" data-vip-op="${esc(v.client)}" data-op-mode="Пополнение">+ депозит</button><button class="mini-btn link" data-vip-op="${esc(v.client)}" data-op-mode="Списание на услугу">− услуга</button>${del?`<button class="mini-btn del" data-del-vip="${i}">Удалить</button>`:''}</div>`;
+  div.innerHTML=`<div><h3>${esc(v.client)}</h3><p>${esc(v.nextAction||'следующий шаг не указан')} · ${esc(v.activity||'активность не указана')} · услуг: ${esc(v.serviceCount||0)} · документов: ${docs.length}</p></div><div class="list-side"><span class="pill ${v.risk==='Высокий'?'over':v.risk==='Средний'?'wait':'pay'}">${v.risk}</span><b>${money(v.deposit||0)}</b>${problems?`<span class="pill over">${problems} проблем</span>`:''}${v.amo?`<a class="mini-btn link" target="_blank" href="${esc(v.amo)}">AMO</a>`:''}${v.folder?`<a class="mini-btn link" target="_blank" href="${esc(v.folder)}">Папка</a>`:''}<button class="mini-btn link" data-select-vip="${esc(v.client)}">Досье</button><button class="mini-btn link" data-edit-vip="${esc(v.client)}">Ред.</button><button class="mini-btn link" data-vip-op="${esc(v.client)}" data-op-mode="Пополнение">+ депозит</button><button class="mini-btn link" data-vip-op="${esc(v.client)}" data-op-mode="Списание на услугу">− услуга</button>${del?`<button class="mini-btn del" data-del-vip="${i}">В архив</button>`:''}</div>`;
   setTimeout(()=>{document.querySelectorAll('[data-del-vip]').forEach(b=>b.onclick=()=>{state.vips.splice(+b.dataset.delVip,1);if(!state.vips.find(v=>v.client===state.selectedVip))state.selectedVip=state.vips[0]?.client||'';render()});document.querySelectorAll('[data-select-vip]').forEach(b=>b.onclick=()=>{openVipDirect(b.dataset.selectVip)});bindVipEditButtons()},0);
   return div
 }
-function renderDocs(){const body=$('docsBody');body.innerHTML='';$('emptyDocs').style.display=state.docs.length?'none':'block';state.docs.forEach((d,i)=>{const tr=document.createElement('tr');tr.innerHTML=`<td>${esc(d.client)}</td><td>${esc(d.type)}</td><td>${esc(d.name)}</td><td>${d.link?`<a class="mini-btn link" target="_blank" href="${esc(d.link)}">Открыть</a>`:'—'}</td><td><span class="pill ${d.status==='Готово'?'pay':d.status==='Проблема'?'over':'wait'}">${d.status}</span></td><td>${esc(d.date||'')}</td><td>${esc((d.priority?d.priority+' · ':'')+(d.comment||''))}</td><td><button class="mini-btn del" data-del-doc="${i}">Удалить</button></td>`;body.appendChild(tr)});document.querySelectorAll('[data-del-doc]').forEach(b=>b.onclick=()=>{state.docs.splice(+b.dataset.delDoc,1);render()})}
+function renderDocs(){const body=$('docsBody');body.innerHTML='';$('emptyDocs').style.display=state.docs.length?'none':'block';state.docs.forEach((d,i)=>{const tr=document.createElement('tr');tr.innerHTML=`<td>${esc(d.client)}</td><td>${esc(d.type)}</td><td>${esc(d.name)}</td><td>${d.link?`<a class="mini-btn link" target="_blank" href="${esc(d.link)}">Открыть</a>`:'—'}</td><td><span class="pill ${d.status==='Готово'?'pay':d.status==='Проблема'?'over':'wait'}">${d.status}</span></td><td>${esc(d.date||'')}</td><td>${esc((d.priority?d.priority+' · ':'')+(d.comment||''))}</td><td><button class="mini-btn del" data-del-doc="${i}">В архив</button></td>`;body.appendChild(tr)});document.querySelectorAll('[data-del-doc]').forEach(b=>b.onclick=()=>{state.docs.splice(+b.dataset.delDoc,1);render()})}
 function archiveTemplate(a){
   const name=a.client||'';
   const hook=a.hook||'вернуться с более точным предложением';
@@ -1925,7 +1955,7 @@ function renderArchive(){
   document.querySelectorAll('[data-arch-msg]').forEach(b=>b.onclick=()=>selectArchiveMessage(+b.dataset.archMsg));
   document.querySelectorAll('[data-return-deal]').forEach(b=>b.onclick=()=>returnToDeal(+b.dataset.returnDeal));
   const body=$('archiveBody');body.innerHTML='';$('emptyArchive').style.display=state.archive.length?'none':'block';
-  state.archive.forEach((a,i)=>{const tr=document.createElement('tr');tr.innerHTML=`<td>${esc(a.client)}</td><td><b>${money(a.amount)}</b></td><td>${esc(a.reason)}</td><td>${a.canReturn==='yes'?'Да':'Нет'}</td><td>${esc(a.returnDate||'')}</td><td>${esc(a.hook||'')}</td><td>${a.amo?`<a class="mini-btn link" target="_blank" href="${esc(a.amo)}">AMO</a>`:'—'}</td><td>${esc(a.comment||'')}</td><td><button class="mini-btn del" data-del-arch="${i}">Удалить</button></td>`;body.appendChild(tr)});
+  state.archive.forEach((a,i)=>{const tr=document.createElement('tr');tr.innerHTML=`<td>${esc(a.client)}</td><td><b>${money(a.amount)}</b></td><td>${esc(a.reason)}</td><td>${a.canReturn==='yes'?'Да':'Нет'}</td><td>${esc(a.returnDate||'')}</td><td>${esc(a.hook||'')}</td><td>${a.amo?`<a class="mini-btn link" target="_blank" href="${esc(a.amo)}">AMO</a>`:'—'}</td><td>${esc(a.comment||'')}</td><td><button class="mini-btn del" data-del-arch="${i}">В архив</button></td>`;body.appendChild(tr)});
   document.querySelectorAll('[data-del-arch]').forEach(b=>b.onclick=()=>{state.archive.splice(+b.dataset.delArch,1);render()});
   if(state.selectedArchive!==undefined&&state.archive[state.selectedArchive])$('returnMessage').textContent=archiveTemplate(state.archive[state.selectedArchive]);
 }
