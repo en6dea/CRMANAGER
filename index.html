@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
-<title>CRMANAGER — v21.5 VIP Light Layout</title>
+<title>CRMANAGER — v21.6 Paid Archive Logic</title>
 <meta name="theme-color" content="#0f172a"/>
 <style>
 :root{
@@ -365,7 +365,7 @@ body:before{opacity:.35;background-size:54px 54px}
 @media(max-width:680px){.stage-legend{grid-template-columns:1fr}}
 
 
-/* ===== v21.5 VIP Light Layout theme ===== */
+/* ===== v21.6 Paid Archive Logic theme ===== */
 :root{
   --displayFont: Georgia, "Times New Roman", serif;
   --pageGlowA:rgba(107,125,255,.14);
@@ -707,12 +707,21 @@ body,button,input,select,textarea{
   .vip-pagination{justify-content:space-between}
 }
 
+
+/* ===== v21.6 paid archive logic ===== */
+.archive-paid-note{display:inline-flex;align-items:center;gap:8px;border:1px solid #d0fadf;background:#ecfdf3;color:#079455;border-radius:999px;padding:7px 10px;font-size:12px}
+.archive-return-note{font-size:12px;color:var(--muted);line-height:1.45;margin-top:8px}
+.archive-actions{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}
+.archive-reason-cell{max-width:320px}
+.archive-reason-cell b{display:block;margin-bottom:4px;font-weight:500}
+.archive-reason-cell span{display:block;color:var(--muted);font-size:12px;line-height:1.35}
+
 </style>
 </head>
 <body>
 <div class="app">
 <aside class="sidebar">
-  <div class="brand"><div class="logo">◈</div><div><b>CRM/Manager</b><span>v21.5 · vip light layout</span></div></div>
+  <div class="brand"><div class="logo">◈</div><div><b>CRM/Manager</b><span>v21.6 · paid archive logic</span></div></div>
   <nav class="nav">
     <button class="active" data-view="dashboard">🏠 Дашборд</button>
     <button data-view="focus">🔥 Фокус дня</button>
@@ -732,7 +741,7 @@ body,button,input,select,textarea{
 <main class="main">
 <div class="page">
 <header class="topbar fade">
-  <div class="title"><h1 id="pageTitle">Дашборд</h1><p id="pageText">v21.5 · Папка VIP переработана: ровные карточки, скрытие тяжелых блоков по вкладкам и постраничный просмотр.</p></div>
+  <div class="title"><h1 id="pageTitle">Дашборд</h1><p id="pageText">v21.6 · Оплаченные заделы уходят в архив, но сохраняются в факте оплат; из архива можно вернуть клиента в заделы.</p></div>
   <div class="actions"><button class="btn primary" data-open>+ Добавить</button><button class="btn secondary" id="demoBtn">Демо</button><button class="btn secondary" id="themeBtn">Тема</button><button class="btn secondary" id="exportBtn">Экспорт</button><button class="btn danger" id="clearBtn">Очистить</button></div>
 </header>
 
@@ -1333,12 +1342,26 @@ function monthName(m){const [y,mo]=m.split('-');return new Date(+y,+mo-1,1).toLo
 function addMonths(m,n){const [y,mo]=m.split('-').map(Number);const d=new Date(y,mo-1+n,1);return d.toISOString().slice(0,7)}
 function today(){return new Date().toISOString().slice(0,10)}
 function inMonth(d){return String(d||'').slice(0,7)===state.currentMonth}
-function paidDeals(){return state.deals.filter(d=>d.stage==='Оплачено'&&d.include==='yes'&&inMonth(d.payDate))}
+function paidDeals(){
+  const fromDeals=state.deals.filter(d=>d.stage==='Оплачено'&&d.include==='yes'&&inMonth(d.payDate));
+  const fromArchive=(state.archive||[]).filter(a=>a.archiveType==='paid'&&a.include==='yes'&&inMonth(a.payDate)).map(a=>({
+    id:a.sourceDealId||a.id,
+    client:a.client,
+    amount:Number(a.amount||0),
+    stage:'Оплачено',
+    include:a.include||'yes',
+    payDate:a.payDate||a.returnDate||a.archivedAt,
+    service:a.service||'',
+    amo:a.amo||'',
+    comment:a.comment||''
+  }));
+  return [...fromDeals,...fromArchive];
+}
 function invoiceDeals(){return state.deals.filter(d=>['Счёт выставлен','Ждём оплату','Просрочено'].includes(d.stage)&&d.include==='yes'&&(inMonth(d.invoiceDate)||!d.invoiceDate))}
 function activeDeals(){return state.deals.filter(d=>!['Оплачено','Отказ'].includes(d.stage))}
 function calc(amount){const p=plan();let level='План не выполнен',rate=0,bonus=0,cls='red';if(p.superPlan>0&&amount>=p.superPlan){level='Сверхплан';rate=+p.highRate;bonus=+p.bonus;cls='violet'}else if(p.highPlan>0&&amount>=p.highPlan){level='Повышенный';rate=+p.highRate;cls='green'}else if(p.ordinaryPlan>0&&amount>=p.ordinaryPlan){level='Обычный';rate=+p.ordinaryRate;cls='amber'}return{level,rate,bonus,cls,salary:amount*rate+bonus}}
 function nextNeed(amount){const p=plan();const arr=[['обычного плана',+p.ordinaryPlan],['повышенного плана',+p.highPlan],['сверхплана',+p.superPlan]].filter(x=>x[1]>amount&&x[1]>0).sort((a,b)=>a[1]-b[1]);return arr.length?{label:'до '+arr[0][0],need:arr[0][1]-amount}:{label:'все уровни закрыты',need:0}}
-function setView(v){state.view=v;document.querySelectorAll('.view').forEach(x=>x.classList.toggle('active',x.id===v));document.querySelectorAll('[data-view]').forEach(x=>x.classList.toggle('active',x.dataset.view===v));const titles={dashboard:['Дашборд','v21.5 · Папка VIP переработана: ровные карточки, скрытие тяжелых блоков по вкладкам и постраничный просмотр.'],focus:['Фокус дня','Автоматический список: кого сегодня дожимать, кому писать, где просрочка и какие VIP требуют контроля.'],deals:['Заделы','Рабочая таблица заделов с AMO-ссылками, стадиями, прогнозом и связью с зарплатой.'],vip:['VIP-клиенты','Карточки VIP, депозиты, условия, контроль и быстрый доступ к документам.'],docs:['Документы','Единое место для ссылок на договоры, счета, акты, платёжки и папки клиентов.'],archive:['Архив','Отказы, паузы и клиенты, к которым можно вернуться.'],touchpoints:['Касания','История коммуникаций: кто ответил, кто молчит, кто обещал оплатить и когда следующий контакт.'],templates:['Шаблоны','Готовые сообщения и ответы на возражения для дожима клиентов.'],settings:['Настройки','Планы, ставки, бонус, импорт и экспорт данных.']};$('pageTitle').textContent=titles[v][0];$('pageText').textContent=titles[v][1];save()}
+function setView(v){state.view=v;document.querySelectorAll('.view').forEach(x=>x.classList.toggle('active',x.id===v));document.querySelectorAll('[data-view]').forEach(x=>x.classList.toggle('active',x.dataset.view===v));const titles={dashboard:['Дашборд','v21.6 · Оплаченные заделы уходят в архив, но сохраняются в факте оплат; из архива можно вернуть клиента в заделы.'],focus:['Фокус дня','Автоматический список: кого сегодня дожимать, кому писать, где просрочка и какие VIP требуют контроля.'],deals:['Заделы','Рабочая таблица заделов с AMO-ссылками, стадиями, прогнозом и связью с зарплатой.'],vip:['VIP-клиенты','Карточки VIP, депозиты, условия, контроль и быстрый доступ к документам.'],docs:['Документы','Единое место для ссылок на договоры, счета, акты, платёжки и папки клиентов.'],archive:['Архив','Отказы, паузы и клиенты, к которым можно вернуться.'],touchpoints:['Касания','История коммуникаций: кто ответил, кто молчит, кто обещал оплатить и когда следующий контакт.'],templates:['Шаблоны','Готовые сообщения и ответы на возражения для дожима клиентов.'],settings:['Настройки','Планы, ставки, бонус, импорт и экспорт данных.']};$('pageTitle').textContent=titles[v][0];$('pageText').textContent=titles[v][1];save()}
 
 function percent(a,b){return b>0?Math.round(a/b*100):0}
 function groupByReason(arr){const map={};arr.forEach(a=>{const k=a.reason||'Другое';if(!map[k])map[k]={count:0,sum:0,returnable:0};map[k].count+=1;map[k].sum+=Number(a.amount||0);if(a.canReturn==='yes')map[k].returnable+=1});return Object.entries(map).map(([reason,v])=>({reason,...v})).sort((a,b)=>b.sum-a.sum)}
@@ -1916,34 +1939,86 @@ function renderStageLegend(){
 
 function renderFocus(inv){const focus=[...inv.map(d=>({title:d.client,meta:(d.stage+' · '+(d.nextAction||'следующий шаг не указан')),sum:d.amount,type:d.stage==='Просрочено'?'over':'wait'})),...state.vips.filter(v=>v.risk==='Высокий'||(v.controlDate&&v.controlDate<=today())).map(v=>({title:v.client,meta:'VIP · '+(v.nextAction||'контроль'),sum:v.deposit||0,type:'violetP'})),...state.archive.filter(a=>a.canReturn==='yes').map(a=>({title:a.client,meta:'Архив · '+a.reason,sum:a.amount||0,type:'work'}))].sort((a,b)=>b.sum-a.sum).slice(0,7);$('focusList').innerHTML='';$('focusEmpty').style.display=focus.length?'none':'block';focus.forEach(f=>{const div=document.createElement('div');div.className='list-item';div.innerHTML=`<div><h3>${esc(f.title)}</h3><p>${esc(f.meta)}</p></div><div class="list-side"><span class="pill ${f.type}">${money(f.sum)}</span></div>`;$('focusList').appendChild(div)})}
 
+
 function addMonthsIso(base,months){
   const d=new Date(base||today());
   d.setMonth(d.getMonth()+months);
   return d.toISOString().slice(0,10);
 }
-function archiveDealFromDelete(index){
-  const d=state.deals[index];
-  if(!d)return;
-  const returnDate=addMonthsIso(today(),1);
-  const archived={
-    id:Date.now(),
+function makeArchiveFromDeal(d, opts={}){
+  const isPaid=opts.archiveType==='paid';
+  return {
+    id:Date.now()+Math.floor(Math.random()*1000),
     client:d.client||'Без названия',
     amount:Number(d.amount||0),
-    reason:'Удалён из заделов',
-    canReturn:'yes',
-    returnDate,
-    returnHook:d.nextAction||'Вернуться к клиенту через месяц',
-    source:'deal_deleted',
+    reason:opts.reason || (isPaid?'Оплачено':'Удалён из заделов'),
+    rejectReason:opts.rejectReason || '',
+    canReturn:opts.canReturn || (isPaid?'no':'yes'),
+    returnDate:opts.returnDate || (isPaid?'':addMonthsIso(today(),1)),
+    returnHook:opts.returnHook || (isPaid?'Клиент оплатил — можно вернуться с повторной продажей позже':(d.nextAction||'Вернуться к клиенту через месяц')),
+    archiveType:opts.archiveType || 'deleted',
+    archivedAt:today(),
+    payDate:opts.payDate || d.payDate || '',
+    include:d.include || 'yes',
+    source:'deal_archive',
     sourceDealId:d.id||'',
     service:d.service||'',
     amo:d.amo||'',
-    comment:`Автоматически перенесён в архив при удалении задела ${today()}. Этап был: ${d.stage||'—'}. ${d.comment?('Комментарий: '+d.comment):''}`.trim()
-  };
+    stageBeforeArchive:d.stage||'',
+    comment:(opts.comment || `Автоматически перенесён в архив ${today()}. Этап был: ${d.stage||'—'}. ${d.comment?('Комментарий: '+d.comment):''}`).trim()
+  }
+}
+function archiveDealFromDelete(index){
+  const d=state.deals[index];
+  if(!d)return;
+  const rejectReason=prompt('Причина отказа / комментарий для архива:', d.comment||'') || '';
   if(!Array.isArray(state.archive))state.archive=[];
-  state.archive.unshift(archived);
+  state.archive.unshift(makeArchiveFromDeal(d,{archiveType:'deleted',reason:'Удалён из заделов',rejectReason,comment:rejectReason||d.comment||'',canReturn:'yes',returnDate:addMonthsIso(today(),1)}));
   state.deals.splice(index,1);
   render();
 }
+function archiveDealAsPaid(index){
+  const d=state.deals[index];
+  if(!d)return;
+  if(!d.payDate)d.payDate=today();
+  d.stage='Оплачено';
+  d.include=d.include||'yes';
+  if(!Array.isArray(state.archive))state.archive=[];
+  state.archive.unshift(makeArchiveFromDeal(d,{
+    archiveType:'paid',
+    reason:'Оплачено',
+    canReturn:'no',
+    payDate:d.payDate,
+    returnDate:'',
+    returnHook:'Клиент оплатил. Вернуться позже с повторной продажей / доп. услугой.',
+    comment:`Оплачен и перенесён в архив ${today()}. Дата оплаты: ${d.payDate}. ${d.comment||''}`
+  }));
+  state.deals.splice(index,1);
+  render();
+}
+function returnArchiveToDeals(index){
+  const a=state.archive[index];
+  if(!a)return;
+  const deal={
+    id:Date.now(),
+    client:a.client||'Без названия',
+    amo:a.amo||'',
+    service:a.service||'',
+    amount:Number(a.amount||0),
+    stage:'В работе',
+    invoiceDate:today(),
+    payDate:'',
+    include:'yes',
+    nextAction:a.returnHook||'Вернуться к клиенту',
+    nextDate:'',
+    comment:`Вернули из архива ${today()}. Причина архива: ${a.reason||'—'}. ${a.rejectReason?('Причина/комментарий: '+a.rejectReason+'. '):''}${a.comment||''}`.trim()
+  };
+  state.deals.unshift(deal);
+  state.archive.splice(index,1);
+  setView('deals');
+  render();
+}
+
 
 function renderDeals(){
   renderStageLegend();
@@ -1956,7 +2031,21 @@ function renderDeals(){
     tr.innerHTML=`<td class="deal-client-cell"><b>${esc(d.client)}</b><span>${esc(sub)}</span></td><td>${d.amo?`<a class="mini-btn link" target="_blank" href="${esc(d.amo)}">AMO</a>`:'—'}</td><td>${esc(d.service||'')}</td><td><b>${money(d.amount)}</b></td><td><select class="stage-select ${cls}" data-stage="${i}">${dealStages.map(s=>`<option ${s===d.stage?'selected':''}>${s}</option>`).join('')}</select></td><td>${prob}%</td><td><input type="date" value="${esc(d.payDate||'')}" data-paydate="${i}"></td><td>${d.include==='yes'?'Да':'Нет'}</td><td><div style="display:flex;gap:8px"><button class="mini-btn" data-edit-deal="${i}">Ред.</button><button class="mini-btn del" data-del-deal="${i}">В архив</button></div></td>`;
     body.appendChild(tr)
   });
-  document.querySelectorAll('[data-stage]').forEach(s=>s.onchange=()=>{const d=state.deals[+s.dataset.stage];d.stage=s.value;if(d.stage==='Оплачено'&&!d.payDate)d.payDate=today();if(d.stage==='Отказ')autoArchive(d);render()});
+  document.querySelectorAll('[data-stage]').forEach(s=>s.onchange=()=>{
+    const idx=+s.dataset.stage;
+    const d=state.deals[idx];
+    d.stage=s.value;
+    if(d.stage==='Оплачено'){archiveDealAsPaid(idx);return}
+    if(d.stage==='Отказ'){
+      const rejectReason=prompt('Причина отказа / комментарий для архива:', d.comment||'') || '';
+      if(!Array.isArray(state.archive))state.archive=[];
+      state.archive.unshift(makeArchiveFromDeal(d,{archiveType:'rejected',reason:'Отказ',rejectReason,comment:rejectReason||d.comment||'',canReturn:'yes',returnDate:addMonthsIso(today(),1)}));
+      state.deals.splice(idx,1);
+      render();
+      return;
+    }
+    render()
+  });
   document.querySelectorAll('[data-paydate]').forEach(inp=>inp.onchange=()=>{state.deals[+inp.dataset.paydate].payDate=inp.value;render()});
   document.querySelectorAll('[data-edit-deal]').forEach(b=>b.onclick=()=>openDealEdit(+b.dataset.editDeal));
   document.querySelectorAll('[data-del-deal]').forEach(b=>b.onclick=()=>{archiveDealFromDelete(+b.dataset.delDeal)})
@@ -2174,8 +2263,10 @@ function saveDeal(){
   const editId=$('dealEditId').value;
   if(editId!==''){
     state.deals[+editId]={...state.deals[+editId],...dealData};
+    if(dealData.stage==='Оплачено'){archiveDealAsPaid(+editId);resetDealForm();closeDrawer();return}
   }else{
     state.deals.unshift(dealData);
+    if(dealData.stage==='Оплачено'){archiveDealAsPaid(0);resetDealForm();closeDrawer();return}
   }
   resetDealForm();
   closeDrawer();
